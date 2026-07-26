@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="700x180" subtitle="Radius + shadow scale" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ds-color-surface-2);font-family:var(--ds-font-sans);color:var(--ds-color-fg);font-size:11px;}
+  .row{display:flex;gap:16px;}
+  .box{width:70px;height:70px;background:var(--ds-color-surface);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px;border:1px solid var(--ds-color-border);}
+</style></head>
+<body>
+<div class="row">
+  <div class="box" style="border-radius:var(--ds-radius-sm)">sm</div>
+  <div class="box" style="border-radius:var(--ds-radius-md)">md</div>
+  <div class="box" style="border-radius:var(--ds-radius-lg)">lg</div>
+  <div class="box" style="border-radius:var(--ds-radius-xl)">xl</div>
+  <div class="box" style="border-radius:var(--ds-radius-full)">full</div>
+  <div class="box" style="border-radius:var(--ds-radius-md);box-shadow:var(--ds-shadow-md);border-color:transparent">shadow-md</div>
+  <div class="box" style="border-radius:var(--ds-radius-md);box-shadow:var(--ds-shadow-lg);border-color:transparent">shadow-lg</div>
+</div>
+</body></html>

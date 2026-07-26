@@ -1,0 +1,31 @@
+<!-- @dsCard group="Brand" viewport="700x300" subtitle="Same components + shapes, three real per-project color themes (see /themes)" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:20px;background:#e9ebee;font-family:var(--ds-font-sans);display:flex;gap:14px;}
+  .col{flex:1;border-radius:var(--ds-radius-lg);padding:18px;display:grid;gap:12px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:var(--ds-radius-md);font-size:13px;font-weight:700;border:none;width:fit-content;}
+  .badge{display:inline-flex;padding:3px 10px;border-radius:var(--ds-radius-full);font-size:11px;font-weight:700;width:fit-content;}
+  .card{border-radius:var(--ds-radius-md);padding:14px;font-size:12px;}
+  .label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;opacity:.6;}
+</style></head>
+<body>
+  <div class="col" style="background:#f5f6f8;color:#191a1d;">
+    <span class="label">kini</span>
+    <button class="btn" style="background:#d71920;color:#fff">Join pool</button>
+    <span class="badge" style="background:#eaf8f0;color:#178044">Active</span>
+    <div class="card" style="background:#fff;border:1px solid #dfe2e7">Red accent</div>
+  </div>
+  <div class="col" style="background:#eff5f1;color:#11181c;">
+    <span class="label">gpool</span>
+    <button class="btn" style="background:#166534;color:#fff">Join pool</button>
+    <span class="badge" style="background:rgb(13 105 67/10%);color:#0d6943">Active</span>
+    <div class="card" style="background:#f8fbf9;border:1px solid #bfccc3">Pitch green accent</div>
+  </div>
+  <div class="col" style="background:#fafafa;color:#191b20;">
+    <span class="label">operator console</span>
+    <button class="btn" style="background:oklch(50% 0.16 258);color:#fff">Run backtest</button>
+    <span class="badge" style="background:oklch(96% 0.04 155);color:oklch(30% 0.08 155)">Active</span>
+    <div class="card" style="background:#fff;border:1px solid oklch(92% 0.006 264)">Blue accent</div>
+  </div>
+</body></html>

@@ -1,0 +1,38 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Feedback / Badge, Toast, Empty State" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
+  .row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+  .badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:var(--ds-radius-full);border:1px solid transparent;font-size:var(--ds-text-xs);font-weight:var(--ds-weight-semibold);}
+  .neutral{background:var(--ds-color-surface-2);color:var(--ds-color-fg-muted);border-color:var(--ds-color-border);}
+  .accent{background:var(--ds-color-accent-soft);color:var(--ds-color-accent);}
+  .success{background:var(--ds-color-success-bg);color:var(--ds-color-success-fg);border-color:var(--ds-color-success-border);}
+  .warning{background:var(--ds-color-warning-bg);color:var(--ds-color-warning-fg);border-color:var(--ds-color-warning-border);}
+  .danger{background:var(--ds-color-danger-bg);color:var(--ds-color-danger-fg);border-color:var(--ds-color-danger-border);}
+  .info{background:var(--ds-color-info-bg);color:var(--ds-color-info-fg);border-color:var(--ds-color-info-border);}
+  .toast{display:flex;gap:10px;padding:12px 14px;border:1px solid var(--ds-color-success-border);border-radius:var(--ds-radius-md);background:var(--ds-color-success-bg);color:var(--ds-color-success-fg);box-shadow:var(--ds-shadow-md);font-size:var(--ds-text-sm);font-weight:var(--ds-weight-semibold);max-width:320px;margin-bottom:18px;}
+  .empty{display:grid;justify-items:center;text-align:center;gap:6px;padding:28px 20px;border:1px dashed var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);}
+  .empty-icon{width:36px;height:36px;display:grid;place-items:center;border-radius:50%;background:var(--ds-color-surface-2);color:var(--ds-color-fg-subtle);}
+</style>
+</head>
+<body>
+  <div class="row">
+    <span class="badge neutral">Draft</span>
+    <span class="badge accent">Featured</span>
+    <span class="badge success">Active</span>
+    <span class="badge warning">Pending</span>
+    <span class="badge danger">Closed</span>
+    <span class="badge info">Beta</span>
+  </div>
+  <div class="toast">Pool created — invite your friends to join.</div>
+  <div class="empty">
+    <div class="empty-icon">—</div>
+    <strong style="font-size:var(--ds-text-base)">No pools yet</strong>
+    <span style="color:var(--ds-color-fg-muted);font-size:var(--ds-text-sm)">Create your first pool to start inviting friends.</span>
+  </div>
+</body>
+</html>
