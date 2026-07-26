@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x220" subtitle="Surfaces, borders, and text — the neutral scale everything sits on" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);}
+  .row{display:flex;gap:10px;margin-bottom:10px;}
+  .sw{flex:1;height:56px;border-radius:var(--ds-radius-sm);display:flex;align-items:center;justify-content:center;font-size:11px;font-family:var(--ds-font-mono);border:1px solid var(--ds-color-border);color:var(--ds-color-fg);}
+</style></head>
+<body>
+<div class="row">
+  <div class="sw" style="background:var(--ds-color-bg)">bg</div>
+  <div class="sw" style="background:var(--ds-color-surface)">surface</div>
+  <div class="sw" style="background:var(--ds-color-surface-2)">surface-2</div>
+  <div class="sw" style="background:var(--ds-color-surface-3)">surface-3</div>
+</div>
+<div class="row">
+  <div class="sw" style="background:var(--ds-color-border)">border</div>
+  <div class="sw" style="background:var(--ds-color-border-strong)">border-strong</div>
+</div>
+<div class="row">
+  <div class="sw" style="background:var(--ds-color-fg);color:var(--ds-color-bg);border-color:transparent">fg</div>
+  <div class="sw" style="background:var(--ds-color-fg-muted);color:var(--ds-color-bg);border-color:transparent">fg-muted</div>
+  <div class="sw" style="background:var(--ds-color-fg-subtle);color:var(--ds-color-bg);border-color:transparent">fg-subtle</div>
+  <div class="sw" style="background:var(--ds-color-fg-faint);color:var(--ds-color-bg);border-color:transparent">fg-faint</div>
+</div>
+</body></html>

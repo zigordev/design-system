@@ -1,0 +1,39 @@
+<!-- @dsCard group="Components" viewport="700x260" name="Data Display / Card, Stat Tile, Avatar" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
+  .row{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;}
+  .card{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);box-shadow:var(--ds-shadow-sm);width:220px;overflow:hidden;}
+  .card-head{padding:16px 18px;border-bottom:1px solid var(--ds-color-border);}
+  .card-body{padding:16px 18px;color:var(--ds-color-fg-muted);font-size:var(--ds-text-sm);}
+  .tile{display:grid;gap:8px;padding:16px;border-radius:var(--ds-radius-lg);border:1px solid var(--ds-color-border);background:var(--ds-color-surface);width:160px;}
+  .tile-label{font-size:var(--ds-text-xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ds-color-fg-subtle);}
+  .tile-value{font-size:var(--ds-text-2xl);font-weight:800;}
+  .tile-delta{font-size:var(--ds-text-sm);font-weight:600;color:var(--ds-color-success);margin-left:6px;}
+  .avatars{display:flex;gap:10px;align-items:center;}
+  .avatar{display:grid;place-items:center;border-radius:50%;background:var(--ds-color-accent);color:var(--ds-color-accent-fg);font-weight:800;}
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="card">
+      <div class="card-head"><strong style="font-size:var(--ds-text-lg)">Team roster</strong></div>
+      <div class="card-body">12 of 15 slots filled</div>
+    </div>
+    <div class="tile">
+      <span class="tile-label">Active pools</span>
+      <div><span class="tile-value">128</span><span class="tile-delta">+12%</span></div>
+      <span style="font-size:var(--ds-text-xs);color:var(--ds-color-fg-subtle)">vs. last week</span>
+    </div>
+    <div class="avatars">
+      <span class="avatar" style="width:28px;height:28px;font-size:12px">S</span>
+      <span class="avatar" style="width:40px;height:40px;font-size:17px">M</span>
+      <span class="avatar" style="width:68px;height:68px;font-size:29px">L</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!-- @dsCard group="Colors" viewport="700x140" subtitle="Success / warning / danger / info — same lightness+chroma family, hue varies" -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);}
+  .row{display:flex;gap:12px;}
+  .sw{flex:1;height:80px;border-radius:var(--ds-radius-md);display:flex;flex-direction:column;justify-content:space-between;padding:10px;font-size:11px;font-family:var(--ds-font-mono);}
+</style></head>
+<body>
+<div class="row">
+  <div class="sw" style="background:var(--ds-color-success-bg);color:var(--ds-color-success-fg);border:1px solid var(--ds-color-success-border)"><span>success</span><strong style="font-family:var(--ds-font-sans);font-size:14px">Confirmed</strong></div>
+  <div class="sw" style="background:var(--ds-color-warning-bg);color:var(--ds-color-warning-fg);border:1px solid var(--ds-color-warning-border)"><span>warning</span><strong style="font-family:var(--ds-font-sans);font-size:14px">Pending</strong></div>
+  <div class="sw" style="background:var(--ds-color-danger-bg);color:var(--ds-color-danger-fg);border:1px solid var(--ds-color-danger-border)"><span>danger</span><strong style="font-family:var(--ds-font-sans);font-size:14px">Failed</strong></div>
+  <div class="sw" style="background:var(--ds-color-info-bg);color:var(--ds-color-info-fg);border:1px solid var(--ds-color-info-border)"><span>info</span><strong style="font-family:var(--ds-font-sans);font-size:14px">Beta</strong></div>
+</div>
+</body></html>

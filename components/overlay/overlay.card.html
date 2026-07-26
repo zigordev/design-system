@@ -1,0 +1,29 @@
+<!-- @dsCard group="Components" viewport="700x340" name="Overlay / Modal" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;padding:0;background:var(--ds-color-surface-2);font-family:var(--ds-font-sans);color:var(--ds-color-fg);height:340px;display:grid;place-items:center;}
+  .backdrop{position:absolute;inset:0;background:oklch(15% 0.01 264 / .5);}
+  .modal{position:relative;width:340px;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);box-shadow:var(--ds-shadow-xl);padding:24px;display:grid;gap:16px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 14px;border-radius:var(--ds-radius-md);font-size:var(--ds-text-sm);font-weight:600;border:1px solid transparent;cursor:pointer;}
+  .ghost{background:transparent;color:var(--ds-color-fg-muted);}
+  .danger{background:var(--ds-color-danger);color:var(--ds-color-accent-fg);}
+</style>
+</head>
+<body>
+  <div class="backdrop"></div>
+  <div class="modal">
+    <div>
+      <h3 style="margin:0;font-size:var(--ds-text-lg);font-weight:800">Delete pool?</h3>
+      <p style="margin:6px 0 0;font-size:var(--ds-text-sm);color:var(--ds-color-fg-muted)">This can't be undone.</p>
+    </div>
+    <div style="display:flex;justify-content:flex-end;gap:8px">
+      <button class="btn ghost">Cancel</button>
+      <button class="btn danger">Delete</button>
+    </div>
+  </div>
+</body>
+</html>
