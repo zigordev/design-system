@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/zigordev/design-system/compare/v0.1.5...v0.1.6) (2026-07-27)
+
+
+### Bug Fixes
+
+* Sidebar not stretching to full height; add Menu, hide utilities ([9d4aadf](https://github.com/zigordev/design-system/commit/9d4aadfcc32d24b63a6c38ac9c5df4db91694d80))
+
 ## [0.1.5](https://github.com/zigordev/design-system/compare/v0.1.4...v0.1.5) (2026-07-27)
 
 
