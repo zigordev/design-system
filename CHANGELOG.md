@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/zigordev/design-system/compare/v0.1.2...v0.1.3) (2026-07-27)
+
+
+### Bug Fixes
+
+* breakpoint hide/show rules being overridden by inline styles ([a44d5e0](https://github.com/zigordev/design-system/commit/a44d5e0834e93aeba5fc05a22647742e0c7dbd78))
+
 ## [0.1.2](https://github.com/zigordev/design-system/compare/v0.1.1...v0.1.2) (2026-07-27)
 
 
