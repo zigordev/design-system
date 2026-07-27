@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/zigordev/design-system/compare/v0.1.7...v0.1.8) (2026-07-27)
+
+
+### Bug Fixes
+
+* align Topbar bottom border with Sidebar brand row divider ([87648af](https://github.com/zigordev/design-system/commit/87648af1bbbf7ece45a9dd7cea4ab783a4af39c0))
+
 ## [0.1.7](https://github.com/zigordev/design-system/compare/v0.1.6...v0.1.7) (2026-07-27)
 
 
