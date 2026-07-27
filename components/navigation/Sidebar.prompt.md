@@ -1,4 +1,4 @@
-Primary app-shell navigation rail. Hides itself below `--ds-breakpoint-nav` (1024px) — pair with `BottomNav` for the mobile primary-nav equivalent, or just use `AppShell`, which wires both together automatically. Items support one level of `children` for sub-destinations (e.g. Execution → Paper/Live), auto-expanded when the parent or a child is active. `footer` pins account/status content (a user menu, an environment indicator) to the bottom of the rail.
+Primary app-shell navigation rail. Hides itself below `--ds-breakpoint-nav` (1024px) — pair with `BottomNav` for the mobile primary-nav equivalent, or just use `AppShell`, which wires both together automatically. Items support one level of `children` for sub-destinations (e.g. Execution → Paper/Live), auto-expanded when the parent or a child is active. `footer` pins account/status content (a user menu, an environment indicator) to the bottom of the rail. Pass `linkComponent` (e.g. `next/link`'s `Link`) in a router-based app — the default plain `<a>` causes a full page reload on every click.
 
 ```jsx
 <Sidebar
