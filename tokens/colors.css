@@ -25,6 +25,12 @@
   --ds-color-accent-fg: oklch(99% 0 0);
   --ds-color-accent-soft: oklch(95% 0.03 264);
 
+  /* Chrome — sticky header/sidebar/bottom-nav surfaces (Topbar, Sidebar,
+     BottomNav). Derived from --ds-color-surface so every theme gets a
+     translucent chrome surface for free, no per-theme override needed. */
+  --ds-color-surface-translucent: color-mix(in oklch, var(--ds-color-surface) 90%, transparent);
+  --ds-color-surface-blur: 16px;
+
   /* Semantic states — same L/C family, hue varies */
   --ds-color-success: oklch(58% 0.14 155);
   --ds-color-success-fg: oklch(30% 0.08 155);

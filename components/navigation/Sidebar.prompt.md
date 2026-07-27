@@ -1,9 +1,16 @@
-Primary app-shell navigation rail — the left sidebar every product here uses (Kini and GPool collapse this to a bottom tab bar on mobile; the operator console hides it below `lg`). This component renders the desktop rail only; add your own breakpoint swap to a bottom nav.
+Primary app-shell navigation rail. Hides itself below `--ds-breakpoint-nav` (1024px) — pair with `BottomNav` for the mobile primary-nav equivalent, or just use `AppShell`, which wires both together automatically. Items support one level of `children` for sub-destinations (e.g. Execution → Paper/Live), auto-expanded when the parent or a child is active. `footer` pins account/status content (a user menu, an environment indicator) to the bottom of the rail.
 
 ```jsx
 <Sidebar
-  brand={<Logo />}
-  items={[{ href: '/pools', label: 'Pools', icon: <PoolsIcon /> }, { href: '/stats', label: 'Stats' }]}
+  brand={<Logo initials="TB" wordmark="Trading Bot" href="/" />}
+  items={[
+    { href: '/', label: 'Overview', icon: <LayoutDashboard size={16} /> },
+    { href: '/execution', label: 'Execution', icon: <LineChart size={16} />, children: [
+      { href: '/execution/paper', label: 'Paper' },
+      { href: '/execution/live', label: 'Live' },
+    ] },
+  ]}
   activeHref={pathname}
+  footer={<span>local</span>}
 />
 ```
