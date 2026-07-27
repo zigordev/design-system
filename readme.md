@@ -69,7 +69,7 @@ decision to raise explicitly, not something to fork silently per theme.
   - `forms/` — Field, Input, Select, Checkbox, Switch
   - `feedback/` — Badge, Toast, EmptyState
   - `data-display/` — Card, StatTile, Avatar
-  - `navigation/` — Tabs, Sidebar
+  - `navigation/` — Tabs, Sidebar, BottomNav, Topbar, AppShell, Logo
   - `overlay/` — Modal
   - `_shared/injectStyle.js` — tiny helper components use to inject their
     pseudo-state CSS once (no CSS-in-JS dependency).
@@ -84,6 +84,14 @@ a source component; they're small unifying wrappers around patterns that
 appeared in slightly different shapes in all three (label/hint/error groups,
 metric/KPI cards, toast stacks).
 
+`Topbar`, `BottomNav`, and `AppShell` are the same kind of addition, for
+navigation chrome specifically: kini had a topbar+sidebar+bottom-nav, gpool
+had only a topbar (no sidebar, no primary nav on mobile), trading-bot had a
+sidebar with an effectively empty desktop topbar. These three components
+standardize the split (sidebar/bottom-nav = "where am I", topbar = "what can
+I do here") across all three products, sharing one breakpoint
+(`--ds-breakpoint-nav`, 1024px) instead of each app picking its own.
+
 ## Not included yet
 
 - Per-product UI kit recreations (full screens) — out of scope for this pass
@@ -91,9 +99,12 @@ metric/KPI cards, toast stacks).
 - A `Table` / data-grid component — the operator console's is Radix + a
   bespoke virtualization layer; worth a dedicated pass rather than a token
   reskin.
-- No logo/brand mark assets — none of the three source repos ship a logo
-  file; each renders a text/letter mark inline (`K`, `GP`, a Lucide icon).
-  Don't fabricate one; add real marks here once provided.
+- No real logo/brand mark assets — none of the three source repos ship a
+  logo file; each renders a text/letter mark inline (`K`, `GP`, a Lucide
+  icon). `components/navigation/Logo` standardizes *how* those marks render
+  (size, shape, wordmark, tagline) but still takes `initials` or an icon
+  `mark` node from the caller — don't fabricate artwork; add real marks
+  here once provided.
 - No custom webfonts — all three load Inter via `next/font` at build time,
   so no binary lives in any repo. Link Google Fonts "Inter" (and a mono like
   JetBrains Mono) from each consuming project, or swap `--ds-font-sans`
