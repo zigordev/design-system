@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/zigordev/design-system/compare/v0.1.4...v0.1.5) (2026-07-27)
+
+
+### Bug Fixes
+
+* force header-text onto its own line when Topbar wraps on mobile ([d144f60](https://github.com/zigordev/design-system/commit/d144f60fc0ddbe21b7130d4f0573e1cdcc9bbe8e))
+
 ## [0.1.4](https://github.com/zigordev/design-system/compare/v0.1.3...v0.1.4) (2026-07-27)
 
 
