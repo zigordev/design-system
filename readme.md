@@ -70,7 +70,7 @@ decision to raise explicitly, not something to fork silently per theme.
   - `feedback/` — Badge, Toast, EmptyState
   - `data-display/` — Card, StatTile, Avatar
   - `navigation/` — Tabs, Sidebar, BottomNav, Topbar, AppShell, Logo
-  - `overlay/` — Modal
+  - `overlay/` — Modal, Menu
   - `_shared/injectStyle.js` — tiny helper components use to inject their
     pseudo-state CSS once (no CSS-in-JS dependency).
 - `guidelines/` — foundation specimen cards (colors, type, spacing,
