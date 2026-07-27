@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/zigordev/design-system/compare/v0.1.3...v0.1.4) (2026-07-27)
+
+
+### Bug Fixes
+
+* add linkComponent prop, full page reload on every nav click ([81955b3](https://github.com/zigordev/design-system/commit/81955b3eea2fc7e0f5d621ef48f8c717afdacdd9))
+
 ## [0.1.3](https://github.com/zigordev/design-system/compare/v0.1.2...v0.1.3) (2026-07-27)
 
 
