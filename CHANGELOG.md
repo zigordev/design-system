@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/zigordev/design-system/compare/v0.1.6...v0.1.7) (2026-07-27)
+
+
+### Features
+
+* add dark mode to operator-console theme ([5be81d4](https://github.com/zigordev/design-system/commit/5be81d4ebe9c4377aee776d3a1e6f2fed4338891))
+
 ## [0.1.6](https://github.com/zigordev/design-system/compare/v0.1.5...v0.1.6) (2026-07-27)
 
 
