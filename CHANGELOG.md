@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.13](https://github.com/zigordev/design-system/compare/v0.1.12...v0.1.13) (2026-07-28)
+
+
+### Bug Fixes
+
+* add ariaLabel prop to TopbarTabs ([dddefa5](https://github.com/zigordev/design-system/commit/dddefa5c558619a150393380669ddcffacebd6b5))
+
 ## [0.1.12](https://github.com/zigordev/design-system/compare/v0.1.11...v0.1.12) (2026-07-28)
 
 
