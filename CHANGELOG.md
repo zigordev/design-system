@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.17](https://github.com/zigordev/design-system/compare/v0.1.16...v0.1.17) (2026-07-28)
+
+
+### Bug Fixes
+
+* define semantic colours in every theme's dark block ([9667c19](https://github.com/zigordev/design-system/commit/9667c191d9173067e36e69d649fca5b7c9c212a4))
+
 ## [0.1.16](https://github.com/zigordev/design-system/compare/v0.1.15...v0.1.16) (2026-07-28)
 
 
