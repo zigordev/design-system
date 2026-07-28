@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/zigordev/design-system/compare/v0.1.10...v0.1.11) (2026-07-28)
+
+
+### Features
+
+* add AuthShell, AuthCard, and GoogleMark ([3fc7a06](https://github.com/zigordev/design-system/commit/3fc7a063e7f08d10397726dddcbfe636b8d817ee))
+
 ## [0.1.10](https://github.com/zigordev/design-system/compare/v0.1.9...v0.1.10) (2026-07-28)
 
 
