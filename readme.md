@@ -71,6 +71,9 @@ decision to raise explicitly, not something to fork silently per theme.
   - `data-display/` — Card, StatTile, Avatar
   - `navigation/` — Tabs, Sidebar, BottomNav, Topbar, AppShell, Logo
   - `overlay/` — Modal, Menu
+  - `icons/` — Icon, a curated glyph set (vendored Lucide path data, no
+    npm dependency) — the one icon language for nav items, toolbar
+    buttons, and any other in-product iconography
   - `_shared/injectStyle.js` — tiny helper components use to inject their
     pseudo-state CSS once (no CSS-in-JS dependency).
 - `guidelines/` — foundation specimen cards (colors, type, spacing,
