@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.18](https://github.com/zigordev/design-system/compare/v0.1.17...v0.1.18) (2026-07-28)
+
+
+### Features
+
+* expand Icon set to 44, add PageHeader ([3068abb](https://github.com/zigordev/design-system/commit/3068abb4d37191dac724590f23715d438ad49c90))
+
 ## [0.1.17](https://github.com/zigordev/design-system/compare/v0.1.16...v0.1.17) (2026-07-28)
 
 
