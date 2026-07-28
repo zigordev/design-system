@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.14](https://github.com/zigordev/design-system/compare/v0.1.13...v0.1.14) (2026-07-28)
+
+
+### Bug Fixes
+
+* merge tabs into Topbar's main row instead of a row below it ([ff01b0c](https://github.com/zigordev/design-system/commit/ff01b0c19661186836e35eaf09c796092d0fba96))
+
 ## [0.1.13](https://github.com/zigordev/design-system/compare/v0.1.12...v0.1.13) (2026-07-28)
 
 
