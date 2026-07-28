@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.16](https://github.com/zigordev/design-system/compare/v0.1.15...v0.1.16) (2026-07-28)
+
+
+### Bug Fixes
+
+* add mode slot to AppShellTopbarSlots type ([71da3fd](https://github.com/zigordev/design-system/commit/71da3fda00f4d1048afc19cf14cda2817998c20e))
+
 ## [0.1.15](https://github.com/zigordev/design-system/compare/v0.1.14...v0.1.15) (2026-07-28)
 
 
