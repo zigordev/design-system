@@ -14,7 +14,7 @@ const DIRECTION = {
   flat: 'var(--ds-color-fg-subtle)',
 };
 
-export function StatTile({ label, value, delta, direction = 'flat', hint, tone = 'default', valueTone = 'default', className = '', style }) {
+export function StatTile({ label, value, delta, direction = 'flat', hint, icon, tone = 'default', valueTone = 'default', className = '', style }) {
   return (
     <div
       className={`ds-stat-tile ${className}`.trim()}
@@ -24,7 +24,8 @@ export function StatTile({ label, value, delta, direction = 'flat', hint, tone =
         background: 'var(--ds-color-surface)', fontFamily: 'var(--ds-font-sans)', ...style,
       }}
     >
-      <span style={{ fontSize: 'var(--ds-text-xs)', fontWeight: 'var(--ds-weight-bold)', letterSpacing: 'var(--ds-tracking-wide)', textTransform: 'uppercase', color: 'var(--ds-color-fg-subtle)' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 'var(--ds-text-xs)', fontWeight: 'var(--ds-weight-bold)', letterSpacing: 'var(--ds-tracking-wide)', textTransform: 'uppercase', color: 'var(--ds-color-fg-subtle)' }}>
+        {icon ? <span aria-hidden="true" style={{ display: 'inline-flex' }}>{icon}</span> : null}
         {label}
       </span>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
