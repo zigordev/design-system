@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.19](https://github.com/zigordev/design-system/compare/v0.1.18...v0.1.19) (2026-07-28)
+
+
+### Features
+
+* make Button polymorphic via `as` ([7a44caa](https://github.com/zigordev/design-system/commit/7a44caa3077d7e2a61c3eeb712985b7bd518ff1d))
+
 ## [0.1.18](https://github.com/zigordev/design-system/compare/v0.1.17...v0.1.18) (2026-07-28)
 
 
