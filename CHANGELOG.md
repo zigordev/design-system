@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10](https://github.com/zigordev/design-system/compare/v0.1.9...v0.1.10) (2026-07-28)
+
+
+### Features
+
+* add Flag component (real flag artwork, not emoji) ([d96e9c7](https://github.com/zigordev/design-system/commit/d96e9c7b2aeb309c04b5248b11ff85a594990e1c))
+
 ## [0.1.9](https://github.com/zigordev/design-system/compare/v0.1.8...v0.1.9) (2026-07-28)
 
 
