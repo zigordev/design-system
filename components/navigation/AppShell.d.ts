@@ -25,6 +25,10 @@ export interface AppShellTopbarSlots {
 
 export interface AppShellProps {
   brand: React.ReactNode;
+  /** Scope selector — rendered at the top of Sidebar on desktop, and into
+   * Topbar below the nav breakpoint (where Sidebar is hidden). Typically a
+   * `ScopeSwitcher`. */
+  scope?: React.ReactNode;
   sidebarItems: AppShellNavItem[];
   /** Derived automatically (first 5 sidebarItems with an icon) if omitted. */
   bottomNavItems?: AppShellBottomNavItem[];

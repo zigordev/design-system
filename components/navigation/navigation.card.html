@@ -1,34 +1,64 @@
-<!-- @dsCard group="Components" viewport="700x260" name="Navigation / Tabs, Sidebar" -->
+<!-- @dsCard group="Components" viewport="700x340" name="Navigation / scope, tabs, mode" -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="../../styles.css">
 <style>
-  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
-  .tabs{display:inline-flex;gap:2px;padding:4px;border-radius:var(--ds-radius-full);background:var(--ds-color-surface-2);border:1px solid var(--ds-color-border);margin-bottom:20px;}
-  .tab{border:0;background:transparent;padding:7px 16px;border-radius:var(--ds-radius-full);font-size:var(--ds-text-sm);font-weight:600;color:var(--ds-color-fg-muted);}
-  .tab.active{background:var(--ds-color-surface);color:var(--ds-color-accent);box-shadow:var(--ds-shadow-sm);}
-  .sidebar{width:200px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);overflow:hidden;}
-  .sb-head{padding:12px 16px;border-bottom:1px solid var(--ds-color-border);font-weight:800;}
-  .sb-nav{padding:10px;display:grid;gap:4px;}
-  .sb-link{padding:9px 12px;border-radius:var(--ds-radius-md);font-size:var(--ds-text-sm);font-weight:600;color:var(--ds-color-fg-muted);text-decoration:none;}
-  .sb-link.active{background:var(--ds-color-accent-soft);color:var(--ds-color-accent);}
+  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);color:var(--ds-color-fg);display:flex;gap:20px;align-items:flex-start;}
+  .rail{width:220px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);overflow:hidden;flex-shrink:0;}
+  .rail-head{height:44px;display:flex;align-items:center;padding:0 14px;border-bottom:1px solid var(--ds-color-border);font-weight:800;}
+  .scope{margin:12px 12px 0;display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-md);background:var(--ds-color-surface-2);}
+  .scope-text{display:grid;gap:1px;flex:1;min-width:0;}
+  .scope-label{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ds-color-fg-subtle);}
+  .scope-value{font-size:var(--ds-text-sm);font-weight:600;}
+  .rail-nav{padding:12px;display:grid;gap:4px;}
+  .rail-link{padding:8px 12px;border-radius:var(--ds-radius-md);font-size:var(--ds-text-sm);font-weight:600;color:var(--ds-color-fg-muted);text-decoration:none;}
+  .rail-link.active{background:var(--ds-color-accent-soft);color:var(--ds-color-accent);}
+  .pane{flex:1;min-width:0;display:grid;gap:16px;}
+  .bar{display:flex;align-items:center;gap:16px;padding:0 14px;height:55px;border:1px solid var(--ds-color-border);border-bottom-width:1px;border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);}
+  .tabs{display:flex;align-items:center;gap:20px;flex:1;}
+  .tab{position:relative;padding:10px 1px;font-size:var(--ds-text-sm);font-weight:600;color:var(--ds-color-fg-muted);text-decoration:none;}
+  .tab.active{color:var(--ds-color-fg);}
+  .tab.active::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--ds-color-accent);border-radius:999px;}
+  .seg{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--ds-color-surface-2);border:1px solid var(--ds-color-border);}
+  .seg-item{padding:5px 14px;border-radius:999px;font-size:var(--ds-text-sm);font-weight:600;color:var(--ds-color-fg-muted);}
+  .seg-item.active{background:var(--ds-color-surface);color:var(--ds-color-accent);box-shadow:var(--ds-shadow-sm);}
+  .seg.danger{background:var(--ds-color-danger-bg);border-color:var(--ds-color-danger-border);}
+  .seg.danger .seg-item{color:var(--ds-color-danger-fg);}
+  .seg.danger .seg-item.active{background:var(--ds-color-danger);color:var(--ds-color-accent-fg);}
+  .cap{font-size:var(--ds-text-xs);color:var(--ds-color-fg-subtle);}
 </style>
 </head>
 <body>
-  <div class="tabs">
-    <button class="tab active">Overview</button>
-    <button class="tab">Players</button>
-    <button class="tab">Rules</button>
+  <div class="rail">
+    <div class="rail-head">GPool</div>
+    <div class="scope">
+      <span class="scope-text"><span class="scope-label">Pool</span><span class="scope-value">Champions 2026</span></span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="rail-nav">
+      <a class="rail-link active" href="#">Ranking</a>
+      <a class="rail-link" href="#">Groups</a>
+      <a class="rail-link" href="#">Final</a>
+      <a class="rail-link" href="#">Players</a>
+    </div>
   </div>
-  <div class="sidebar">
-    <div class="sb-head">Brand</div>
-    <div class="sb-nav">
-      <a class="sb-link active" href="#">Pools</a>
-      <a class="sb-link" href="#">Stats</a>
-      <a class="sb-link" href="#">Teams</a>
-      <a class="sb-link" href="#">Profile</a>
+
+  <div class="pane">
+    <p class="cap">Topbar — sections left (TopbarTabs), mode right (SegmentedControl)</p>
+    <div class="bar">
+      <span class="tabs">
+        <a class="tab active" href="#">Overview</a>
+        <a class="tab" href="#">Trades</a>
+      </span>
+      <span class="seg"><span class="seg-item active">View</span><span class="seg-item">Manage</span></span>
+    </div>
+
+    <p class="cap">A mode with real-world consequences repaints the control</p>
+    <div class="bar">
+      <span class="tabs"><a class="tab active" href="#">Execution</a></span>
+      <span class="seg danger"><span class="seg-item">Paper</span><span class="seg-item active">Live</span></span>
     </div>
   </div>
 </body>
