@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.21](https://github.com/zigordev/design-system/compare/v0.1.20...v0.1.21) (2026-07-28)
+
+
+### Features
+
+* Button loading/icon slots, StatTile icon ([65141c3](https://github.com/zigordev/design-system/commit/65141c3e3e15bd2dee2cba51fe836e948b1c8229))
+
 ## [0.1.20](https://github.com/zigordev/design-system/compare/v0.1.19...v0.1.20) (2026-07-28)
 
 
