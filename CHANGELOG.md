@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.15](https://github.com/zigordev/design-system/compare/v0.1.14...v0.1.15) (2026-07-28)
+
+
+### Features
+
+* add ScopeSwitcher + SegmentedControl, scope/mode slots ([1895cf4](https://github.com/zigordev/design-system/commit/1895cf41484d645e976da560dd99e784d0b6231b))
+
 ## [0.1.14](https://github.com/zigordev/design-system/compare/v0.1.13...v0.1.14) (2026-07-28)
 
 
