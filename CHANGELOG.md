@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.12](https://github.com/zigordev/design-system/compare/v0.1.11...v0.1.12) (2026-07-28)
+
+
+### Features
+
+* add TopbarTabs (flush underline tabs, replaces floating pills) ([a24735c](https://github.com/zigordev/design-system/commit/a24735c10d132894a3ccd7438e0f062422350c38))
+
 ## [0.1.11](https://github.com/zigordev/design-system/compare/v0.1.10...v0.1.11) (2026-07-28)
 
 
