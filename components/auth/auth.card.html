@@ -1,0 +1,44 @@
+<!-- @dsCard group="Components" viewport="700x520" name="Auth / AuthShell + AuthCard" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;font-family:var(--ds-font-sans);}
+  .shell{position:relative;min-height:520px;display:grid;place-items:center;padding:28px;overflow:hidden;
+    background:linear-gradient(145deg, color-mix(in oklch, var(--ds-color-accent) 12%, transparent), transparent 45%), var(--ds-color-bg);}
+  .utilities{position:absolute;top:1rem;right:1rem;display:inline-flex;gap:6px;}
+  .utilities button{width:32px;height:32px;border-radius:var(--ds-radius-md);border:1px solid transparent;background:transparent;color:var(--ds-color-fg-muted);cursor:pointer;}
+  .card{position:relative;z-index:1;display:grid;justify-items:center;gap:24px;width:min(420px,100%);padding:clamp(28px,6vw,48px);text-align:center;
+    background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);box-shadow:var(--ds-shadow-md);}
+  .mark{width:56px;height:56px;border-radius:999px;background:var(--ds-color-accent);color:var(--ds-color-accent-fg);display:grid;place-items:center;font-weight:800;font-size:20px;}
+  .eyebrow{margin:0;font-size:var(--ds-text-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ds-color-accent);}
+  h1{margin:0;font-size:2rem;font-weight:800;letter-spacing:-.02em;color:var(--ds-color-fg);}
+  .desc{margin:0;font-size:var(--ds-text-sm);color:var(--ds-color-fg-muted);max-width:32ch;}
+  .cta{width:100%;height:46px;border:0;border-radius:var(--ds-radius-md);background:var(--ds-color-accent);color:var(--ds-color-accent-fg);font-weight:700;font-size:var(--ds-text-base);display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;}
+  .fine{margin:0;font-size:var(--ds-text-xs);color:var(--ds-color-fg-subtle);}
+</style>
+</head>
+<body>
+  <div class="shell">
+    <div class="utilities">
+      <button aria-hidden="true">◐</button>
+      <button aria-hidden="true">◔</button>
+    </div>
+    <div class="card">
+      <div style="display:grid;justify-items:center;gap:12px;">
+        <div class="mark">K</div>
+        <p class="eyebrow">Manage your group pools</p>
+        <h1>Welcome to Kini</h1>
+        <p class="desc">Sign in to manage pools, review results, and keep every match assignment in one place.</p>
+      </div>
+      <button class="cta">
+        <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#fff" d="M17.64 9.2c0-.637-.057-1.25-.164-1.84H9v3.48h4.844c-.209 1.18-.843 2.18-1.796 2.85v2.26h2.908c1.702-1.567 2.684-3.874 2.684-6.75z"/><path fill="#fff" opacity=".85" d="M9 18c2.43 0 4.467-.806 5.965-2.18l-2.908-2.26c-.806.54-1.837.86-3.057.86-2.35 0-4.34-1.587-5.053-3.72H.957v2.332C2.438 15.983 5.482 18 9 18z"/><path fill="#fff" opacity=".7" d="M3.947 10.72c-.18-.54-.282-1.117-.282-1.72 0-.603.102-1.18.282-1.72V4.948H.957C.348 6.173 0 7.548 0 9s.348 2.827.957 4.052l2.99-2.332z"/><path fill="#fff" opacity=".85" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0 5.482 0 2.438 2.017.957 4.948L3.947 7.28C4.66 5.145 6.65 3.58 9 3.58z"/></svg>
+        Sign in with Google
+      </button>
+      <p class="fine">Access is limited to approved members.</p>
+    </div>
+  </div>
+</body>
+</html>

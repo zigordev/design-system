@@ -75,7 +75,10 @@ decision to raise explicitly, not something to fork silently per theme.
     npm dependency) — the one icon language for nav items, toolbar
     buttons, and any other in-product iconography. Flag, real (not
     emoji) country flag chips for language switchers, vendored from
-    flag-icons the same way.
+    flag-icons the same way. GoogleMark, the "Sign in with Google"
+    brand mark (white-on-color variant, for use on a colored Button).
+  - `auth/` — AuthShell + AuthCard, the centered card layout for
+    login / invite-accept / any single-action auth screen.
   - `_shared/injectStyle.js` — tiny helper components use to inject their
     pseudo-state CSS once (no CSS-in-JS dependency).
 - `guidelines/` — foundation specimen cards (colors, type, spacing,
