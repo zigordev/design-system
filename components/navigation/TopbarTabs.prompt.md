@@ -13,6 +13,7 @@ dashboard tab look), not a floating pill container.
       ]}
       activeHref={pathname}
       linkComponent={Link}
+      ariaLabel="Pool sections"
     />
   }
 />

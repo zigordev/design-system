@@ -13,6 +13,8 @@ export interface TopbarTabsProps {
   activeHref: string;
   /** Link component to render each tab as, e.g. Next.js `Link`. @default 'a' */
   linkComponent?: React.ElementType;
+  /** @default 'Sections' */
+  ariaLabel?: string;
   className?: string;
   style?: React.CSSProperties;
 }

@@ -17,11 +17,11 @@ injectOnce('ds-topbar-tabs-nav', `
  * container. Real navigation (each tab is a link), so the active-match
  * convention mirrors Sidebar/BottomNav exactly: pass `activeHref` and
  * `linkComponent` the same way. */
-export function TopbarTabs({ items, activeHref, linkComponent = 'a', className = '', style }) {
+export function TopbarTabs({ items, activeHref, linkComponent = 'a', ariaLabel = 'Sections', className = '', style }) {
   const Link = linkComponent;
 
   return (
-    <nav className={`ds-topbar-tabs-nav ${className}`.trim()} style={style} aria-label="Sections">
+    <nav className={`ds-topbar-tabs-nav ${className}`.trim()} style={style} aria-label={ariaLabel}>
       {items.map((item) => {
         const active = item.href === activeHref || (Boolean(activeHref) && activeHref.startsWith(`${item.href}/`));
         return (
