@@ -69,7 +69,10 @@ decision to raise explicitly, not something to fork silently per theme.
   - `forms/` — Field, Input, Select, Checkbox, Switch
   - `feedback/` — Badge, Toast, EmptyState
   - `data-display/` — Card, StatTile, Avatar
-  - `navigation/` — Tabs, Sidebar, BottomNav, Topbar, AppShell, Logo
+  - `navigation/` — Tabs (segmented control, for page content), Sidebar,
+    BottomNav, Topbar, TopbarTabs (flush underline tabs for Topbar's
+    `tabs` slot — real navigation, not a content-level toggle), AppShell,
+    Logo
   - `overlay/` — Modal, Menu
   - `icons/` — Icon, a curated glyph set (vendored Lucide path data, no
     npm dependency) — the one icon language for nav items, toolbar
