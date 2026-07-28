@@ -69,10 +69,12 @@ decision to raise explicitly, not something to fork silently per theme.
   - `forms/` — Field, Input, Select, Checkbox, Switch
   - `feedback/` — Badge, Toast, EmptyState
   - `data-display/` — Card, StatTile, Avatar
-  - `navigation/` — Tabs (segmented control, for page content), Sidebar,
-    BottomNav, Topbar, TopbarTabs (flush underline tabs for Topbar's
-    `tabs` slot — real navigation, not a content-level toggle), AppShell,
-    Logo
+  - `navigation/` — Sidebar, BottomNav, Topbar, AppShell, Logo,
+    TopbarTabs (flush underline tabs for sections within a destination),
+    SegmentedControl (pill toggle for a *mode* — view/manage,
+    paper/live — in Topbar's `mode` slot, or a content-level switcher),
+    ScopeSwitcher (which team/pool/workspace the app is showing, at the
+    top of Sidebar)
   - `overlay/` — Modal, Menu
   - `icons/` — Icon, a curated glyph set (vendored Lucide path data, no
     npm dependency) — the one icon language for nav items, toolbar
@@ -86,6 +88,38 @@ decision to raise explicitly, not something to fork silently per theme.
     pseudo-state CSS once (no CSS-in-JS dependency).
 - `guidelines/` — foundation specimen cards (colors, type, spacing,
   radius/shadow, theming comparison).
+
+## Navigation taxonomy
+
+Five different things get confused with each other constantly, and every
+navigation problem in the three source apps traced back to conflating two
+of them. Each has one home:
+
+| Concept | Answers | Component / slot |
+| --- | --- | --- |
+| **Destination** | Where am I? | `Sidebar` items, `BottomNav` |
+| **Scope** | Which dataset? (team, pool, workspace) | `ScopeSwitcher` in `Sidebar`'s `scope` |
+| **Mode** | What am I doing to it? (view/manage, paper/live) | `SegmentedControl` in `Topbar`'s `mode` |
+| **Section** | Which part of this destination? | `TopbarTabs` in `Topbar`'s `tabs` |
+| **Action** | Do a thing | `Topbar`'s `actions` |
+
+The two failure modes worth naming:
+
+- **A mode modelled as destinations.** Putting `paper` and `live` (or
+  `view` and `manage`) in the sidebar duplicates the entire nav subtree
+  beneath them, and makes "which one am I in?" something the user answers
+  by reading the URL. Modes keep you on the same screen — give them
+  `Topbar`'s `mode` slot and, when the route encodes them, `href` options
+  so they stay deep-linkable.
+- **A scope listed as a destination.** "Teams" or "Pools" sitting next to
+  real destinations means the same concept exists twice, and choosing a
+  scope looks like navigating. Management of the scopes themselves goes in
+  `ScopeSwitcher`'s `footer` ("Manage teams…"), not beside them.
+
+A corollary for domain hierarchies: when the same axis (say Groups /
+Final / Players) is meaningful at several levels — the real tournament,
+one pool's rules, my predictions — don't repeat it once per level. Make
+it the section axis, and make the level a mode.
 
 ## Intentional additions
 
