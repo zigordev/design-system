@@ -20,6 +20,8 @@ export interface AppShellTopbarSlots {
   actions?: React.ReactNode;
   utilities?: React.ReactNode;
   tabs?: React.ReactNode;
+  /** Mode switch for the current screen — typically a `SegmentedControl`. */
+  mode?: React.ReactNode;
   subBar?: React.ReactNode;
 }
 
