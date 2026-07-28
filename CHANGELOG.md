@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/zigordev/design-system/compare/v0.1.8...v0.1.9) (2026-07-28)
+
+
+### Features
+
+* add Icon component (curated glyph set) ([0fe2f9a](https://github.com/zigordev/design-system/commit/0fe2f9acc35a610171a6f71d7d8dc78d1fda9f8a))
+
 ## [0.1.8](https://github.com/zigordev/design-system/compare/v0.1.7...v0.1.8) (2026-07-27)
 
 
