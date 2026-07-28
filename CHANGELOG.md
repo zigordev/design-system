@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.20](https://github.com/zigordev/design-system/compare/v0.1.19...v0.1.20) (2026-07-28)
+
+
+### Features
+
+* StatTile valueTone, so the number can carry the signal ([b4f64f8](https://github.com/zigordev/design-system/commit/b4f64f848b432dc3b1ead65a08a2860b21db802e))
+
 ## [0.1.19](https://github.com/zigordev/design-system/compare/v0.1.18...v0.1.19) (2026-07-28)
 
 
