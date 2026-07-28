@@ -1,4 +1,4 @@
-<!-- @dsCard group="Components" viewport="700x320" name="Icon / curated glyph set" -->
+<!-- @dsCard group="Components" viewport="700x360" name="Icon / curated glyph set + Flag" -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +10,8 @@
   .cell{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 6px;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);}
   .cell svg{width:20px;height:20px;stroke:var(--ds-color-fg-muted);}
   .cell span{font-size:var(--ds-text-xs);color:var(--ds-color-fg-subtle);}
+  .cell .flag{border-radius:2px;outline:1px solid var(--ds-color-border);outline-offset:-1px;}
+  .section-label{font-size:var(--ds-text-xs);font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ds-color-fg-subtle);margin:20px 0 10px;}
 </style>
 </head>
 <body>
@@ -36,6 +38,18 @@
     <div class="cell"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg><span>chevron-right</span></div>
     <div class="cell"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>check</span></div>
     <div class="cell"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg><span>circle-alert</span></div>
+  </div>
+
+  <div class="section-label">Flag</div>
+  <div class="grid">
+    <div class="cell">
+      <svg class="flag" width="24" height="18" viewBox="0 0 640 480"><path fill="#012169" d="M0 0h640v480H0z"/><path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"/><path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"/><path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z"/><path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z"/></svg>
+      <span>gb</span>
+    </div>
+    <div class="cell">
+      <svg class="flag" width="24" height="18" viewBox="0 0 640 480"><path fill="#AA151B" d="M0 0h640v480H0z"/><path fill="#F1BF00" d="M0 120h640v240H0z"/></svg>
+      <span>es</span>
+    </div>
   </div>
 </body>
 </html>
