@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.28](https://github.com/zigordev/design-system/compare/v0.1.27...v0.1.28) (2026-07-29)
+
+
+### Features
+
+* **table:** add density=compact ([c47f960](https://github.com/zigordev/design-system/commit/c47f9607cff144267edadf7d1c5387cfb85417a9))
+
 ## [0.1.27](https://github.com/zigordev/design-system/compare/v0.1.26...v0.1.27) (2026-07-29)
 
 
