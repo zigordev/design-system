@@ -50,6 +50,14 @@ export function Modal({
   const lastFocusedRef = React.useRef(null);
   const titleId = React.useId();
 
+  // Held in refs so the effect below can depend on `open` alone. Callers pass
+  // onClose as an inline arrow, so depending on it re-runs the effect every
+  // render — and each cleanup pass would haul focus back out of the dialog
+  // and overwrite the element we are supposed to return focus to.
+  const onCloseRef = React.useRef(onClose);
+  const busyRef = React.useRef(busy);
+  React.useEffect(() => { onCloseRef.current = onClose; busyRef.current = busy; });
+
   React.useEffect(() => {
     if (!open) return undefined;
 
@@ -62,9 +70,9 @@ export function Modal({
 
     const onKey = (event) => {
       if (event.key === 'Escape') {
-        if (!busy) {
+        if (!busyRef.current) {
           event.stopPropagation();
-          onClose();
+          onCloseRef.current();
         }
         return;
       }
@@ -90,7 +98,7 @@ export function Modal({
       document.body.style.overflow = previousOverflow;
       requestAnimationFrame(() => lastFocusedRef.current?.focus());
     };
-  }, [open, busy, onClose]);
+  }, [open]);
 
   if (!open || typeof document === 'undefined') return null;
 
