@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.36](https://github.com/zigordev/design-system/compare/v0.1.35...v0.1.36) (2026-07-29)
+
+
+### Features
+
+* **field:** ds-form-compact wrapper ([fe4c5f5](https://github.com/zigordev/design-system/commit/fe4c5f5751e1db4561b3bc4ad310dbc53adb74cf))
+
 ## [0.1.35](https://github.com/zigordev/design-system/compare/v0.1.34...v0.1.35) (2026-07-29)
 
 
