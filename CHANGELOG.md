@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.33](https://github.com/zigordev/design-system/compare/v0.1.32...v0.1.33) (2026-07-29)
+
+
+### Features
+
+* promote Section, and give Modal real dialog behaviour ([bfc707e](https://github.com/zigordev/design-system/commit/bfc707e1d88d51f5783119828d45d6008f660c40))
+
 ## [0.1.32](https://github.com/zigordev/design-system/compare/v0.1.31...v0.1.32) (2026-07-29)
 
 
