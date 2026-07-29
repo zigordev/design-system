@@ -9,6 +9,10 @@ export interface TableProps {
   minWidth?: number | string;
   /** Caps the scroll container's height, which is what makes the always-sticky header stick. */
   maxHeight?: number | string;
+  /** `compact` tightens cell padding for stat tables — the kind with ten
+   *  numeric columns, where default padding is what pushes it off-screen.
+   *  @default 'default' */
+  density?: 'default' | 'compact';
   /** Row hover highlight. @default true */
   hoverable?: boolean;
   /** `<thead>` / `<tbody>` — the table's own markup. */

@@ -26,6 +26,10 @@ than crushing columns. Any table with more than a handful of numeric
 columns needs it, and a frozen first column is pointless without it —
 there has to be something to scroll.
 
+`density="compact"` is for stat tables — ten numeric columns where the
+default padding is what pushes the table off a phone screen. Prose-ish
+tables (a few wide columns) should stay at the default.
+
 **Not a data grid.** Sorting, pagination, column visibility and
 virtualisation are a separate problem that TanStack Table solves properly,
 and the operator console already uses it. Use this for presentation and
