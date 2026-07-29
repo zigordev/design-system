@@ -68,7 +68,7 @@ decision to raise explicitly, not something to fork silently per theme.
   - `core/` — Button
   - `forms/` — Field, Input, DateField, Select, Checkbox, Switch
   - `feedback/` — Badge, Toast, EmptyState
-  - `data-display/` — Card, StatTile, Avatar, PageHeader, Table
+  - `data-display/` — Card, StatTile, Avatar, PageHeader, Table, Section
   - `navigation/` — Sidebar, BottomNav, Topbar, AppShell, Logo,
     TopbarTabs (flush underline tabs for sections within a destination),
     SegmentedControl (pill toggle for a *mode* — view/manage,
