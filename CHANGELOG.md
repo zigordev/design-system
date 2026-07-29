@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.27](https://github.com/zigordev/design-system/compare/v0.1.26...v0.1.27) (2026-07-29)
+
+
+### Features
+
+* **table:** add minWidth ([c2f869c](https://github.com/zigordev/design-system/commit/c2f869cee725f6dbd469d90ad952478225e8002e))
+
 ## [0.1.26](https://github.com/zigordev/design-system/compare/v0.1.25...v0.1.26) (2026-07-29)
 
 
