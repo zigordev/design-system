@@ -1,32 +1,133 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
+import { injectOnce } from '../_shared/injectStyle.js';
+import { Button } from '../core/Button.jsx';
+import { Icon } from '../icons/Icon.jsx';
 
-export function Modal({ open, title, description, children, footer, onClose, className = '', style }) {
-  if (!open) return null;
-  return (
-    <div
-      onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 1000, display: 'grid', placeItems: 'center', padding: 20,
-        background: 'oklch(15% 0.01 264 / 0.5)', backdropFilter: 'blur(3px)',
-      }}
-    >
+injectOnce('ds-modal', `
+.ds-modal-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:oklch(15% 0.01 264 / 0.5);backdrop-filter:blur(3px);}
+.ds-modal{width:100%;max-height:min(90vh, calc(100vh - 40px));overflow-y:auto;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);box-shadow:var(--ds-shadow-xl);padding:24px;font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
+.ds-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.ds-modal-title{margin:0;font-size:var(--ds-text-lg);font-weight:var(--ds-weight-bold);letter-spacing:-0.015em;color:var(--ds-color-fg);}
+.ds-modal-description{margin:6px 0 0;font-size:var(--ds-text-sm);line-height:1.5;color:var(--ds-color-fg-muted);}
+.ds-modal-body{margin-top:20px;}
+.ds-modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--ds-color-border);}
+`);
+
+const FOCUSABLE =
+  'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+const WIDTHS = { sm: 420, md: 520, lg: 720 };
+
+/** A modal dialog: portalled, focus-trapped, and dismissible.
+ *
+ * The behaviour here is the point. A dialog that does not trap focus lets
+ * Tab wander into the page behind it; one that does not restore focus on
+ * close leaves a keyboard user at the top of the document; one rendered in
+ * place rather than through a portal gets clipped by any ancestor with
+ * `overflow` or its own stacking context. All three are invisible to a
+ * mouse user and immediately broken for everyone else, so none of them are
+ * optional.
+ *
+ * `busy` closes every exit — Esc, the overlay, the close button — for the
+ * duration of a submit, so an in-flight request cannot be abandoned by a
+ * stray keypress.
+ */
+export function Modal({
+  open,
+  onClose,
+  title,
+  description,
+  children,
+  footer,
+  busy = false,
+  size = 'md',
+  closeLabel = 'Close',
+  className = '',
+  style,
+}) {
+  const dialogRef = React.useRef(null);
+  const lastFocusedRef = React.useRef(null);
+  const titleId = React.useId();
+
+  React.useEffect(() => {
+    if (!open) return undefined;
+
+    lastFocusedRef.current = document.activeElement;
+    const dialog = dialogRef.current;
+    if (dialog) {
+      const first = dialog.querySelectorAll(FOCUSABLE)[0];
+      requestAnimationFrame(() => first?.focus());
+    }
+
+    const onKey = (event) => {
+      if (event.key === 'Escape') {
+        if (!busy) {
+          event.stopPropagation();
+          onClose();
+        }
+        return;
+      }
+      if (event.key !== 'Tab' || !dialog) return;
+      const focusable = dialog.querySelectorAll(FOCUSABLE);
+      if (focusable.length === 0) return;
+      const firstEl = focusable[0];
+      const lastEl = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === firstEl) {
+        event.preventDefault();
+        lastEl.focus();
+      } else if (!event.shiftKey && document.activeElement === lastEl) {
+        event.preventDefault();
+        firstEl.focus();
+      }
+    };
+
+    document.addEventListener('keydown', onKey);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previousOverflow;
+      requestAnimationFrame(() => lastFocusedRef.current?.focus());
+    };
+  }, [open, busy, onClose]);
+
+  if (!open || typeof document === 'undefined') return null;
+
+  return createPortal(
+    <div className="ds-modal-overlay" onClick={() => { if (!busy) onClose(); }}>
       <div
-        onClick={(e) => e.stopPropagation()}
+        ref={dialogRef}
         className={`ds-modal ${className}`.trim()}
-        style={{
-          width: 'min(480px, 100%)', maxHeight: 'min(90vh, calc(100vh - 40px))', overflowY: 'auto',
-          background: 'var(--ds-color-surface)', border: '1px solid var(--ds-color-border)',
-          borderRadius: 'var(--ds-radius-xl)', boxShadow: 'var(--ds-shadow-xl)', padding: 24,
-          display: 'grid', gap: 16, fontFamily: 'var(--ds-font-sans)', ...style,
-        }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={title ? titleId : undefined}
+        style={{ maxWidth: WIDTHS[size] ?? WIDTHS.md, ...style }}
+        onClick={(event) => event.stopPropagation()}
       >
-        <div style={{ display: 'grid', gap: 4 }}>
-          {title ? <h3 style={{ margin: 0, fontSize: 'var(--ds-text-lg)', fontWeight: 'var(--ds-weight-bold)', color: 'var(--ds-color-fg)' }}>{title}</h3> : null}
-          {description ? <p style={{ margin: 0, fontSize: 'var(--ds-text-sm)', color: 'var(--ds-color-fg-muted)' }}>{description}</p> : null}
+        <div className="ds-modal-head">
+          <div style={{ minWidth: 0, flex: 1 }}>
+            {title ? <h2 className="ds-modal-title" id={titleId}>{title}</h2> : null}
+            {description ? <p className="ds-modal-description">{description}</p> : null}
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            type="button"
+            onClick={onClose}
+            disabled={busy}
+            aria-label={closeLabel}
+            style={{ flexShrink: 0 }}
+          >
+            <Icon name="x" size={14} />
+          </Button>
         </div>
-        {children}
-        {footer ? <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>{footer}</div> : null}
+
+        <div className="ds-modal-body">{children}</div>
+
+        {footer ? <div className="ds-modal-footer">{footer}</div> : null}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
