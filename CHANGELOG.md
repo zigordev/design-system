@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.22](https://github.com/zigordev/design-system/compare/v0.1.21...v0.1.22) (2026-07-29)
+
+
+### Features
+
+* add DateField, give Select a real chevron ([0cd5991](https://github.com/zigordev/design-system/commit/0cd599182e0ea0c9ad9ef20147250d5f5c42075c))
+
 ## [0.1.21](https://github.com/zigordev/design-system/compare/v0.1.20...v0.1.21) (2026-07-28)
 
 
