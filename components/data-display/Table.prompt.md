@@ -26,6 +26,12 @@ than crushing columns. Any table with more than a handful of numeric
 columns needs it, and a frozen first column is pointless without it —
 there has to be something to scroll.
 
+`caption` and `footer` are strips inside the frame, above and below the
+table. A **string** caption gets uppercase label typography; **any other
+node** is left alone — otherwise a caption holding a search box would
+uppercase the search box. `footer` is where pagination controls go, so
+they sit in the frame rather than floating under it.
+
 `density="compact"` is for stat tables — ten numeric columns where the
 default padding is what pushes the table off a phone screen. Prose-ish
 tables (a few wide columns) should stay at the default.

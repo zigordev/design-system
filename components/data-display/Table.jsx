@@ -5,7 +5,11 @@ injectOnce('ds-table', `
 .ds-table-frame{min-width:0;max-width:100%;overflow:clip;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);}
 .ds-table-scroll{width:100%;max-width:100%;min-width:0;overflow:auto;scrollbar-gutter:stable;}
 .ds-table{width:100%;border-collapse:collapse;font-family:var(--ds-font-sans);font-size:var(--ds-text-sm);color:var(--ds-color-fg);}
-.ds-table-caption{padding:8px 12px;background:var(--ds-color-surface-2);border-bottom:1px solid var(--ds-color-border);color:var(--ds-color-fg-subtle);font-size:var(--ds-text-xs);font-weight:var(--ds-weight-bold);letter-spacing:var(--ds-tracking-wide);text-transform:uppercase;}
+.ds-table-strip{padding:8px 12px;background:var(--ds-color-surface-2);border-bottom:1px solid var(--ds-color-border);}
+.ds-table-strip-bottom{border-bottom:0;border-top:1px solid var(--ds-color-border);}
+/* Only a string caption gets label typography — uppercasing a strip that
+   holds a search box would uppercase the search box. */
+.ds-table-caption{color:var(--ds-color-fg-subtle);font-family:var(--ds-font-sans);font-size:var(--ds-text-xs);font-weight:var(--ds-weight-bold);letter-spacing:var(--ds-tracking-wide);text-transform:uppercase;}
 .ds-table th{position:sticky;top:0;z-index:1;background:var(--ds-color-surface-2);padding:10px 12px;text-align:left;font-size:var(--ds-text-xs);font-weight:var(--ds-weight-bold);letter-spacing:var(--ds-tracking-wide);text-transform:uppercase;color:var(--ds-color-fg-subtle);border-bottom:1px solid var(--ds-color-border);white-space:nowrap;}
 .ds-table td{padding:10px 12px;border-bottom:1px solid var(--ds-color-border);vertical-align:middle;}
 .ds-table tbody tr:last-child td{border-bottom:0;}
@@ -33,10 +37,14 @@ injectOnce('ds-table', `
  * The header is always sticky; `maxHeight` is what gives it something to
  * stick against, by capping the scroll container.
  */
-export function Table({ caption, minWidth, maxHeight, density = 'default', hoverable = true, children, className = '', style }) {
+export function Table({ caption, footer, minWidth, maxHeight, density = 'default', hoverable = true, children, className = '', style }) {
   return (
     <div className={`ds-table-frame ${className}`.trim()} style={style}>
-      {caption ? <div className="ds-table-caption">{caption}</div> : null}
+      {caption ? (
+        <div className={`ds-table-strip ${typeof caption === 'string' ? 'ds-table-caption' : ''}`.trim()}>
+          {caption}
+        </div>
+      ) : null}
       <div className="ds-table-scroll" style={maxHeight ? { maxHeight } : undefined}>
         <table
           className={`ds-table ${density === 'compact' ? 'ds-table-compact' : ''} ${hoverable ? 'ds-table-hoverable' : ''}`.replace(/\s+/g, ' ').trim()}
@@ -45,6 +53,7 @@ export function Table({ caption, minWidth, maxHeight, density = 'default', hover
           {children}
         </table>
       </div>
+      {footer ? <div className="ds-table-strip ds-table-strip-bottom">{footer}</div> : null}
     </div>
   );
 }
