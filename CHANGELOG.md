@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.25](https://github.com/zigordev/design-system/compare/v0.1.24...v0.1.25) (2026-07-29)
+
+
+### Features
+
+* add Table (presentational only) ([2c42bd7](https://github.com/zigordev/design-system/commit/2c42bd7d77f853ab2ace5987d44ddb784a2ae2d4))
+
 ## [0.1.24](https://github.com/zigordev/design-system/compare/v0.1.23...v0.1.24) (2026-07-29)
 
 
