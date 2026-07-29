@@ -1,0 +1,71 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Data Display / Table" -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body{margin:0;padding:20px;background:var(--ds-color-bg);font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
+  /* Mirrors the rules Table.jsx injects at runtime — the card is static HTML,
+     so it cannot import the component. Keep the two in step. */
+  .ds-table-frame{min-width:0;max-width:100%;overflow:clip;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);}
+  .ds-table-scroll{width:100%;overflow:auto;}
+  .ds-table{width:100%;border-collapse:collapse;font-family:var(--ds-font-sans);font-size:var(--ds-text-sm);color:var(--ds-color-fg);}
+  .ds-table-strip{padding:8px 12px;background:var(--ds-color-surface-2);border-bottom:1px solid var(--ds-color-border);}
+  .ds-table-strip-bottom{border-bottom:0;border-top:1px solid var(--ds-color-border);}
+  .ds-table-caption{color:var(--ds-color-fg-subtle);font-size:var(--ds-text-xs);font-weight:var(--ds-weight-bold);letter-spacing:var(--ds-tracking-wide);text-transform:uppercase;}
+  .ds-table th{background:var(--ds-color-surface-2);padding:10px 12px;text-align:left;font-size:var(--ds-text-xs);font-weight:var(--ds-weight-bold);letter-spacing:var(--ds-tracking-wide);text-transform:uppercase;color:var(--ds-color-fg-subtle);border-bottom:1px solid var(--ds-color-border);white-space:nowrap;}
+  .ds-table td{padding:10px 12px;border-bottom:1px solid var(--ds-color-border);vertical-align:middle;}
+  .ds-table tbody tr:last-child td{border-bottom:0;}
+  .ds-table .ds-table-num{text-align:right;font-variant-numeric:tabular-nums;}
+  .ds-table-sort{display:inline-flex;align-items:center;gap:4px;border:0;padding:0;background:none;color:inherit;font:inherit;letter-spacing:inherit;text-transform:inherit;cursor:pointer;}
+  .ds-table-sort[data-active="true"]{color:var(--ds-color-fg);}
+  .ds-table-sort-icon{display:inline-flex;opacity:.45;}
+  .ds-table-sort[data-active="true"] .ds-table-sort-icon{opacity:1;}
+  .ds-table-pager{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:var(--ds-text-xs);color:var(--ds-color-fg-muted);}
+  .ds-table-pager-nav{display:flex;align-items:center;gap:4px;}
+  .ds-table-pager-count{min-width:64px;text-align:center;font-variant-numeric:tabular-nums;}
+  .pg-btn{display:grid;place-items:center;width:30px;height:30px;border-radius:var(--ds-radius-md);border:1px solid var(--ds-color-border);background:var(--ds-color-surface);color:var(--ds-color-fg);}
+  svg{stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+</head>
+<body>
+  <div class="ds-table-frame">
+    <div class="ds-table-strip ds-table-caption">Standings</div>
+    <div class="ds-table-scroll">
+      <table class="ds-table">
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>
+              <button class="ds-table-sort" data-active="false" type="button">Played
+                <span class="ds-table-sort-icon"><svg width="12" height="12" viewBox="0 0 24 24"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg></span>
+              </button>
+            </th>
+            <th class="ds-table-num">
+              <button class="ds-table-sort" data-active="true" type="button">Points
+                <span class="ds-table-sort-icon"><svg width="12" height="12" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></span>
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Spain</td><td>3</td><td class="ds-table-num">9</td></tr>
+          <tr><td>Brazil</td><td>3</td><td class="ds-table-num">6</td></tr>
+          <tr><td>Japan</td><td>3</td><td class="ds-table-num">4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="ds-table-strip ds-table-strip-bottom">
+      <div class="ds-table-pager">
+        <span>1&ndash;3 of 24</span>
+        <div class="ds-table-pager-nav">
+          <span class="pg-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></span>
+          <span class="ds-table-pager-count">1 / 8</span>
+          <span class="pg-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
