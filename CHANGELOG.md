@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.32](https://github.com/zigordev/design-system/compare/v0.1.31...v0.1.32) (2026-07-29)
+
+
+### Bug Fixes
+
+* **forms:** generate ids with useId, not a module counter ([7b95510](https://github.com/zigordev/design-system/commit/7b95510f2021ddff695c9b85f6459aaf720f41d6))
+
 ## [0.1.31](https://github.com/zigordev/design-system/compare/v0.1.30...v0.1.31) (2026-07-29)
 
 
