@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.24](https://github.com/zigordev/design-system/compare/v0.1.23...v0.1.24) (2026-07-29)
+
+
+### Bug Fixes
+
+* Switch takes a label, like Checkbox ([70c8276](https://github.com/zigordev/design-system/commit/70c827698368ca2f6173bb11b069a5c58ec5d7de))
+
 ## [0.1.23](https://github.com/zigordev/design-system/compare/v0.1.22...v0.1.23) (2026-07-29)
 
 
