@@ -9,6 +9,11 @@ injectOnce('ds-table', `
 .ds-table th{position:sticky;top:0;z-index:1;background:var(--ds-color-surface-2);padding:10px 12px;text-align:left;font-size:var(--ds-text-xs);font-weight:var(--ds-weight-bold);letter-spacing:var(--ds-tracking-wide);text-transform:uppercase;color:var(--ds-color-fg-subtle);border-bottom:1px solid var(--ds-color-border);white-space:nowrap;}
 .ds-table td{padding:10px 12px;border-bottom:1px solid var(--ds-color-border);vertical-align:middle;}
 .ds-table tbody tr:last-child td{border-bottom:0;}
+/* For stat tables. An 11-column standings grid spends ~260px on horizontal
+   padding at the default, which is the difference between fitting on a phone
+   and not. */
+.ds-table-compact th,.ds-table-compact td{padding:7px 7px;}
+.ds-table-compact td{font-size:var(--ds-text-xs);}
 .ds-table-hoverable tbody tr:hover td{background:var(--ds-color-surface-2);}
 /* Two classes deep on purpose: .ds-table th already sets text-align:left and
    would otherwise out-specify a single .ds-table-num, leaving a numeric
@@ -28,13 +33,13 @@ injectOnce('ds-table', `
  * The header is always sticky; `maxHeight` is what gives it something to
  * stick against, by capping the scroll container.
  */
-export function Table({ caption, minWidth, maxHeight, hoverable = true, children, className = '', style }) {
+export function Table({ caption, minWidth, maxHeight, density = 'default', hoverable = true, children, className = '', style }) {
   return (
     <div className={`ds-table-frame ${className}`.trim()} style={style}>
       {caption ? <div className="ds-table-caption">{caption}</div> : null}
       <div className="ds-table-scroll" style={maxHeight ? { maxHeight } : undefined}>
         <table
-          className={`ds-table ${hoverable ? 'ds-table-hoverable' : ''}`.trim()}
+          className={`ds-table ${density === 'compact' ? 'ds-table-compact' : ''} ${hoverable ? 'ds-table-hoverable' : ''}`.replace(/\s+/g, ' ').trim()}
           style={minWidth ? { minWidth } : undefined}
         >
           {children}
