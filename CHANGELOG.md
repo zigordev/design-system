@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.34](https://github.com/zigordev/design-system/compare/v0.1.33...v0.1.34) (2026-07-29)
+
+
+### Features
+
+* **input:** attention state, and aria-invalid ([57930e3](https://github.com/zigordev/design-system/commit/57930e39b24d836a376caf7b81604026393d1da5))
+
 ## [0.1.33](https://github.com/zigordev/design-system/compare/v0.1.32...v0.1.33) (2026-07-29)
 
 
