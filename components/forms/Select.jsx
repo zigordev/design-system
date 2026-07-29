@@ -7,7 +7,7 @@ injectOnce('ds-select', `
 .ds-select:hover:not(:disabled){border-color:var(--ds-color-border-strong);}
 .ds-select:focus{outline:none;border-color:var(--ds-color-accent);box-shadow:0 0 0 3px var(--ds-color-accent-soft);}
 .ds-select:disabled{background:var(--ds-color-surface-2);color:var(--ds-color-fg-faint);cursor:not-allowed;}
-.ds-select-chevron{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--ds-color-fg-subtle);font-size:11px;}
+.ds-select-chevron{position:absolute;right:11px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--ds-color-fg-subtle);display:inline-flex;}
 `);
 
 export function Select({ children, className = '', style, ...props }) {
@@ -16,7 +16,13 @@ export function Select({ children, className = '', style, ...props }) {
       <select className={`ds-select ${className}`.trim()} {...props}>
         {children}
       </select>
-      <span className="ds-select-chevron" aria-hidden="true">▾</span>
+      {/* Real icon rather than a "▾" text glyph, which rendered at a
+          different weight and baseline than every other chevron in the UI. */}
+      <span className="ds-select-chevron" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </span>
     </span>
   );
 }

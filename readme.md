@@ -66,7 +66,7 @@ decision to raise explicitly, not something to fork silently per theme.
   writing a fourth project's theme.
 - `components/` — React primitives, grouped by concern:
   - `core/` — Button
-  - `forms/` — Field, Input, Select, Checkbox, Switch
+  - `forms/` — Field, Input, DateField, Select, Checkbox, Switch
   - `feedback/` — Badge, Toast, EmptyState
   - `data-display/` — Card, StatTile, Avatar, PageHeader
   - `navigation/` — Sidebar, BottomNav, Topbar, AppShell, Logo,
