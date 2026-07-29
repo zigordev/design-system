@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.31](https://github.com/zigordev/design-system/compare/v0.1.30...v0.1.31) (2026-07-29)
+
+
+### Features
+
+* **app-shell:** own the content frame ([6c7550c](https://github.com/zigordev/design-system/commit/6c7550c70f082c12575e907d7407656f9a5385c0))
+
 ## [0.1.30](https://github.com/zigordev/design-system/compare/v0.1.29...v0.1.30) (2026-07-29)
 
 
