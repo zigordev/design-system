@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.23](https://github.com/zigordev/design-system/compare/v0.1.22...v0.1.23) (2026-07-29)
+
+
+### Bug Fixes
+
+* Field now actually labels its control ([6e238a8](https://github.com/zigordev/design-system/commit/6e238a8417f9bedd486d1059fec5bd5ce210232c))
+
 ## [0.1.22](https://github.com/zigordev/design-system/compare/v0.1.21...v0.1.22) (2026-07-29)
 
 
