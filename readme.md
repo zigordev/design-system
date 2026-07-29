@@ -68,7 +68,7 @@ decision to raise explicitly, not something to fork silently per theme.
   - `core/` — Button
   - `forms/` — Field, Input, DateField, Select, Checkbox, Switch
   - `feedback/` — Badge, Toast, EmptyState
-  - `data-display/` — Card, StatTile, Avatar, PageHeader
+  - `data-display/` — Card, StatTile, Avatar, PageHeader, Table
   - `navigation/` — Sidebar, BottomNav, Topbar, AppShell, Logo,
     TopbarTabs (flush underline tabs for sections within a destination),
     SegmentedControl (pill toggle for a *mode* — view/manage,
@@ -141,9 +141,9 @@ I do here") across all three products, sharing one breakpoint
 
 - Per-product UI kit recreations (full screens) — out of scope for this pass
   per the current brief (tokens + component library only).
-- A `Table` / data-grid component — the operator console's is Radix + a
-  bespoke virtualization layer; worth a dedicated pass rather than a token
-  reskin.
+- A **data grid** — sorting, pagination, column visibility, virtualisation.
+  `Table` covers presentation only; the operator console uses TanStack Table
+  for behaviour and that is the right split, not something to reimplement here.
 - No real logo/brand mark assets — none of the three source repos ship a
   logo file; each renders a text/letter mark inline (`K`, `GP`, a Lucide
   icon). `components/navigation/Logo` standardizes *how* those marks render
