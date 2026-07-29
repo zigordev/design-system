@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.35](https://github.com/zigordev/design-system/compare/v0.1.34...v0.1.35) (2026-07-29)
+
+
+### Features
+
+* **badge:** leading icon slot ([458ac07](https://github.com/zigordev/design-system/commit/458ac072832d36a60b7207b535cf3224e884dbd3))
+
 ## [0.1.34](https://github.com/zigordev/design-system/compare/v0.1.33...v0.1.34) (2026-07-29)
 
 
