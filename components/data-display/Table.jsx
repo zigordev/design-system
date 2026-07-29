@@ -10,7 +10,10 @@ injectOnce('ds-table', `
 .ds-table td{padding:10px 12px;border-bottom:1px solid var(--ds-color-border);vertical-align:middle;}
 .ds-table tbody tr:last-child td{border-bottom:0;}
 .ds-table-hoverable tbody tr:hover td{background:var(--ds-color-surface-2);}
-.ds-table-num{text-align:right;font-variant-numeric:tabular-nums;}
+/* Two classes deep on purpose: .ds-table th already sets text-align:left and
+   would otherwise out-specify a single .ds-table-num, leaving a numeric
+   column's header sitting left of its own right-aligned numbers. */
+.ds-table .ds-table-num{text-align:right;font-variant-numeric:tabular-nums;}
 `);
 
 /** Presentational table: the frame, the scroll container, and header/cell
@@ -22,9 +25,8 @@ injectOnce('ds-table', `
  * be strictly worse. Pair this with whatever table engine you like, or use
  * it bare for a table that just needs to look right.
  *
- * `maxHeight` turns on a sticky header, since the two only make sense
- * together: headers stick to a scroll container, and without a height limit
- * there is nothing to scroll.
+ * The header is always sticky; `maxHeight` is what gives it something to
+ * stick against, by capping the scroll container.
  */
 export function Table({ caption, maxHeight, hoverable = true, children, className = '', style }) {
   return (
