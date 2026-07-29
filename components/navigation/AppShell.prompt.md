@@ -14,3 +14,15 @@ import Link from 'next/link';
   {children}
 </AppShell>
 ```
+
+## The content frame
+
+`AppShell` owns the gutter around page content — `.ds-app-shell-content`,
+24px on desktop and 16px below 640px, plus room for the bottom nav when
+there is one. **Do not pad again inside it.** gpool did (`.container-app`
+added another 32px at >=768px) and its screens sat visibly narrower than
+kini's and the operator console's, which read as a bug and was one.
+
+`contentMaxWidth` caps and centres the frame for apps whose screens should
+not stretch across an ultra-wide monitor. Left off, content fills the
+width, which is what all three apps do today.
