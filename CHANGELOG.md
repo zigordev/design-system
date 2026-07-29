@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.37](https://github.com/zigordev/design-system/compare/v0.1.36...v0.1.37) (2026-07-29)
+
+
+### Bug Fixes
+
+* **modal:** keep focus in the dialog across re-renders ([3a06a16](https://github.com/zigordev/design-system/commit/3a06a162ea3dc465f5495c24b1027cd7833a8a7d))
+
 ## [0.1.36](https://github.com/zigordev/design-system/compare/v0.1.35...v0.1.36) (2026-07-29)
 
 
