@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.26](https://github.com/zigordev/design-system/compare/v0.1.25...v0.1.26) (2026-07-29)
+
+
+### Bug Fixes
+
+* **table:** right-align numeric column headers ([ae6f6c6](https://github.com/zigordev/design-system/commit/ae6f6c6e55ab61f0bab160031ad06895a3bc0d41))
+
 ## [0.1.25](https://github.com/zigordev/design-system/compare/v0.1.24...v0.1.25) (2026-07-29)
 
 
