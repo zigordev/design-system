@@ -18,8 +18,8 @@ generate them. `ds-table-num` right-aligns and tabular-figures a numeric
 column, which is the difference between a readable column of numbers and
 an unreadable one.
 
-`maxHeight` caps the scroll container and makes the header sticky; the two
-belong together, since a sticky header needs something to scroll under it.
+The header is always sticky — `maxHeight` is what gives it something to
+stick against, by capping the scroll container.
 
 **Not a data grid.** Sorting, pagination, column visibility and
 virtualisation are a separate problem that TanStack Table solves properly,

@@ -3,7 +3,7 @@ import * as React from 'react';
 export interface TableProps {
   /** Uppercase strip above the header row. */
   caption?: React.ReactNode;
-  /** Caps the scroll container's height and makes the header sticky. */
+  /** Caps the scroll container's height, which is what makes the always-sticky header stick. */
   maxHeight?: number | string;
   /** Row hover highlight. @default true */
   hoverable?: boolean;
