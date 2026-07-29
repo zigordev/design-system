@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.38](https://github.com/zigordev/design-system/compare/v0.1.37...v0.1.38) (2026-07-29)
+
+
+### Bug Fixes
+
+* **nav:** exact matching for list routes ([0994630](https://github.com/zigordev/design-system/commit/0994630898657f97383799d25539bee2600658ab))
+
 ## [0.1.37](https://github.com/zigordev/design-system/compare/v0.1.36...v0.1.37) (2026-07-29)
 
 
