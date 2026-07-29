@@ -28,12 +28,15 @@ injectOnce('ds-table', `
  * The header is always sticky; `maxHeight` is what gives it something to
  * stick against, by capping the scroll container.
  */
-export function Table({ caption, maxHeight, hoverable = true, children, className = '', style }) {
+export function Table({ caption, minWidth, maxHeight, hoverable = true, children, className = '', style }) {
   return (
     <div className={`ds-table-frame ${className}`.trim()} style={style}>
       {caption ? <div className="ds-table-caption">{caption}</div> : null}
       <div className="ds-table-scroll" style={maxHeight ? { maxHeight } : undefined}>
-        <table className={`ds-table ${hoverable ? 'ds-table-hoverable' : ''}`.trim()}>
+        <table
+          className={`ds-table ${hoverable ? 'ds-table-hoverable' : ''}`.trim()}
+          style={minWidth ? { minWidth } : undefined}
+        >
           {children}
         </table>
       </div>

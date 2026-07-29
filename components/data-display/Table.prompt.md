@@ -21,6 +21,11 @@ an unreadable one.
 The header is always sticky — `maxHeight` is what gives it something to
 stick against, by capping the scroll container.
 
+`minWidth` sets the floor below which the frame scrolls sideways rather
+than crushing columns. Any table with more than a handful of numeric
+columns needs it, and a frozen first column is pointless without it —
+there has to be something to scroll.
+
 **Not a data grid.** Sorting, pagination, column visibility and
 virtualisation are a separate problem that TanStack Table solves properly,
 and the operator console already uses it. Use this for presentation and
