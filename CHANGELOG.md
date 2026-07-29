@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.30](https://github.com/zigordev/design-system/compare/v0.1.29...v0.1.30) (2026-07-29)
+
+
+### Features
+
+* **table:** sort header, pager and empty row ([a9c4292](https://github.com/zigordev/design-system/commit/a9c4292daeeac5d23c50ff49fde733ff128d5e21))
+
 ## [0.1.29](https://github.com/zigordev/design-system/compare/v0.1.28...v0.1.29) (2026-07-29)
 
 
