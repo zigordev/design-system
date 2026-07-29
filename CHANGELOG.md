@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.29](https://github.com/zigordev/design-system/compare/v0.1.28...v0.1.29) (2026-07-29)
+
+
+### Features
+
+* **table:** caption/footer strips ([24ce661](https://github.com/zigordev/design-system/commit/24ce661df59bde649a724e4e2385af9b71779b73))
+
 ## [0.1.28](https://github.com/zigordev/design-system/compare/v0.1.27...v0.1.28) (2026-07-29)
 
 
