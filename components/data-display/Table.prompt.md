@@ -36,6 +36,42 @@ they sit in the frame rather than floating under it.
 default padding is what pushes the table off a phone screen. Prose-ish
 tables (a few wide columns) should stay at the default.
 
+## The parts around the table
+
+`TableSortHeader`, `TablePager` and `TableEmpty` are the three things every
+table grows, and every app had invented its own version of each — three
+different sort indicators (text arrows, Lucide icons, `▲▼↕`) for the same
+interaction.
+
+```jsx
+<Table
+  density="compact"
+  footer={
+    <TablePager
+      summary={t('table.range', { start, end, total })}
+      rowsLabel={t('table.rows')}
+      page={page} pageCount={pageCount} onPageChange={setPage}
+      pageSize={pageSize} pageSizeOptions={[10, 25, 50, 100]} onPageSizeChange={setPageSize}
+    />
+  }
+>
+  <thead>
+    <tr>
+      <th><TableSortHeader direction={sortKey === 'name' ? dir : null} onSort={() => sort('name')}>Name</TableSortHeader></th>
+    </tr>
+  </thead>
+  <tbody>
+    {rows.length ? rows.map(...) : <TableEmpty>{t('table.noResults')}</TableEmpty>}
+  </tbody>
+</Table>
+```
+
+None of them hold state. `direction`/`onSort` and `page`/`onPageChange` come
+from whatever drives the table — TanStack, a `useState` pair, the server.
+`TablePager` is 1-based; TanStack's `pageIndex` is 0-based, so convert at the
+boundary. Pass `summary` and `rowsLabel` already translated: the design
+system has no `t`.
+
 **Not a data grid.** Sorting, pagination, column visibility and
 virtualisation are a separate problem that TanStack Table solves properly,
 and the operator console already uses it. Use this for presentation and
