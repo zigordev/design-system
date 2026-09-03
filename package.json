@@ -2,5 +2,8 @@
   "name": "design-system",
   "version": "0.1.38",
   "private": true,
-  "description": "Technology-agnostic token + component library shared across kini, gpool, and the trading-bot operator console"
+  "description": "Technology-agnostic token + component library shared across kini, gpool, and the trading-bot operator console",
+  "engines": {
+    "node": ">=24 <25"
+  }
 }
