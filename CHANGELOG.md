@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.39](https://github.com/zigordev/design-system/compare/v0.1.38...v0.1.39) (2026-09-03)
+
+
+### Features
+
+* **security:** add CI, gitleaks and dependency hygiene ([4295a3f](https://github.com/zigordev/design-system/commit/4295a3f82951e526b963151bd2f82d4cbe86a5f7))
+
+
+### Bug Fixes
+
+* **a11y:** raise fg-subtle/fg-faint contrast to WCAG AA ([e723ee1](https://github.com/zigordev/design-system/commit/e723ee11d63c446558657655446e5faa7969d8b7))
+
 ## [0.1.38](https://github.com/zigordev/design-system/compare/v0.1.37...v0.1.38) (2026-07-29)
 
 
