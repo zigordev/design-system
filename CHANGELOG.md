@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.40](https://github.com/zigordev/design-system/compare/v0.1.39...v0.1.40) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** grant gitleaks the pull-requests:read it needs on Dependabot PRs ([795c309](https://github.com/zigordev/design-system/commit/795c30945cec916ba4345c052ff6bfed883ce5b3))
+
 ## [0.1.39](https://github.com/zigordev/design-system/compare/v0.1.38...v0.1.39) (2026-09-03)
 
 
