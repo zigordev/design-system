@@ -13,8 +13,12 @@
 
   --ds-color-fg: oklch(15% 0.01 264);
   --ds-color-fg-muted: oklch(44% 0.01 264);
-  --ds-color-fg-subtle: oklch(60% 0.01 264);
-  --ds-color-fg-faint: oklch(72% 0.008 264);
+  /* This theme's bg/surface are byte-identical to tokens/colors.css's, so the
+     same fix applies: subtle was 60% (3.8:1) and faint 72% (2.4:1) against
+     --ds-color-bg, both under the 4.5:1 WCAG AA floor. Now 4.9:1 / 4.6:1 —
+     see tokens/colors.css for the full finding. */
+  --ds-color-fg-subtle: oklch(54% 0.01 264);
+  --ds-color-fg-faint: oklch(55.5% 0.008 264);
 
   --ds-color-accent: oklch(50% 0.16 258);
   --ds-color-accent-hover: oklch(46% 0.17 258);
@@ -33,8 +37,11 @@
 
   --ds-color-fg: oklch(96% 0.004 264);
   --ds-color-fg-muted: oklch(74% 0.008 264);
-  --ds-color-fg-subtle: oklch(62% 0.008 264);
-  --ds-color-fg-faint: oklch(50% 0.008 264);
+  /* Same rule, dark background — also identical to tokens/colors.css's.
+     subtle already cleared 4.5:1 (5.3:1) but faint did not (3.2:1). Ratios
+     now 5.8:1 / 4.6:1. */
+  --ds-color-fg-subtle: oklch(66% 0.008 264);
+  --ds-color-fg-faint: oklch(60% 0.008 264);
 
   --ds-color-accent: oklch(68% 0.15 258);
   --ds-color-accent-hover: oklch(74% 0.14 258);
