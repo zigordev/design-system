@@ -10,8 +10,8 @@ export interface ModalProps {
   footer?: React.ReactNode;
   /** Disables every way out while a submit is in flight. */
   busy?: boolean;
-  /** 420 / 520 / 720px. @default 'md' */
-  size?: 'sm' | 'md' | 'lg';
+  /** 420 / 520 / 720 / 860px. @default 'md' */
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   /** Accessible name for the close button; translate it. @default 'Close' */
   closeLabel?: string;
   className?: string;
