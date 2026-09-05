@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.41](https://github.com/zigordev/design-system/compare/v0.1.40...v0.1.41) (2026-09-05)
+
+
+### Features
+
+* **ci:** add CodeQL analysis ([#48](https://github.com/zigordev/design-system/issues/48)) ([c1d6f05](https://github.com/zigordev/design-system/commit/c1d6f05e0192e8299bfc60b8c5e9f653f93cf6d9))
+* make the library consumable as a package, reconcile drift ([#49](https://github.com/zigordev/design-system/issues/49)) ([ae12cf1](https://github.com/zigordev/design-system/commit/ae12cf1bd51603b2cd652919d61827c730093c3a))
+
 ## [0.1.40](https://github.com/zigordev/design-system/compare/v0.1.39...v0.1.40) (2026-09-03)
 
 
