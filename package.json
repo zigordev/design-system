@@ -2,7 +2,27 @@
   "name": "design-system",
   "version": "0.1.40",
   "private": true,
-  "description": "Technology-agnostic token + component library shared across kini, gpool, and the trading-bot operator console",
+  "description": "Technology-agnostic token + component library shared across kini, gpool, cv and the trading-bot operator console",
+  "type": "module",
+  "sideEffects": true,
+  "exports": {
+    "./components/*": "./components/*",
+    "./tokens/*": "./tokens/*",
+    "./themes/*": "./themes/*",
+    "./styles.css": "./styles.css",
+    "./_ds_manifest.json": "./_ds_manifest.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "components",
+    "tokens",
+    "themes",
+    "styles.css",
+    "_ds_manifest.json"
+  ],
+  "peerDependencies": {
+    "react": "^18.3 || ^19"
+  },
   "engines": {
     "node": ">=24 <25"
   }

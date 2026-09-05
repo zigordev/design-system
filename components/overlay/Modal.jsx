@@ -6,7 +6,10 @@ import { Icon } from '../icons/Icon.jsx';
 
 injectOnce('ds-modal', `
 .ds-modal-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:oklch(15% 0.01 264 / 0.5);backdrop-filter:blur(3px);}
-.ds-modal{width:100%;max-height:min(90vh, calc(100vh - 40px));overflow-y:auto;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);box-shadow:var(--ds-shadow-xl);padding:24px;font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
+.ds-modal{box-sizing:border-box;width:100%;max-height:min(90vh, calc(100vh - 40px));overflow-y:auto;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);box-shadow:var(--ds-shadow-xl);padding:24px;font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
+/* Grid and flex children default to min-width:auto, so a long unbroken string
+   inside the dialog pushes it wider than its own max-width. */
+.ds-modal *{min-width:0;}
 .ds-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
 .ds-modal-title{margin:0;font-size:var(--ds-text-lg);font-weight:var(--ds-weight-bold);letter-spacing:-0.015em;color:var(--ds-color-fg);}
 .ds-modal-description{margin:6px 0 0;font-size:var(--ds-text-sm);line-height:1.5;color:var(--ds-color-fg-muted);}
@@ -17,7 +20,7 @@ injectOnce('ds-modal', `
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-const WIDTHS = { sm: 420, md: 520, lg: 720 };
+const WIDTHS = { sm: 420, md: 520, lg: 720, xl: 860 };
 
 /** A modal dialog: portalled, focus-trapped, and dismissible.
  *
