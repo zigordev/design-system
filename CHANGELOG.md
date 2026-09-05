@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.42](https://github.com/zigordev/design-system/compare/v0.1.41...v0.1.42) (2026-09-05)
+
+
+### Bug Fixes
+
+* **types:** allow anchor attributes on Button when `as` renders a link ([#52](https://github.com/zigordev/design-system/issues/52)) ([32f02f5](https://github.com/zigordev/design-system/commit/32f02f58b5da094d66650941740f79b3480a6d2d))
+
 ## [0.1.41](https://github.com/zigordev/design-system/compare/v0.1.40...v0.1.41) (2026-09-05)
 
 
