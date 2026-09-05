@@ -1,6 +1,6 @@
 {
   "name": "design-system",
-  "version": "0.1.41",
+  "version": "0.1.42",
   "private": true,
   "description": "Technology-agnostic token + component library shared across kini, gpool, cv and the trading-bot operator console",
   "type": "module",
