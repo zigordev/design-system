@@ -1,0 +1,45 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '17 4 * * 1'
+
+permissions:
+  security-events: write
+  packages: read
+  actions: read
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze
+    # Code scanning upload needs GitHub Advanced Security, a paid add-on on a
+    # private repo. Without this guard the job runs the full analysis and only
+    # fails at the very last step ("Code scanning is not enabled for this
+    # repository") — every other repo in the estate already skips instead.
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript-typescript']
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v6
+
+      # No dependencies and no build step anywhere in this repo (see ci.yml) —
+      # CodeQL's JS/TS extractor parses source directly, so there's nothing to
+      # install first.
+      - uses: github/codeql-action/init@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4
+        with:
+          languages: ${{ matrix.language }}
+
+      - uses: github/codeql-action/analyze@cdf488f595d80d6e07e03d4674febd5ab45fa938 # v4
+        with:
+          category: '/language:${{ matrix.language }}'
