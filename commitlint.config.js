@@ -1,4 +1,6 @@
-module.exports = {
+// ESM, because package.json declares "type": "module" so that consumers
+// importing the components get them treated as the ES modules they are.
+export default {
   extends: ['@commitlint/config-conventional'],
   rules: {
     'type-enum': [
