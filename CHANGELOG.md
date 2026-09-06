@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.43](https://github.com/zigordev/design-system/compare/v0.1.42...v0.1.43) (2026-09-06)
+
+
+### Bug Fixes
+
+* **ci:** merge with a PAT so push-triggered workflows still run ([#54](https://github.com/zigordev/design-system/issues/54)) ([b9508e5](https://github.com/zigordev/design-system/commit/b9508e5008c14d983a52740e78e45d3d8df904c7))
+
 ## [0.1.42](https://github.com/zigordev/design-system/compare/v0.1.41...v0.1.42) (2026-09-05)
 
 
