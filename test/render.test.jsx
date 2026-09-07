@@ -30,6 +30,7 @@ const PROPS = {
   Textarea: { 'aria-label': 'Message' },
   DateField: { 'aria-label': 'Start date' },
   Select: { 'aria-label': 'Country', children: <option value="es">Spain</option> },
+  Logo: { initials: 'GP', href: '/', label: 'gpool' },
 };
 
 const WRAP = {

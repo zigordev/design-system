@@ -15,15 +15,18 @@ export function Logo({
   shape = 'circle',
   href,
   linkComponent = 'a',
+  label,
   className = '',
   style,
 }) {
   const dim = SIZES[size] ?? SIZES.md;
   const Tag = href ? linkComponent : 'span';
+  const linkName = href && !wordmark ? (label ?? initials) : undefined;
 
   return (
     <Tag
       href={href}
+      aria-label={linkName}
       className={`ds-logo ${className}`.trim()}
       style={{
         display: 'inline-flex', alignItems: 'center', gap: 'var(--ds-space-3)',
