@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.46](https://github.com/zigordev/design-system/compare/v0.1.45...v0.1.46) (2026-09-07)
+
+
+### Bug Fixes
+
+* **navigation:** declare the logo's label prop ([#66](https://github.com/zigordev/design-system/issues/66)) ([077653a](https://github.com/zigordev/design-system/commit/077653a738965dae01ca48d8c18ecbeb71d016ff))
+
 ## [0.1.45](https://github.com/zigordev/design-system/compare/v0.1.44...v0.1.45) (2026-09-07)
 
 
