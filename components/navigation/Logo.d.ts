@@ -14,6 +14,9 @@ export interface LogoProps {
   /** Component/tag used when `href` is set. Default 'a'. Pass your router's
    * Link for client-side navigation instead of a full page reload. */
   linkComponent?: React.ElementType;
+  /** Accessible name for the link when there is no visible `wordmark`.
+   * Defaults to `initials`. */
+  label?: string;
   className?: string;
   style?: React.CSSProperties;
 }
