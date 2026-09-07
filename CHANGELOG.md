@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.45](https://github.com/zigordev/design-system/compare/v0.1.44...v0.1.45) (2026-09-07)
+
+
+### Bug Fixes
+
+* **navigation:** give the logo link an accessible name ([#64](https://github.com/zigordev/design-system/issues/64)) ([2641d43](https://github.com/zigordev/design-system/commit/2641d43f41d83f3d8779f3ffb6e21f77c9a31b62))
+
 ## [0.1.44](https://github.com/zigordev/design-system/compare/v0.1.43...v0.1.44) (2026-09-07)
 
 
