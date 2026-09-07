@@ -27,8 +27,11 @@
     "node": ">=24 <25"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
     "@testing-library/react": "^16.3.3",
     "@vitejs/plugin-react": "^6.1.1",
+    "axe-core": "^4.13.0",
     "jsdom": "^29.1.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
@@ -37,6 +40,7 @@
   "scripts": {
     "manifest": "node scripts/generate-manifest.mjs",
     "manifest:check": "node scripts/generate-manifest.mjs --check",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:a11y": "playwright test"
   }
 }
