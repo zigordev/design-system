@@ -28,19 +28,19 @@
 <body>
   <div class="grid">
     <div>
-      <label class="lbl">Team name *</label>
-      <input class="input foc" value="The Underdogs">
+      <label class="lbl" for="team-name">Team name *</label>
+      <input class="input foc" id="team-name" value="The Underdogs">
       <span class="hint">Visible to other players</span>
     </div>
     <div>
-      <label class="lbl">Email</label>
-      <input class="input invalid" value="not-an-email">
+      <label class="lbl" for="email">Email</label>
+      <input class="input invalid" id="email" value="not-an-email">
       <span class="err">Enter a valid email address</span>
     </div>
     <div>
-      <label class="lbl">Division</label>
+      <label class="lbl" for="division">Division</label>
       <div class="select-wrap">
-        <select class="select"><option>Premier League</option></select>
+        <select class="select" id="division"><option>Premier League</option></select>
         <span class="chev">▾</span>
       </div>
     </div>
