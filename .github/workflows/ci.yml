@@ -35,8 +35,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITLEAKS_ENABLE_UPLOAD_ARTIFACT: false
 
-  manifest:
-    name: Manifest matches disk
+  components:
+    name: Components render
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -45,9 +45,15 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6
         with:
           node-version: 24
+          cache: npm
 
-      - name: Every declared component exists, every component is declared
-        run: node scripts/check-manifest.mjs
+      - run: npm ci
+
+      - name: Manifest is regenerated, not hand-edited
+        run: npm run manifest:check
+
+      - name: Every component in the manifest mounts
+        run: npm test
 
       - name: JSON files parse
         run: |
