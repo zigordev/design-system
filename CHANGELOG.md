@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.44](https://github.com/zigordev/design-system/compare/v0.1.43...v0.1.44) (2026-09-07)
+
+
+### Features
+
+* generate the manifest, and mount every component in CI ([#60](https://github.com/zigordev/design-system/issues/60)) ([eff53ca](https://github.com/zigordev/design-system/commit/eff53ca2ff8c96741f1c2ad247d1f9fdfc17b471))
+
 ## [0.1.43](https://github.com/zigordev/design-system/compare/v0.1.42...v0.1.43) (2026-09-06)
 
 
