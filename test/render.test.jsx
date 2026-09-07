@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react';
+import axe from 'axe-core';
 import { describe, expect, it } from 'vitest';
 
 import manifest from '../_ds_manifest.json';
@@ -20,6 +21,19 @@ const PROPS = {
   Sidebar: NAV,
   TopbarTabs: NAV,
   SegmentedControl: { options: [{ value: 'one', label: 'One' }], value: 'one' },
+  Button: { children: 'Save' },
+  TableSortHeader: { children: 'Name', onSort: () => {} },
+  MenuItem: { children: 'Rename' },
+  Checkbox: { label: 'Remember me' },
+  Switch: { label: 'Notifications' },
+  Input: { 'aria-label': 'Email' },
+  Textarea: { 'aria-label': 'Message' },
+  DateField: { 'aria-label': 'Start date' },
+  Select: { 'aria-label': 'Country', children: <option value="es">Spain</option> },
+};
+
+const WRAP = {
+  MenuItem: (node) => <div role="menu">{node}</div>,
 };
 
 describe('every component in the manifest', () => {
@@ -31,6 +45,13 @@ describe('every component in the manifest', () => {
     const Component = mod[name];
     expect(Component, `${sourcePath} does not export ${name}`).toBeTypeOf('function');
 
-    render(<Component {...(PROPS[name] ?? {})} />);
+    const element = <Component {...(PROPS[name] ?? {})} />;
+    const { container } = render(WRAP[name] ? WRAP[name](element) : element);
+
+    const results = await axe.run(container, {
+      runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] },
+      rules: { 'color-contrast': { enabled: false }, region: { enabled: false } },
+    });
+    expect(results.violations.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
   });
 });
