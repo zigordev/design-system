@@ -53,7 +53,16 @@ jobs:
         run: npm run manifest:check
 
       - name: Every component in the manifest mounts
-        run: npm test
+        run: npm run test:cov
+
+      - name: Upload component coverage
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: coverage-components
+          path: coverage
+          retention-days: 7
+          if-no-files-found: warn
 
       - name: JSON files parse
         run: |
@@ -87,7 +96,7 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: playwright-report
+          name: playwright-report-components
           path: playwright-report
           retention-days: 7
 
