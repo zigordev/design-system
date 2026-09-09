@@ -28,21 +28,28 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
     "@playwright/test": "^1.63.0",
     "@testing-library/react": "^16.3.3",
     "@vitejs/plugin-react": "^6.1.1",
     "@vitest/coverage-v8": "^4.1.11",
     "axe-core": "^4.13.0",
+    "husky": "^9.1.7",
     "jsdom": "^30.0.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "vitest": "^4.1.11"
   },
   "scripts": {
+    "prepare": "node ./scripts/prepare-husky.mjs",
     "manifest": "node scripts/generate-manifest.mjs",
     "manifest:check": "node scripts/generate-manifest.mjs --check",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
+    "test:secrets:gitleaks": "./scripts/precommit-gitleaks.sh",
+    "ci:quality:local": "npm run manifest:check && npm run test:cov",
+    "precommit:checks": "npm run test:secrets:gitleaks && npm run ci:quality:local",
     "test:a11y": "playwright test"
   }
 }
