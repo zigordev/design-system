@@ -37,19 +37,24 @@
     "axe-core": "^4.13.0",
     "husky": "^9.1.7",
     "jsdom": "^30.0.1",
+    "prettier": "^3.6.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "vitest": "^4.1.11"
   },
   "scripts": {
     "prepare": "node ./scripts/prepare-husky.mjs",
+    "format": "prettier --write \"components/**/*.{jsx,js,ts}\" \"tokens/**/*.css\" \"themes/**/*.css\" \"styles.css\" \"scripts/**/*.mjs\" \".github/**/*.{yml,yaml}\" \"*.md\" \"!CHANGELOG.md\" \"package.json\" \".release-please-config.json\" \".release-please-manifest.json\"",
+    "format:check": "prettier --check \"components/**/*.{jsx,js,ts}\" \"tokens/**/*.css\" \"themes/**/*.css\" \"styles.css\" \"scripts/**/*.mjs\" \".github/**/*.{yml,yaml}\" \"*.md\" \"!CHANGELOG.md\" \"package.json\" \".release-please-config.json\" \".release-please-manifest.json\"",
     "manifest": "node scripts/generate-manifest.mjs",
     "manifest:check": "node scripts/generate-manifest.mjs --check",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:secrets:gitleaks": "./scripts/precommit-gitleaks.sh",
-    "ci:quality:local": "npm run manifest:check && npm run test:cov",
+    "ci:quality:local": "npm run format:check && npm run manifest:check && npm run test:cov",
     "precommit:checks": "npm run test:secrets:gitleaks && npm run ci:quality:local",
-    "test:a11y": "playwright test"
+    "test:a11y": "playwright test",
+    "audit": "npm audit --audit-level=high",
+    "clean": "rm -rf coverage playwright-report test-results node_modules"
   }
 }

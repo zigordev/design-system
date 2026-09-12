@@ -1,7 +1,9 @@
 import React from 'react';
 import { injectOnce } from '../_shared/injectStyle.js';
 
-injectOnce('ds-segmented', `
+injectOnce(
+  'ds-segmented',
+  `
 .ds-segmented{display:inline-flex;align-items:center;gap:2px;padding:3px;border-radius:var(--ds-radius-full);background:var(--ds-color-surface-2);border:1px solid var(--ds-color-border);
   transition:background var(--ds-duration-base) var(--ds-ease-out),border-color var(--ds-duration-base) var(--ds-ease-out);}
 .ds-segment{display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;padding:5px 14px;border-radius:var(--ds-radius-full);
@@ -12,7 +14,8 @@ injectOnce('ds-segmented', `
 .ds-segmented-danger{background:var(--ds-color-danger-bg);border-color:var(--ds-color-danger-border);}
 .ds-segmented-danger .ds-segment-active{background:var(--ds-color-danger);color:var(--ds-color-accent-fg);}
 .ds-segmented-danger .ds-segment{color:var(--ds-color-danger-fg);}
-`);
+`
+);
 
 /** Segmented pill control. Two uses, same shape:
  *  - a mode switch in chrome (Topbar's `mode` slot) — View/Manage, Paper/Live
@@ -25,7 +28,13 @@ injectOnce('ds-segmented', `
  * control then repaints, so the dangerous mode can't be mistaken for the
  * safe one at a glance. */
 export function SegmentedControl({
-  options, value, onChange, linkComponent = 'a', ariaLabel, className = '', style,
+  options,
+  value,
+  onChange,
+  linkComponent = 'a',
+  ariaLabel,
+  className = '',
+  style,
 }) {
   const Link = linkComponent;
   const navigational = options.some((option) => option.href);
@@ -43,7 +52,12 @@ export function SegmentedControl({
         const cls = `ds-segment ${active ? 'ds-segment-active' : ''}`.trim();
 
         return option.href ? (
-          <Link key={option.value} href={option.href} className={cls} aria-current={active ? 'page' : undefined}>
+          <Link
+            key={option.value}
+            href={option.href}
+            className={cls}
+            aria-current={active ? 'page' : undefined}
+          >
             {option.icon}
             {option.label}
           </Link>

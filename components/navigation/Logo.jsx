@@ -29,18 +29,31 @@ export function Logo({
       aria-label={linkName}
       className={`ds-logo ${className}`.trim()}
       style={{
-        display: 'inline-flex', alignItems: 'center', gap: 'var(--ds-space-3)',
-        textDecoration: 'none', color: 'inherit', ...style,
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 'var(--ds-space-3)',
+        textDecoration: 'none',
+        color: 'inherit',
+        ...style,
       }}
     >
       <span
         aria-hidden="true"
         style={{
-          position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          width: dim.mark, height: dim.mark, flexShrink: 0, overflow: 'hidden',
+          position: 'relative',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: dim.mark,
+          height: dim.mark,
+          flexShrink: 0,
+          overflow: 'hidden',
           borderRadius: shape === 'circle' ? 'var(--ds-radius-full)' : 'var(--ds-radius-lg)',
-          background: 'var(--ds-color-accent)', color: 'var(--ds-color-accent-fg)',
-          fontFamily: 'var(--ds-font-sans)', fontWeight: 'var(--ds-weight-bold)', fontSize: dim.font,
+          background: 'var(--ds-color-accent)',
+          color: 'var(--ds-color-accent-fg)',
+          fontFamily: 'var(--ds-font-sans)',
+          fontWeight: 'var(--ds-weight-bold)',
+          fontSize: dim.font,
           letterSpacing: 'var(--ds-tracking-tight)',
         }}
       >
@@ -48,11 +61,20 @@ export function Logo({
       </span>
 
       {wordmark ? (
-        <span style={{ display: 'inline-flex', flexDirection: 'column', lineHeight: 'var(--ds-leading-tight)' }}>
+        <span
+          style={{
+            display: 'inline-flex',
+            flexDirection: 'column',
+            lineHeight: 'var(--ds-leading-tight)',
+          }}
+        >
           <span
             style={{
-              fontFamily: 'var(--ds-font-sans)', fontWeight: 'var(--ds-weight-bold)', fontSize: dim.wordmark,
-              color: 'var(--ds-color-fg)', letterSpacing: 'var(--ds-tracking-tight)',
+              fontFamily: 'var(--ds-font-sans)',
+              fontWeight: 'var(--ds-weight-bold)',
+              fontSize: dim.wordmark,
+              color: 'var(--ds-color-fg)',
+              letterSpacing: 'var(--ds-tracking-tight)',
             }}
           >
             {wordmark}
@@ -60,8 +82,11 @@ export function Logo({
           {size === 'lg' && tagline ? (
             <span
               style={{
-                fontFamily: 'var(--ds-font-sans)', fontSize: 'var(--ds-text-xs)', fontWeight: 'var(--ds-weight-medium)',
-                color: 'var(--ds-color-fg-subtle)', marginTop: 2,
+                fontFamily: 'var(--ds-font-sans)',
+                fontSize: 'var(--ds-text-xs)',
+                fontWeight: 'var(--ds-weight-medium)',
+                color: 'var(--ds-color-fg-subtle)',
+                marginTop: 2,
               }}
             >
               {tagline}

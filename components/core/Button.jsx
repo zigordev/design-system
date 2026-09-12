@@ -1,7 +1,9 @@
 import React from 'react';
 import { injectOnce } from '../_shared/injectStyle.js';
 
-injectOnce('ds-button', `
+injectOnce(
+  'ds-button',
+  `
 .ds-btn{box-sizing:border-box;display:inline-flex;text-decoration:none;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:var(--ds-radius-md);font-family:var(--ds-font-sans);font-weight:var(--ds-weight-semibold);white-space:nowrap;cursor:pointer;transition:background var(--ds-duration-fast) var(--ds-ease-out),border-color var(--ds-duration-fast) var(--ds-ease-out),color var(--ds-duration-fast) var(--ds-ease-out),transform var(--ds-duration-fast) var(--ds-ease-out),box-shadow var(--ds-duration-fast) var(--ds-ease-out);}
 .ds-btn:active:not(:disabled){transform:translateY(1px);}
 .ds-btn:disabled{opacity:.55;cursor:not-allowed;}
@@ -23,7 +25,8 @@ injectOnce('ds-button', `
 .ds-btn-spinner{display:inline-block;width:.95em;height:.95em;border:2px solid currentColor;border-bottom-color:transparent;border-radius:999px;animation:ds-btn-spin .7s linear infinite;flex-shrink:0;}
 @keyframes ds-btn-spin{to{transform:rotate(360deg);}}
 @media (prefers-reduced-motion: reduce){.ds-btn-spinner{animation:none;}}
-`);
+`
+);
 
 export function Button({
   as: Component = 'button',
@@ -52,11 +55,19 @@ export function Button({
       aria-busy={loading || undefined}
       {...props}
     >
-      {loading ? <span className="ds-btn-spinner" aria-hidden="true" />
-        : leadingIcon ? <span aria-hidden="true" style={{ display: 'inline-flex' }}>{leadingIcon}</span>
-        : null}
+      {loading ? (
+        <span className="ds-btn-spinner" aria-hidden="true" />
+      ) : leadingIcon ? (
+        <span aria-hidden="true" style={{ display: 'inline-flex' }}>
+          {leadingIcon}
+        </span>
+      ) : null}
       {children}
-      {trailingIcon && !loading ? <span aria-hidden="true" style={{ display: 'inline-flex' }}>{trailingIcon}</span> : null}
+      {trailingIcon && !loading ? (
+        <span aria-hidden="true" style={{ display: 'inline-flex' }}>
+          {trailingIcon}
+        </span>
+      ) : null}
     </Component>
   );
 }

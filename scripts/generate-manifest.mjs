@@ -52,7 +52,9 @@ function walk(dir) {
  */
 const components = walk(join(root, 'components')).flatMap((sourcePath) => {
   const src = readFileSync(join(root, sourcePath), 'utf8');
-  const exported = [...src.matchAll(/^export\s+(?:function|const)\s+([A-Z][A-Za-z0-9]*)/gm)].map((m) => m[1]);
+  const exported = [...src.matchAll(/^export\s+(?:function|const)\s+([A-Z][A-Za-z0-9]*)/gm)].map(
+    (m) => m[1]
+  );
   return exported.map((name) => ({ name, sourcePath }));
 });
 
@@ -89,7 +91,9 @@ const serialised = `${JSON.stringify(next, null, 2)}\n`;
 
 if (process.argv.includes('--check')) {
   if (serialised === readFileSync(manifestPath, 'utf8')) {
-    console.log(`_ds_manifest.json is up to date (${components.length} components, ${tokens.length} tokens).`);
+    console.log(
+      `_ds_manifest.json is up to date (${components.length} components, ${tokens.length} tokens).`
+    );
     process.exit(0);
   }
   console.error('_ds_manifest.json is stale. Run: node scripts/generate-manifest.mjs');

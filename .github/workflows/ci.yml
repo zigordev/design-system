@@ -49,6 +49,9 @@ jobs:
 
       - run: npm ci
 
+      - name: Formatting
+        run: npm run format:check
+
       - name: Manifest is regenerated, not hand-edited
         run: npm run manifest:check
 

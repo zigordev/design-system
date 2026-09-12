@@ -3,7 +3,9 @@ import { injectOnce } from '../_shared/injectStyle.js';
 import { Icon } from '../icons/Icon.jsx';
 import { Button } from '../core/Button.jsx';
 
-injectOnce('ds-table', `
+injectOnce(
+  'ds-table',
+  `
 .ds-table-frame{min-width:0;max-width:100%;overflow:clip;border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);background:var(--ds-color-surface);}
 .ds-table-scroll{width:100%;max-width:100%;min-width:0;overflow:auto;scrollbar-gutter:stable;}
 .ds-table{width:100%;border-collapse:collapse;font-family:var(--ds-font-sans);font-size:var(--ds-text-sm);color:var(--ds-color-fg);}
@@ -39,7 +41,8 @@ injectOnce('ds-table', `
 .ds-table-pager-size select{height:28px;border-radius:var(--ds-radius-sm);border:1px solid var(--ds-color-border);background:var(--ds-color-surface);color:var(--ds-color-fg);font-family:inherit;font-size:inherit;padding:0 6px;}
 .ds-table-pager-nav{display:flex;align-items:center;gap:4px;}
 .ds-table-pager-count{min-width:64px;text-align:center;font-variant-numeric:tabular-nums;}
-`);
+`
+);
 
 /** Presentational table: the frame, the scroll container, and header/cell
  * styling driven by tokens.
@@ -53,15 +56,32 @@ injectOnce('ds-table', `
  * The header is always sticky; `maxHeight` is what gives it something to
  * stick against, by capping the scroll container.
  */
-export function Table({ caption, footer, minWidth, maxHeight, density = 'default', hoverable = true, zebra = false, children, className = '', style }) {
-  const cls = ['ds-table',
+export function Table({
+  caption,
+  footer,
+  minWidth,
+  maxHeight,
+  density = 'default',
+  hoverable = true,
+  zebra = false,
+  children,
+  className = '',
+  style,
+}) {
+  const cls = [
+    'ds-table',
     density === 'compact' && 'ds-table-compact',
     hoverable && 'ds-table-hoverable',
-    zebra && 'ds-table-zebra'].filter(Boolean).join(' ');
+    zebra && 'ds-table-zebra',
+  ]
+    .filter(Boolean)
+    .join(' ');
   return (
     <div className={`ds-table-frame ${className}`.trim()} style={style}>
       {caption ? (
-        <div className={`ds-table-strip ${typeof caption === 'string' ? 'ds-table-caption' : ''}`.trim()}>
+        <div
+          className={`ds-table-strip ${typeof caption === 'string' ? 'ds-table-caption' : ''}`.trim()}
+        >
           {caption}
         </div>
       ) : null}
@@ -82,8 +102,16 @@ export function Table({ caption, footer, minWidth, maxHeight, density = 'default
  * different features. It holds no sort state; `direction` and `onSort` come
  * from whatever engine the table uses, TanStack or a `useState` pair.
  */
-export function TableSortHeader({ direction = null, onSort, disabled = false, children, className = '', ...props }) {
-  const icon = direction === 'asc' ? 'arrow-up' : direction === 'desc' ? 'arrow-down' : 'arrow-up-down';
+export function TableSortHeader({
+  direction = null,
+  onSort,
+  disabled = false,
+  children,
+  className = '',
+  ...props
+}) {
+  const icon =
+    direction === 'asc' ? 'arrow-up' : direction === 'desc' ? 'arrow-down' : 'arrow-up-down';
   return (
     <button
       type="button"
@@ -96,7 +124,9 @@ export function TableSortHeader({ direction = null, onSort, disabled = false, ch
     >
       {children}
       {!disabled && onSort ? (
-        <span className="ds-table-sort-icon" aria-hidden="true"><Icon name={icon} size={12} /></span>
+        <span className="ds-table-sort-icon" aria-hidden="true">
+          <Icon name={icon} size={12} />
+        </span>
       ) : null}
     </button>
   );
@@ -110,9 +140,16 @@ export function TableSortHeader({ direction = null, onSort, disabled = false, ch
  * internally (TanStack's are 0-based; convert at the boundary).
  */
 export function TablePager({
-  summary, rowsLabel, page, pageCount,
-  onPageChange, pageSize, pageSizeOptions, onPageSizeChange,
-  prevLabel = 'Previous page', nextLabel = 'Next page',
+  summary,
+  rowsLabel,
+  page,
+  pageCount,
+  onPageChange,
+  pageSize,
+  pageSizeOptions,
+  onPageSizeChange,
+  prevLabel = 'Previous page',
+  nextLabel = 'Next page',
 }) {
   const total = Math.max(1, pageCount ?? 1);
   return (
@@ -123,18 +160,34 @@ export function TablePager({
           <label className="ds-table-pager-size">
             {rowsLabel ? <span>{rowsLabel}</span> : null}
             <select value={pageSize} onChange={(e) => onPageSizeChange(Number(e.target.value))}>
-              {pageSizeOptions.map((n) => <option key={n} value={n}>{n}</option>)}
+              {pageSizeOptions.map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
             </select>
           </label>
         ) : null}
         <div className="ds-table-pager-nav">
-          <Button variant="outline" size="icon" aria-label={prevLabel}
-            disabled={page <= 1} onClick={() => onPageChange(page - 1)}>
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label={prevLabel}
+            disabled={page <= 1}
+            onClick={() => onPageChange(page - 1)}
+          >
             <Icon name="chevron-left" size={14} />
           </Button>
-          <span className="ds-table-pager-count">{page} / {total}</span>
-          <Button variant="outline" size="icon" aria-label={nextLabel}
-            disabled={page >= total} onClick={() => onPageChange(page + 1)}>
+          <span className="ds-table-pager-count">
+            {page} / {total}
+          </span>
+          <Button
+            variant="outline"
+            size="icon"
+            aria-label={nextLabel}
+            disabled={page >= total}
+            onClick={() => onPageChange(page + 1)}
+          >
             <Icon name="chevron-right" size={14} />
           </Button>
         </div>
@@ -152,7 +205,9 @@ export function TablePager({
 export function TableEmpty({ colSpan = 99, children }) {
   return (
     <tr>
-      <td className="ds-table-empty" colSpan={colSpan}>{children}</td>
+      <td className="ds-table-empty" colSpan={colSpan}>
+        {children}
+      </td>
     </tr>
   );
 }
