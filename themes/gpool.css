@@ -4,7 +4,7 @@
    the same component geometry. GPool has a second accent that this system
    doesn't standardize globally — consuming components can read a
    project-local --ds-color-accent-2 the same way this file defines it. */
-:root[data-theme="gpool"] {
+:root[data-theme='gpool'] {
   --ds-color-bg: #eff5f1;
   --ds-color-surface: #f8fbf9;
   --ds-color-surface-2: #e7eeea;
@@ -34,7 +34,7 @@
   --ds-color-danger-bg: rgb(185 28 28 / 10%);
 }
 
-:root[data-theme="gpool"][data-mode="dark"] {
+:root[data-theme='gpool'][data-mode='dark'] {
   color-scheme: dark;
   --ds-color-bg: #0d120f;
   --ds-color-surface: #1c241f;

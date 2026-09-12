@@ -1,7 +1,9 @@
 import React from 'react';
 import { injectOnce } from '../_shared/injectStyle.js';
 
-injectOnce('ds-form-compact', `
+injectOnce(
+  'ds-form-compact',
+  `
 /* Put .ds-form-compact on a wrapper to tighten every field inside it. Dense
    settings panels — a grid of scoring numbers, a prize table — want smaller
    controls than a page-level form, and setting that per control means passing
@@ -13,7 +15,8 @@ injectOnce('ds-form-compact', `
   /* Back to full size on phones: 32px is under the comfortable touch target. */
   .ds-form-compact .ds-input{height:40px;padding:0 12px;font-size:var(--ds-text-base);}
 }
-`);
+`
+);
 
 /** Label + control + hint/error, with the label actually wired to the control.
  *
@@ -47,10 +50,20 @@ export function Field({ label, hint, error, required, htmlFor, children, classNa
       {label ? (
         <label
           htmlFor={controlId}
-          style={{ fontSize: 'var(--ds-text-sm)', fontWeight: 'var(--ds-weight-semibold)', color: 'var(--ds-color-fg)', fontFamily: 'var(--ds-font-sans)' }}
+          style={{
+            fontSize: 'var(--ds-text-sm)',
+            fontWeight: 'var(--ds-weight-semibold)',
+            color: 'var(--ds-color-fg)',
+            fontFamily: 'var(--ds-font-sans)',
+          }}
         >
           {label}
-          {required ? <span style={{ color: 'var(--ds-color-danger)' }} aria-hidden="true"> *</span> : null}
+          {required ? (
+            <span style={{ color: 'var(--ds-color-danger)' }} aria-hidden="true">
+              {' '}
+              *
+            </span>
+          ) : null}
         </label>
       ) : null}
       {control}
@@ -58,7 +71,11 @@ export function Field({ label, hint, error, required, htmlFor, children, classNa
         <span
           id={messageId}
           role={error ? 'alert' : undefined}
-          style={{ fontSize: 'var(--ds-text-xs)', color: error ? 'var(--ds-color-danger)' : 'var(--ds-color-fg-subtle)', fontFamily: 'var(--ds-font-sans)' }}
+          style={{
+            fontSize: 'var(--ds-text-xs)',
+            color: error ? 'var(--ds-color-danger)' : 'var(--ds-color-fg-subtle)',
+            fontFamily: 'var(--ds-font-sans)',
+          }}
         >
           {message}
         </span>

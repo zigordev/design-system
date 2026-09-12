@@ -3,7 +3,7 @@
    from styles.css so every product renders the same component geometry.
    Load AFTER styles.css and set data-theme="kini" on the root (or just
    override :root directly if this is the only theme in the project). */
-:root[data-theme="kini"] {
+:root[data-theme='kini'] {
   --ds-color-bg: #f5f6f8;
   --ds-color-surface: #ffffff;
   --ds-color-surface-2: #f0f2f5;
@@ -33,7 +33,7 @@
   --ds-color-danger-bg: #fff0ee;
 }
 
-:root[data-theme="kini"][data-mode="dark"] {
+:root[data-theme='kini'][data-mode='dark'] {
   color-scheme: dark;
   --ds-color-bg: #111214;
   --ds-color-surface: #191b1f;

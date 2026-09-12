@@ -2,14 +2,17 @@ import React from 'react';
 import { injectOnce } from '../_shared/injectStyle.js';
 import { Input } from './Input.jsx';
 
-injectOnce('ds-datefield', `
+injectOnce(
+  'ds-datefield',
+  `
 .ds-datefield::-webkit-calendar-picker-indicator{opacity:.5;cursor:pointer;transition:opacity var(--ds-duration-fast) var(--ds-ease-out);}
 .ds-datefield:hover::-webkit-calendar-picker-indicator,
 .ds-datefield:focus::-webkit-calendar-picker-indicator{opacity:1;}
 .ds-datefield::-webkit-datetime-edit{color:var(--ds-color-fg);}
 .ds-datefield:invalid::-webkit-datetime-edit{color:var(--ds-color-fg-faint);}
 .ds-datefield:disabled::-webkit-calendar-picker-indicator{opacity:.3;cursor:not-allowed;}
-`);
+`
+);
 
 /** A date / datetime / time field, styled to match `Input` exactly.
  *

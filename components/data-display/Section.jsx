@@ -2,7 +2,9 @@ import React from 'react';
 import { injectOnce } from '../_shared/injectStyle.js';
 import { Icon } from '../icons/Icon.jsx';
 
-injectOnce('ds-section', `
+injectOnce(
+  'ds-section',
+  `
 .ds-section{min-width:0;font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
 .ds-section-surface{background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);}
 .ds-section-subtle{background:var(--ds-color-surface-2);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-lg);}
@@ -22,7 +24,8 @@ injectOnce('ds-section', `
 .ds-section-body{border-top:1px solid var(--ds-color-border);}
 .ds-section-default .ds-section-body{margin-top:20px;padding-top:20px;}
 .ds-section-compact .ds-section-body{margin-top:8px;padding-top:8px;}
-`);
+`
+);
 
 /** A titled block of content, optionally collapsible.
  *
@@ -70,7 +73,8 @@ export function Section({
   );
 
   const cls = ['ds-section', `ds-section-${density}`, `ds-section-${tone}`, className]
-    .filter(Boolean).join(' ');
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <section className={cls} style={style}>
@@ -93,7 +97,9 @@ export function Section({
               <Icon name="chevron-down" size={12} />
             </span>
           </button>
-        ) : heading}
+        ) : (
+          heading
+        )}
         {trailing ? <div className="ds-section-trailing">{trailing}</div> : null}
       </div>
       {!collapsible || isOpen ? (
