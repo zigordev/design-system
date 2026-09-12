@@ -64,7 +64,7 @@
   --ds-color-warning-soft: color-mix(in oklch, var(--ds-color-warning) 24%, transparent);
 }
 
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   color-scheme: dark;
 
   --ds-color-bg: oklch(16% 0.008 264);

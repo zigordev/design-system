@@ -28,6 +28,7 @@ components here are plain React (`.jsx`), styled entirely through inline
 styles and small injected `<style>` blocks that reference **CSS custom
 properties** — no Tailwind, no CSS-in-JS library, no build step required.
 That makes them:
+
 - Directly importable into any of the three apps (all React) regardless of
   their existing CSS approach.
 - Reskinnable per project by overriding the `--ds-*` tokens in `styles.css`
@@ -51,9 +52,9 @@ fully pill-shaped controls), that's a base-token or component-variant
 decision to raise explicitly, not something to fork silently per theme.
 
 ```html
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="themes/kini.css">
-<html data-theme="kini">
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="themes/kini.css" />
+<html data-theme="kini"></html>
 ```
 
 ## Structure
@@ -71,7 +72,7 @@ decision to raise explicitly, not something to fork silently per theme.
   - `data-display/` — Card, StatTile, Avatar, PageHeader, Table, Section
   - `navigation/` — Sidebar, BottomNav, Topbar, AppShell, Logo,
     TopbarTabs (flush underline tabs for sections within a destination),
-    SegmentedControl (pill toggle for a *mode* — view/manage,
+    SegmentedControl (pill toggle for a _mode_ — view/manage,
     paper/live — in Topbar's `mode` slot, or a content-level switcher),
     ScopeSwitcher (which team/pool/workspace the app is showing, at the
     top of Sidebar)
@@ -95,13 +96,13 @@ Five different things get confused with each other constantly, and every
 navigation problem in the three source apps traced back to conflating two
 of them. Each has one home:
 
-| Concept | Answers | Component / slot |
-| --- | --- | --- |
-| **Destination** | Where am I? | `Sidebar` items, `BottomNav` |
-| **Scope** | Which dataset? (team, pool, workspace) | `ScopeSwitcher` in `Sidebar`'s `scope` |
-| **Mode** | What am I doing to it? (view/manage, paper/live) | `SegmentedControl` in `Topbar`'s `mode` |
-| **Section** | Which part of this destination? | `TopbarTabs` in `Topbar`'s `tabs` |
-| **Action** | Do a thing | `Topbar`'s `actions` |
+| Concept         | Answers                                          | Component / slot                        |
+| --------------- | ------------------------------------------------ | --------------------------------------- |
+| **Destination** | Where am I?                                      | `Sidebar` items, `BottomNav`            |
+| **Scope**       | Which dataset? (team, pool, workspace)           | `ScopeSwitcher` in `Sidebar`'s `scope`  |
+| **Mode**        | What am I doing to it? (view/manage, paper/live) | `SegmentedControl` in `Topbar`'s `mode` |
+| **Section**     | Which part of this destination?                  | `TopbarTabs` in `Topbar`'s `tabs`       |
+| **Action**      | Do a thing                                       | `Topbar`'s `actions`                    |
 
 The two failure modes worth naming:
 
@@ -146,7 +147,7 @@ I do here") across all three products, sharing one breakpoint
   for behaviour and that is the right split, not something to reimplement here.
 - No real logo/brand mark assets — none of the three source repos ship a
   logo file; each renders a text/letter mark inline (`K`, `GP`, a Lucide
-  icon). `components/navigation/Logo` standardizes *how* those marks render
+  icon). `components/navigation/Logo` standardizes _how_ those marks render
   (size, shape, wordmark, tagline) but still takes `initials` or an icon
   `mark` node from the caller — don't fabricate artwork; add real marks
   here once provided.

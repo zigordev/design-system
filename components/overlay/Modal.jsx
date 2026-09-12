@@ -4,7 +4,9 @@ import { injectOnce } from '../_shared/injectStyle.js';
 import { Button } from '../core/Button.jsx';
 import { Icon } from '../icons/Icon.jsx';
 
-injectOnce('ds-modal', `
+injectOnce(
+  'ds-modal',
+  `
 .ds-modal-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:oklch(15% 0.01 264 / 0.5);backdrop-filter:blur(3px);}
 .ds-modal{box-sizing:border-box;width:100%;max-height:min(90vh, calc(100vh - 40px));overflow-y:auto;background:var(--ds-color-surface);border:1px solid var(--ds-color-border);border-radius:var(--ds-radius-xl);box-shadow:var(--ds-shadow-xl);padding:24px;font-family:var(--ds-font-sans);color:var(--ds-color-fg);}
 /* Grid and flex children default to min-width:auto, so a long unbroken string
@@ -15,7 +17,8 @@ injectOnce('ds-modal', `
 .ds-modal-description{margin:6px 0 0;font-size:var(--ds-text-sm);line-height:1.5;color:var(--ds-color-fg-muted);}
 .ds-modal-body{margin-top:20px;}
 .ds-modal-footer{display:flex;justify-content:flex-end;gap:10px;margin-top:24px;padding-top:20px;border-top:1px solid var(--ds-color-border);}
-`);
+`
+);
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -59,7 +62,10 @@ export function Modal({
   // and overwrite the element we are supposed to return focus to.
   const onCloseRef = React.useRef(onClose);
   const busyRef = React.useRef(busy);
-  React.useEffect(() => { onCloseRef.current = onClose; busyRef.current = busy; });
+  React.useEffect(() => {
+    onCloseRef.current = onClose;
+    busyRef.current = busy;
+  });
 
   React.useEffect(() => {
     if (!open) return undefined;
@@ -106,7 +112,12 @@ export function Modal({
   if (!open || typeof document === 'undefined') return null;
 
   return createPortal(
-    <div className="ds-modal-overlay" onClick={() => { if (!busy) onClose(); }}>
+    <div
+      className="ds-modal-overlay"
+      onClick={() => {
+        if (!busy) onClose();
+      }}
+    >
       <div
         ref={dialogRef}
         className={`ds-modal ${className}`.trim()}
@@ -118,7 +129,11 @@ export function Modal({
       >
         <div className="ds-modal-head">
           <div style={{ minWidth: 0, flex: 1 }}>
-            {title ? <h2 className="ds-modal-title" id={titleId}>{title}</h2> : null}
+            {title ? (
+              <h2 className="ds-modal-title" id={titleId}>
+                {title}
+              </h2>
+            ) : null}
             {description ? <p className="ds-modal-description">{description}</p> : null}
           </div>
           <Button
@@ -139,6 +154,6 @@ export function Modal({
         {footer ? <div className="ds-modal-footer">{footer}</div> : null}
       </div>
     </div>,
-    document.body,
+    document.body
   );
 }

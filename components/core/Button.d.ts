@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-export interface ButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
+export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   /** Render as another element — e.g. next/link for an action that
    * navigates. Defaults to 'button'. */
   as?: React.ElementType;
