@@ -216,9 +216,33 @@ import { Checkbox, CheckboxGroup, Radio, RadioGroup, Switch } from '@zigordev/re
 - Each item in a group takes `value`. Arrow keys move between radios; Tab moves between checkboxes.
 - The group's label, description and error, and each choice's description, reach screen readers through Base UI.
 
+### Form and ErrorSummary
+
+Form wraps Base UI's Form. It lays out its fields, validates them on submit with the browser's constraints, moves the focus to the first invalid control, and shows errors from the server under the matching Field by its `name`.
+
+```tsx
+import { Button, ErrorSummary, Field, Form, TextInput } from '@zigordev/react';
+
+<Form errors={serverErrors} onFormSubmit={send}>
+  <ErrorSummary
+    title={t('problem')}
+    errors={[{ id: 'contact-email', message: t('emailInvalid') }]}
+  />
+  <Field name="email" label={t('email')} error={t('emailInvalid')} required>
+    <TextInput id="contact-email" type="email" autoComplete="email" />
+  </Field>
+  <Button type="submit">{t('send')}</Button>
+</Form>;
+```
+
+- Form takes `onFormSubmit(values)`, `errors` (an object of messages keyed by field name, for example from a server action) and `validationMode` (`onSubmit`, `onBlur` or `onChange`; default `onSubmit`). Every other `<form>` attribute passes through.
+- ErrorSummary lists the errors of a failed submit at the top of a long form, each as a link that moves the focus to its control. It takes `title`, `errors` (`id` of the control and `message`), `headingLevel` (2, 3 or 4; default 2) and `autoFocus` (default `true`), and renders nothing when `errors` is empty.
+- When the summary appears, it takes the focus and screen readers announce it. Give each listed control the same `id`. With React Hook Form, set `shouldFocusError: false` so the summary keeps the focus.
+- A short form, like a contact form with three fields, needs no summary: the errors under the fields and the focus on the first one are enough.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html) and the [choices](../apps/docs/src/plain-html/page/choice.html).
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html) and a [form](../apps/docs/src/plain-html/page/form.html).
 
 ## Limits
 
