@@ -1,0 +1,19 @@
+@layer ds.components {
+  .ds-icon {
+    --_size: var(--ds-size-icon-md);
+
+    display: inline-block;
+    flex: none;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    vertical-align: middle;
+  }
+
+  .ds-icon[data-size="sm"] {
+    --_size: var(--ds-size-icon-sm);
+  }
+
+  .ds-icon[data-size="lg"] {
+    --_size: var(--ds-size-control-sm);
+  }
+}

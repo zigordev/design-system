@@ -14,6 +14,7 @@ const config: StorybookConfig = {
   staticDirs: [
     { from: '../src/plain-html/page', to: '/html' },
     { from: '../../../packages/css/dist', to: '/css' },
+    { from: '../../../packages/icons/src/generated', to: '/icons' },
   ],
   core: {
     disableTelemetry: true,

@@ -205,3 +205,11 @@ describe('the display page', () => {
     expect(element('[role="status"]').textContent).toContain('Loading the case studies');
   });
 });
+
+describe('the icons page', () => {
+  it('sizes icons with the tokens, and to the slot inside a button', () => {
+    unmount = mount('icon.html', defaultTheme);
+    expect(getComputedStyle(element('#sun')).width).toBe(probe('width', 'var(--ds-size-icon-md)'));
+    expect(getComputedStyle(element('#plus')).width).toBe(probe('width', 'var(--ds-size-icon-sm)'));
+  });
+});

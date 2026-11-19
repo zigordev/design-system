@@ -1,26 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ArrowRightIcon, PlusIcon } from '@zigordev/icons';
 import { Button, type ButtonTone, type ButtonVariant } from '@zigordev/react';
 import { expect, fn } from 'storybook/test';
 import styles from '../docs.module.css';
 
 const variants: ButtonVariant[] = ['solid', 'soft', 'outline', 'ghost'];
 const tones: ButtonTone[] = ['accent', 'neutral', 'danger'];
-
-function Plus() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M8 3v10M3 8h10" />
-    </svg>
-  );
-}
-
-function Arrow() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M3 8h10M9 4l4 4-4 4" />
-    </svg>
-  );
-}
 
 const meta = {
   title: 'Components/Button',
@@ -78,11 +63,11 @@ export const Sizes: Story = {
 };
 
 export const WithIcons: Story = {
-  args: { children: 'Add match', startIcon: <Plus /> },
+  args: { children: 'Add match', startIcon: <PlusIcon /> },
   render: (args) => (
     <div className={styles.row}>
       <Button {...args} />
-      <Button endIcon={<Arrow />} variant="outline" tone="neutral">
+      <Button endIcon={<ArrowRightIcon />} variant="outline" tone="neutral">
         Next matchday
       </Button>
     </div>
@@ -90,7 +75,7 @@ export const WithIcons: Story = {
 };
 
 export const IconOnly: Story = {
-  args: { iconOnly: true, 'aria-label': 'Add match', children: <Plus /> },
+  args: { iconOnly: true, 'aria-label': 'Add match', children: <PlusIcon /> },
   play: async ({ canvas }) => {
     const button = canvas.getByRole('button', { name: 'Add match' });
     await expect(button).toHaveAttribute('data-icon-only');
@@ -118,7 +103,7 @@ export const Disabled: Story = {
 };
 
 export const Loading: Story = {
-  args: { loading: true, startIcon: <Plus />, endIcon: <Arrow /> },
+  args: { loading: true, startIcon: <PlusIcon />, endIcon: <ArrowRightIcon /> },
   play: async ({ args, canvas, userEvent }) => {
     const button = canvas.getByRole('button', { name: 'Save changes' });
     await expect(button).toHaveAttribute('aria-busy', 'true');
@@ -131,7 +116,7 @@ export const Loading: Story = {
 };
 
 export const LoadingIconOnly: Story = {
-  args: { iconOnly: true, 'aria-label': 'Add match', children: <Plus />, loading: true },
+  args: { iconOnly: true, 'aria-label': 'Add match', children: <PlusIcon />, loading: true },
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('button', { name: 'Add match' })).toHaveAttribute(
       'aria-busy',
