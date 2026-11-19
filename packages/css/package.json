@@ -1,6 +1,6 @@
 {
   "name": "@zigordev/css",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "CSS for zigordev apps: the tokens, a small reset, base styles and component styles in cascade layers, bundled into one file",
   "license": "UNLICENSED",
   "type": "module",
