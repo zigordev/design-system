@@ -1,0 +1,28 @@
+{
+  "size": {
+    "$type": "dimension",
+    "control": {
+      "sm": { "$value": { "value": 2, "unit": "rem" } },
+      "md": { "$value": { "value": 2.5, "unit": "rem" } },
+      "lg": { "$value": { "value": 3, "unit": "rem" } }
+    },
+    "icon": {
+      "sm": { "$value": { "value": 1, "unit": "rem" } },
+      "md": { "$value": { "value": 1.25, "unit": "rem" } }
+    }
+  },
+  "space": {
+    "control": {
+      "$type": "dimension",
+      "sm": { "$value": { "value": 0.75, "unit": "rem" } },
+      "md": { "$value": { "value": 1, "unit": "rem" } },
+      "lg": { "$value": { "value": 1.25, "unit": "rem" } },
+      "gap": { "$value": { "value": 0.5, "unit": "rem" } }
+    }
+  },
+  "font": {
+    "size": {
+      "control": { "$type": "dimension", "$value": "{font.size.md}" }
+    }
+  }
+}

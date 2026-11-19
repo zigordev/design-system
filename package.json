@@ -1,0 +1,34 @@
+{
+  "name": "design-system",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.21.0",
+  "engines": {
+    "node": ">=26 <27"
+  },
+  "scripts": {
+    "prepare": "lefthook install",
+    "dev": "pnpm --filter \"@zigordev/css...\" run build && pnpm --filter design-system-docs run dev",
+    "lint": "biome ci .",
+    "format": "biome check --write .",
+    "format:check": "biome format .",
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "build": "pnpm -r --if-present run build",
+    "test": "vitest run --coverage && vitest run --config vitest.browsers.config.ts",
+    "check": "pnpm run lint && pnpm run build && pnpm run typecheck && pnpm run test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@types/node": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "@zigordev/biome-config": "catalog:",
+    "@zigordev/commitlint-config": "catalog:",
+    "@zigordev/lefthook-config": "catalog:",
+    "@zigordev/tsconfig": "catalog:",
+    "lefthook": "catalog:",
+    "playwright": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

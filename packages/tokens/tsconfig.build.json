@@ -1,0 +1,4 @@
+{
+  "extends": "@zigordev/tsconfig/library.json",
+  "include": ["src/index.ts"]
+}

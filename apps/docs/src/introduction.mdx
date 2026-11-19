@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+# zigordev design system
+
+One design system for every zigordev app, with a skin per product. cv, gpool and trading-bot share the same components, behaviour, accessibility, typeface, spacing and motion. Each product sets its own accent colour, a matching neutral tint, its corner radius and its default density.
+
+## Themes
+
+Use the toolbar to switch the four theme dimensions. In an app, the same values are attributes on the root element.
+
+| Dimension | Values | Attribute |
+| --- | --- | --- |
+| Product | cv, gpool, trading-bot | `data-product` |
+| Mode | light, dark, or none to follow the system | `data-mode` |
+| Density | comfortable, compact | `data-density` |
+| Contrast | standard, high, or none to follow the system | `data-contrast` |
+
+## Packages
+
+- `@zigordev/tokens`: the design tokens, built from DTCG 2025.10 sources into CSS custom properties.
+- `@zigordev/css`: the tokens, a small reset, base styles and every component style, in cascade layers, as one file.
+- `@zigordev/react`: React components on Base UI, styled by `@zigordev/css`.
+
+## Rules every component follows
+
+- Component CSS uses role tokens only. A test rejects raw colours, lengths and durations.
+- Every text, border and focus pairing meets WCAG 2.2 AA in every product and mode, and 7:1 for text in high contrast.
+- Interactive components follow their WAI-ARIA pattern through Base UI and are tested with the keyboard and axe in every product and mode.
+- Components hold no copy. Labels come in as props, translated by the app.
+
+The [plain HTML page](/html/button.html) shows the buttons rendered by `@zigordev/css` alone, without JavaScript.

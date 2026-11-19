@@ -1,0 +1,46 @@
+{
+  "name": "@zigordev/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for zigordev apps: DTCG source with a resolver for product, mode, density and contrast, built into CSS custom properties",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.ts",
+    "build": "terrazzo build && tsc -p tsconfig.build.json && publint --strict && attw --pack . --profile esm-only --exclude-entrypoints ./tokens.css ./package.json",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "catalog:",
+    "@terrazzo/cli": "catalog:",
+    "@terrazzo/parser": "catalog:",
+    "@terrazzo/plugin-css": "catalog:",
+    "@types/node": "catalog:",
+    "@zigordev/tsconfig": "catalog:",
+    "colorjs.io": "catalog:",
+    "publint": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zigordev/design-system.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}

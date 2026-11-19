@@ -1,0 +1,53 @@
+@layer ds.base {
+  :root {
+    color-scheme: light;
+    background-color: var(--ds-color-bg-page);
+    color: var(--ds-color-fg-default);
+    font-family: var(--ds-font-family-sans);
+    font-size: 100%;
+    line-height: var(--ds-font-line-height-normal);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-mode="light"]) {
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-mode="dark"] {
+    color-scheme: dark;
+  }
+
+  body {
+    font-size: var(--ds-font-size-md);
+  }
+
+  :focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  ::selection {
+    background-color: var(--ds-color-accent-soft-hover);
+    color: var(--ds-color-fg-default);
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--ds-font-family-mono);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --ds-duration-fast: 0s;
+      --ds-duration-base: 0s;
+      --ds-duration-slow: 0s;
+    }
+  }
+}

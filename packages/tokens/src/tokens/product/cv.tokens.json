@@ -1,0 +1,18 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "button": { "$value": "{radius.lg}" },
+    "field": { "$value": "{radius.lg}" },
+    "card": { "$value": "{radius.xl}" }
+  },
+  "font": {
+    "display": {
+      "stretch": {
+        "$type": "number",
+        "$description": "Width of the house face for headings and big numbers, in percent of normal.",
+        "$value": 100
+      },
+      "weight": { "$type": "fontWeight", "$value": 700 }
+    }
+  }
+}

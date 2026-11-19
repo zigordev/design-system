@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "node",
+  "bootstrap-sha": "3959c57b348a53f9acdfe8da2aef055483732da2",
+  "bump-minor-pre-major": true,
+  "initial-version": "0.1.0",
+  "include-component-in-tag": true,
+  "pull-request-header": "Merging this pull request releases the packages below and publishes them to GitHub Packages.",
+  "pull-request-footer": "Opened by release-please from the conventional commits merged since the last release.",
+  "plugins": [
+    {
+      "type": "linked-versions",
+      "groupName": "design-system",
+      "components": ["tokens", "css", "react"]
+    }
+  ],
+  "packages": {
+    "packages/tokens": { "component": "tokens" },
+    "packages/css": { "component": "css" },
+    "packages/react": { "component": "react" }
+  }
+}

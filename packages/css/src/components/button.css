@@ -1,0 +1,174 @@
+@layer ds.components {
+  .ds-button {
+    --_solid: var(--ds-color-accent-solid);
+    --_solid-hover: var(--ds-color-accent-solid-hover);
+    --_on: var(--ds-color-accent-on);
+    --_soft: var(--ds-color-accent-soft);
+    --_soft-hover: var(--ds-color-accent-soft-hover);
+    --_text: var(--ds-color-accent-text);
+    --_border: var(--ds-color-accent-border-strong);
+    --_height: var(--ds-size-control-md);
+    --_padding: var(--ds-space-control-md);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ds-space-control-gap);
+    min-block-size: var(--_height);
+    min-inline-size: var(--_height);
+    padding-block: 0;
+    padding-inline: var(--_padding);
+    border: var(--ds-border-width-hairline) solid transparent;
+    border-radius: var(--ds-radius-button);
+    background-color: var(--_solid);
+    color: var(--_on);
+    font-family: var(--ds-font-family-sans);
+    font-size: var(--ds-font-size-control);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-font-line-height-tight);
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    transition-property: background-color, border-color, color;
+    transition-duration: var(--ds-duration-fast);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-button:hover {
+    background-color: var(--_solid-hover);
+  }
+
+  .ds-button:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-button[data-tone="neutral"] {
+    --_solid: var(--ds-color-neutral-solid);
+    --_solid-hover: var(--ds-color-neutral-solid-hover);
+    --_on: var(--ds-color-neutral-on);
+    --_soft: var(--ds-color-neutral-soft);
+    --_soft-hover: var(--ds-color-neutral-soft-hover);
+    --_text: var(--ds-color-fg-default);
+    --_border: var(--ds-color-border-field);
+  }
+
+  .ds-button[data-tone="danger"] {
+    --_solid: var(--ds-color-danger-solid);
+    --_solid-hover: var(--ds-color-danger-solid-hover);
+    --_on: var(--ds-color-danger-on);
+    --_soft: var(--ds-color-danger-soft);
+    --_soft-hover: var(--ds-color-danger-soft-hover);
+    --_text: var(--ds-color-danger-text);
+    --_border: var(--ds-color-danger-border-strong);
+  }
+
+  .ds-button[data-size="sm"] {
+    --_height: var(--ds-size-control-sm);
+    --_padding: var(--ds-space-control-sm);
+  }
+
+  .ds-button[data-size="lg"] {
+    --_height: var(--ds-size-control-lg);
+    --_padding: var(--ds-space-control-lg);
+  }
+
+  .ds-button[data-icon-only] {
+    padding-inline: 0;
+  }
+
+  .ds-button[data-variant="soft"] {
+    background-color: var(--_soft);
+    color: var(--_text);
+  }
+
+  .ds-button[data-variant="soft"]:hover {
+    background-color: var(--_soft-hover);
+  }
+
+  .ds-button[data-variant="outline"] {
+    border-color: var(--_border);
+    background-color: transparent;
+    color: var(--_text);
+  }
+
+  .ds-button[data-variant="outline"]:hover,
+  .ds-button[data-variant="ghost"]:hover {
+    background-color: var(--_soft);
+  }
+
+  .ds-button[data-variant="ghost"] {
+    background-color: transparent;
+    color: var(--_text);
+  }
+
+  .ds-button:disabled,
+  .ds-button[data-disabled],
+  .ds-button[aria-disabled="true"] {
+    border-color: transparent;
+    background-color: var(--ds-color-bg-disabled);
+    color: var(--ds-color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  .ds-button[data-variant="ghost"]:disabled,
+  .ds-button[data-variant="ghost"][data-disabled],
+  .ds-button[data-variant="ghost"][aria-disabled="true"] {
+    background-color: transparent;
+  }
+
+  .ds-button[aria-busy="true"] {
+    cursor: progress;
+  }
+
+  .ds-button__icon,
+  .ds-button__spinner {
+    display: inline-flex;
+    flex: none;
+    inline-size: var(--ds-size-icon-sm);
+    block-size: var(--ds-size-icon-sm);
+  }
+
+  .ds-button__icon > svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .ds-button__spinner {
+    border: var(--ds-border-width-thick) solid currentColor;
+    border-block-start-color: transparent;
+    border-radius: var(--ds-radius-full);
+    animation: ds-button-spin var(--ds-duration-spin) linear infinite;
+  }
+
+  @keyframes ds-button-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ds-button__spinner {
+      animation: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .ds-button {
+      border-color: ButtonText;
+    }
+
+    .ds-button:disabled,
+    .ds-button[data-disabled],
+    .ds-button[aria-disabled="true"] {
+      border-color: GrayText;
+      color: GrayText;
+    }
+
+    .ds-button:focus-visible {
+      outline-color: Highlight;
+    }
+  }
+}
