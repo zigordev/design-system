@@ -192,6 +192,69 @@ import { Field, Textarea, TextInput } from '@zigordev/react';
 - TextInput takes `type` (`text`, `email`, `password`, `search`, `tel`, `url`; default `text`) and `size` (`sm`, `md`, `lg`; default `md`). Textarea takes `size` and `rows` (default 3) and grows with its content in browsers that support `field-sizing`. Both pass every other attribute through.
 - Text is 16px in comfortable density, so iOS Safari does not zoom in when a field gets focus. A TextInput outside a Field needs `aria-label`.
 
+### SearchField
+
+A search box with a search icon and a clear button, such as the cv's Ask bar. Put it in a Field for its label, and its form in a `<search>` element so screen readers list it as a search landmark.
+
+```tsx
+import { Field, SearchField } from '@zigordev/react';
+
+<search>
+  <form onSubmit={ask}>
+    <Field label={t('ask')}>
+      <SearchField clearLabel={t('clearSearch')} value={query} onValueChange={setQuery} />
+    </Field>
+  </form>
+</search>;
+```
+
+It takes `value` or `defaultValue`, `onValueChange(value)`, `size` and `clearLabel`, the accessible name of the clear button, which appears when there is text and puts the focus back in the box.
+
+### Select, Combobox and Autocomplete
+
+Select picks one option from a short list. Combobox picks one option from a long list by typing to filter it. Autocomplete suggests values while the person types any text.
+
+```tsx
+import { Autocomplete, Combobox, Field, Select } from '@zigordev/react';
+
+<Field label={t('reason')}>
+  <Select options={reasons} placeholder={t('chooseReason')} value={reason} onValueChange={setReason} />
+</Field>
+<Field label={t('team')}>
+  <Combobox options={teams} emptyText={t('noTeam')} onValueChange={setTeam} />
+</Field>
+<Field label={t('topic')}>
+  <Autocomplete suggestions={topics} onValueChange={setTopic} />
+</Field>
+```
+
+- Options are `{ value, label, disabled? }`. Select's value is the option's `value`; Combobox's is the whole option, so the label shows in the box; Autocomplete's is the text.
+- All three take `name`, `disabled`, `size` and `placeholder`; Select and Combobox take `required`, and Combobox takes `emptyText` for when nothing matches. Arrow keys move through the list, Enter picks, and Escape closes it.
+
+### NumberField, Slider, OtpField and DateInput
+
+NumberField enters a whole number with buttons to step it, such as a score. Slider picks a value or a range. OtpField enters a one-time code. DateInput enters a date or time with the browser's own picker, which is localised and works with every assistive technology.
+
+```tsx
+import { DateInput, Field, NumberField, OtpField, Slider } from '@zigordev/react';
+
+<Field label={t('homeGoals')}>
+  <NumberField min={0} max={20} decrementLabel={t('fewer')} incrementLabel={t('more')} />
+</Field>
+<Slider label={t('price')} defaultValue={[20, 80]} showValue thumbLabels={[t('lowest'), t('highest')]} />
+<Field label={t('code')}>
+  <OtpField length={6} inputLabel={(position, length) => t('digit', { position, length })} />
+</Field>
+<Field label={t('startDate')}>
+  <DateInput type="date" />
+</Field>
+```
+
+- NumberField takes Base UI's `value`, `min`, `max`, `step` and `format`, and labels for its two buttons.
+- Slider takes a number or an array of two numbers, `min`, `max`, `step`, `label`, `showValue` and `thumbLabels`; arrow keys move a thumb.
+- OtpField's first input takes the Field's label, and `inputLabel` names the others.
+- DateInput's `type` is `date` (default), `time`, `datetime-local` or `month`.
+
 ### Checkbox, Switch, CheckboxGroup and RadioGroup
 
 Choices with a visible label beside the control. Checkbox is for a yes or no that takes effect when the form is sent, Switch for a setting that applies at once, RadioGroup for one choice among a few, and CheckboxGroup for any number of them.

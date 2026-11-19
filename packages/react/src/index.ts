@@ -31,6 +31,7 @@ export {
   type CheckboxProps,
 } from './checkbox/checkbox.tsx';
 export type { ChoiceOrientation } from './choice/choice.tsx';
+export { DateInput, type DateInputProps, type DateInputType } from './date-input/date-input.tsx';
 export {
   AlertDialog,
   AlertDialogClose,
@@ -67,6 +68,8 @@ export {
   type StackProps,
 } from './layout/layout.tsx';
 export { Link, type LinkProps, type LinkTone, type LinkUnderline } from './link/link.tsx';
+export { NumberField, type NumberFieldProps } from './number-field/number-field.tsx';
+export { OtpField, type OtpFieldProps } from './otp-field/otp-field.tsx';
 export {
   type OverlayAlign,
   Popover,
@@ -83,6 +86,16 @@ export {
 } from './progress/progress.tsx';
 export { Prose, type ProseProps } from './prose/prose.tsx';
 export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from './radio/radio.tsx';
+export { SearchField, type SearchFieldProps } from './search-field/search-field.tsx';
+export {
+  Autocomplete,
+  type AutocompleteProps,
+  Combobox,
+  type ComboboxProps,
+  Select,
+  type SelectOption,
+  type SelectProps,
+} from './select/select.tsx';
 export {
   Separator,
   type SeparatorOrientation,
@@ -90,6 +103,7 @@ export {
 } from './separator/separator.tsx';
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './skeleton/skeleton.tsx';
 export { SkipLink, type SkipLinkProps } from './skip-link/skip-link.tsx';
+export { Slider, type SliderProps } from './slider/slider.tsx';
 export {
   Spinner,
   type SpinnerProps,
