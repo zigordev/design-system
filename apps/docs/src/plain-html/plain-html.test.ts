@@ -180,3 +180,28 @@ describe('the form page', () => {
     expect(getComputedStyle(element('form')).rowGap).toBe(probe('row-gap', 'var(--ds-space-6)'));
   });
 });
+
+describe('the display page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('display.html', theme);
+    expect(getComputedStyle(element('#card')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-bg-raised)')
+    );
+    expect(getComputedStyle(element('#badge-soft')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-accent-soft)')
+    );
+    expect(getComputedStyle(element('#separator')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-border-subtle)')
+    );
+    expect(getComputedStyle(element('#spinner')).borderTopColor).toBe(
+      probe('color', 'var(--ds-color-accent-text)')
+    );
+  });
+
+  it('hides the spinner label visually but keeps it for screen readers', () => {
+    unmount = mount('display.html', defaultTheme);
+    const label = element('.ds-visually-hidden');
+    expect(label.getBoundingClientRect().width).toBeLessThanOrEqual(1);
+    expect(element('[role="status"]').textContent).toContain('Loading the case studies');
+  });
+});

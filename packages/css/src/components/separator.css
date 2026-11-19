@@ -1,0 +1,23 @@
+@layer ds.components {
+  .ds-separator {
+    flex: none;
+    align-self: stretch;
+    inline-size: auto;
+    block-size: var(--ds-border-width-hairline);
+    margin: 0;
+    border: 0;
+    background-color: var(--ds-color-border-subtle);
+  }
+
+  .ds-separator[data-orientation="vertical"] {
+    inline-size: var(--ds-border-width-hairline);
+    block-size: auto;
+  }
+
+  @media (forced-colors: active) {
+    .ds-separator {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+}

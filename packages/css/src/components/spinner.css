@@ -1,0 +1,53 @@
+@layer ds.components {
+  .ds-spinner {
+    --_size: var(--ds-size-icon-md);
+
+    display: inline-block;
+    flex: none;
+    box-sizing: border-box;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    border: var(--ds-border-width-thick) solid var(--ds-color-border-subtle);
+    border-block-start-color: currentColor;
+    border-radius: var(--ds-radius-full);
+    color: var(--ds-color-accent-text);
+    animation: ds-spinner-spin var(--ds-duration-spin) linear infinite;
+  }
+
+  .ds-spinner[data-size="sm"] {
+    --_size: var(--ds-size-icon-sm);
+  }
+
+  .ds-spinner[data-size="lg"] {
+    --_size: var(--ds-size-control-sm);
+  }
+
+  .ds-spinner[data-tone="neutral"] {
+    color: var(--ds-color-fg-muted);
+  }
+
+  .ds-spinner-status {
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  @keyframes ds-spinner-spin {
+    to {
+      rotate: 1turn;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ds-spinner {
+      animation-duration: calc(var(--ds-duration-spin) * 3);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .ds-spinner {
+      forced-color-adjust: none;
+      border-color: GrayText;
+      border-block-start-color: CanvasText;
+    }
+  }
+}

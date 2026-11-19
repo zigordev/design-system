@@ -1,0 +1,84 @@
+@layer ds.components {
+  .ds-card {
+    --_padding: var(--ds-space-5);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-3);
+    box-sizing: border-box;
+    min-inline-size: 0;
+    padding: var(--_padding);
+    border: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+    border-radius: var(--ds-radius-card);
+    background-color: var(--ds-color-bg-raised);
+    box-shadow: var(--ds-shadow-raised);
+    color: var(--ds-color-fg-default);
+    transition-property: border-color, box-shadow;
+    transition-duration: var(--ds-duration-fast);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-card[data-variant="outline"] {
+    border-color: var(--ds-color-border-default);
+    background-color: var(--ds-color-bg-page);
+    box-shadow: none;
+  }
+
+  .ds-card[data-variant="sunken"] {
+    border-color: transparent;
+    background-color: var(--ds-color-bg-sunken);
+    box-shadow: none;
+  }
+
+  .ds-card[data-padding="none"] {
+    --_padding: 0;
+  }
+
+  .ds-card[data-padding="sm"] {
+    --_padding: var(--ds-space-3);
+  }
+
+  .ds-card[data-padding="lg"] {
+    --_padding: var(--ds-space-8);
+  }
+
+  .ds-card:has(.ds-card__link):hover {
+    border-color: var(--ds-color-border-default);
+  }
+
+  .ds-card[data-variant="raised"]:has(.ds-card__link):hover {
+    box-shadow: var(--ds-shadow-overlay);
+  }
+
+  .ds-card .ds-card__link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--ds-radius-card);
+  }
+
+  .ds-card .ds-card__link:focus-visible {
+    outline: none;
+  }
+
+  .ds-card .ds-card__link:focus-visible::after {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-card :is(a, button, input, select, textarea, [tabindex]):not(.ds-card__link) {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (forced-colors: active) {
+    .ds-card {
+      border-color: CanvasText;
+    }
+
+    .ds-card .ds-card__link:focus-visible::after {
+      outline-color: Highlight;
+    }
+  }
+}

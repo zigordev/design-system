@@ -151,7 +151,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     .ds-button__spinner {
-      animation: none;
+      animation-duration: calc(var(--ds-duration-spin) * 3);
     }
   }
 

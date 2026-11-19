@@ -74,6 +74,7 @@ describe('the CSS sources', () => {
   const files: [string, string][] = [
     ['reset.css', 'ds.reset'],
     ['base.css', 'ds.base'],
+    ['utilities.css', 'ds.utilities'],
     ...readdirSync(new URL('components/', source)).map((name): [string, string] => [
       `components/${name}`,
       'ds.components',

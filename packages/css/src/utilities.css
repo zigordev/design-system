@@ -1,0 +1,13 @@
+@layer ds.utilities {
+  .ds-visually-hidden {
+    position: absolute;
+    inline-size: var(--ds-border-width-hairline);
+    block-size: var(--ds-border-width-hairline);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
