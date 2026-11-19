@@ -16,5 +16,6 @@ To add one, copy [template.md](template.md) to `NNNN-short-title.md` with the ne
 | [0008](0008-react-components-on-base-ui.md)           | React components on Base UI, compiled by tsc |               | accepted |
 | [0009](0009-stories-as-browser-tests.md)              | Stories as browser tests in every theme      |               | accepted |
 | [0010](0010-linked-releases-to-github-packages.md)    | Linked releases to GitHub Packages           |               | accepted |
+| [0011](0011-storybook-stays-local.md)                 | Storybook stays local                        |               | accepted |
 
 The plan decision column refers to the design decisions taken with the owner on 2026-11-19, recorded on the design direction page.

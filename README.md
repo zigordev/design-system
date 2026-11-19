@@ -14,7 +14,7 @@ The legacy design system copied CSS into apps, injected styles from JavaScript, 
 | [`@zigordev/css`](packages/css/README.md)       | The tokens, a small reset, base styles and every component style, in cascade layers, bundled into one file                                                             |
 | [`@zigordev/react`](packages/react/README.md)   | React components on Base UI, styled by `@zigordev/css`                                                                                                                 |
 
-`apps/docs` is the Storybook site: the component catalogue, the foundations pages and the test harness. It is not published.
+`apps/docs` is the Storybook site: the component catalogue, the foundations pages and the test harness. It is not published; `pnpm dev` runs it locally.
 
 ## Technologies and tools
 
