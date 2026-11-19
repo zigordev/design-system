@@ -56,6 +56,13 @@
       "tight": { "$value": -0.02 },
       "normal": { "$value": 0 },
       "wide": { "$value": 0.04 }
+    },
+    "underline": {
+      "$type": "dimension",
+      "$description": "Link underlines: the gap below the text, and the line's thickness at rest and on hover.",
+      "offset": { "$value": { "value": 0.1875, "unit": "rem" } },
+      "thickness": { "$value": { "value": 1, "unit": "px" } },
+      "thickness-strong": { "$value": { "value": 2, "unit": "px" } }
     }
   }
 }
