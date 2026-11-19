@@ -1,6 +1,6 @@
 # Cloud first deploy
 
-The design system has no server. Its production is the packages on GitHub Packages, which apps install and Renovate keeps current. The Storybook site is not published yet; GitHub Pages is the planned host.
+The design system has no server. Its production is the packages on GitHub Packages, which apps install and Renovate keeps current. The Storybook site is not published: it runs locally with `pnpm dev` ([ADR 0011](adr/0011-storybook-stays-local.md)).
 
 ## How a release happens
 
