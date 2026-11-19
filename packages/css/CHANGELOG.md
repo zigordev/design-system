@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.0](https://github.com/zigordev/design-system/compare/css-v0.2.0...css-v0.3.0) (2026-11-19)
+
+
+### Features
+
+* add the layout helpers, prose and skip link ([#13](https://github.com/zigordev/design-system/issues/13)) ([2e4d4cf](https://github.com/zigordev/design-system/commit/2e4d4cf2d172a4aa1755e43ab8ae5f7c44abe38f))
+* add the toggle group, theme switcher and language switcher ([#14](https://github.com/zigordev/design-system/issues/14)) ([b1f096d](https://github.com/zigordev/design-system/commit/b1f096d0ff3d00ab5d663d59704b05c13dd05915))
+* **icons:** add the curated lucide icon set ([#12](https://github.com/zigordev/design-system/issues/12)) ([7631053](https://github.com/zigordev/design-system/commit/7631053a89e70d81ac4f0a1b52080a91352c8a9a))
+
 ## [0.2.0](https://github.com/zigordev/design-system/compare/css-v0.1.0...css-v0.2.0) (2026-11-19)
 
 
