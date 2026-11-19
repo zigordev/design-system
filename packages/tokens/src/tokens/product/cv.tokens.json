@@ -1,9 +1,9 @@
 {
   "radius": {
     "$type": "dimension",
-    "button": { "$value": "{radius.lg}" },
-    "field": { "$value": "{radius.lg}" },
-    "card": { "$value": "{radius.xl}" }
+    "button": { "$value": "{radius.sm}" },
+    "field": { "$value": "{radius.sm}" },
+    "card": { "$value": "{radius.md}" }
   },
   "font": {
     "display": {
