@@ -1,0 +1,52 @@
+@layer ds.components {
+  .ds-scroll-area {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ds-scroll-area__viewport {
+    block-size: 100%;
+    max-block-size: inherit;
+    overscroll-behavior: contain;
+    border-radius: inherit;
+  }
+
+  .ds-scroll-area__viewport:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: calc(var(--ds-focus-offset) * -1);
+  }
+
+  .ds-scroll-area__scrollbar {
+    display: flex;
+    padding: var(--ds-border-width-thick);
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--ds-duration-base);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-scroll-area__scrollbar:is([data-hovering], [data-scrolling]) {
+    opacity: 1;
+  }
+
+  .ds-scroll-area__scrollbar[data-orientation="vertical"] {
+    inline-size: var(--ds-space-2);
+  }
+
+  .ds-scroll-area__scrollbar[data-orientation="horizontal"] {
+    block-size: var(--ds-space-2);
+  }
+
+  .ds-scroll-area__thumb {
+    flex: 1;
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-fg-muted);
+  }
+
+  @media (forced-colors: active) {
+    .ds-scroll-area__thumb {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+}

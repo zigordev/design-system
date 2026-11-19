@@ -270,3 +270,19 @@ describe('the navigation page', () => {
     );
   });
 });
+
+describe('the data page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('data.html', theme);
+    expect(getComputedStyle(element('#term')).color).toBe(
+      probe('color', 'var(--ds-color-fg-muted)')
+    );
+    expect(getComputedStyle(element('#head')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-bg-sunken)')
+    );
+    expect(getComputedStyle(element('#points')).textAlign).toBe('end');
+    expect(getComputedStyle(element('#kbd')).fontFamily).toBe(
+      probe('font-family', 'var(--ds-font-family-mono)')
+    );
+  });
+});

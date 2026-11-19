@@ -1,0 +1,63 @@
+@layer ds.components {
+  .ds-avatar {
+    --_size: var(--ds-size-control-md);
+
+    display: inline-grid;
+    flex: none;
+    place-items: center;
+    overflow: hidden;
+    inline-size: var(--_size);
+    block-size: var(--_size);
+    border-radius: var(--ds-radius-full);
+    background-color: var(--ds-color-accent-soft);
+    color: var(--ds-color-accent-text);
+    font-size: var(--ds-font-size-sm);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-font-line-height-tight);
+    user-select: none;
+    vertical-align: middle;
+  }
+
+  .ds-avatar[data-size="sm"] {
+    --_size: var(--ds-size-control-sm);
+
+    font-size: var(--ds-font-size-xs);
+  }
+
+  .ds-avatar[data-size="lg"] {
+    --_size: calc(var(--ds-size-control-lg) * 1.5);
+
+    font-size: var(--ds-font-size-lg);
+  }
+
+  .ds-avatar__image {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+
+  .ds-avatar-group {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ds-avatar-group__item {
+    display: inline-flex;
+  }
+
+  .ds-avatar-group__item + .ds-avatar-group__item {
+    margin-inline-start: calc(var(--ds-size-control-md) / -4);
+  }
+
+  .ds-avatar-group .ds-avatar {
+    box-shadow: 0 0 0 var(--ds-border-width-thick) var(--ds-color-bg-page);
+  }
+
+  .ds-avatar[data-more] {
+    background-color: var(--ds-color-bg-sunken);
+    color: var(--ds-color-fg-default);
+  }
+}

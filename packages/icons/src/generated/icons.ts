@@ -3,6 +3,12 @@ import { type IconNode, type IconProps, renderIcon } from '../render-icon.ts';
 
 export const lucideVersion = '1.75.0';
 
+const arrowDownRightNodes: IconNode = [['path', { d: 'm7 7 10 10' }], ['path', { d: 'M17 7v10H7' }]];
+
+export function ArrowDownRightIcon(props: IconProps): ReactElement {
+  return renderIcon('arrow-down-right', arrowDownRightNodes, props);
+}
+
 const arrowLeftNodes: IconNode = [['path', { d: 'm12 19-7-7 7-7' }], ['path', { d: 'M19 12H5' }]];
 
 export function ArrowLeftIcon(props: IconProps): ReactElement {

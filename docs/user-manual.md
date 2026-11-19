@@ -679,6 +679,65 @@ import { CommandPalette } from '@zigordev/react';
 
 Typing filters the commands, arrow keys move through them, and Enter or a click runs one and closes the palette. The app owns the shortcut that opens it.
 
+### DescriptionList, Timeline, Table and StatTile
+
+Ways to show facts. DescriptionList pairs terms with details, Timeline lists events in order, such as the cv's experience, Table shows rows of data, and StatTile shows one number with its change.
+
+```tsx
+import { DescriptionList, StatTile, Table, Timeline } from '@zigordev/react';
+
+<DescriptionList layout="columns" items={[{ term: t('role'), details: t('platformEngineer') }]} />
+<Timeline items={[{ id: 'now', time: '2024 – now', dateTime: '2024', title: t('platformEngineer'), description: t('summary') }]} />
+<Table caption={t('results')}>
+  <thead><tr><th scope="col">{t('player')}</th><th scope="col" data-numeric="">{t('points')}</th></tr></thead>
+  <tbody><tr><td>Ada</td><td data-numeric="">12</td></tr></tbody>
+</Table>
+<StatTile label={t('points')} value="1,284" delta="+12%" trend="up" />
+```
+
+- DescriptionList's `layout` is `stacked` (default) or `columns`. Timeline items take `id`, `title`, `time` with `dateTime`, and `description`.
+- Table takes native table children and a `caption`; it scrolls sideways in a region named by the caption. Mark number cells with `data-numeric` to align them, and a selected row with `aria-selected="true"`. The header stays in view while the table scrolls.
+- StatTile's value uses the product's display style; `trend` (`up`, `down`, `flat`) adds an arrow and a colour to the delta, which states the change in words too.
+
+### Accordion
+
+Sections that open in place, such as questions and answers. Each title is a heading with a button.
+
+```tsx
+import { Accordion } from '@zigordev/react';
+
+<Accordion items={[{ value: 'why', title: t('why'), content: t('because') }]} headingLevel={3} />;
+```
+
+It takes `items` (`value`, `title`, `content`, `disabled`), `headingLevel` (2, 3 or 4; default 3), and Base UI's `multiple`, `value`, `defaultValue` and `onValueChange`. Tab moves between titles and Enter or Space opens one.
+
+### Avatar and AvatarGroup
+
+A person's picture, or their initials when there is none.
+
+```tsx
+import { Avatar, AvatarGroup } from '@zigordev/react';
+
+<Avatar name="Ada Lovelace" src={photo} />
+<Avatar name="Ada Lovelace" decorative />
+<AvatarGroup label={t('members')} more={{ count: 3, label: t('andMore', { count: 3 }) }}>{avatars}</AvatarGroup>
+```
+
+An Avatar is an image named after the person, unless `decorative`, which hides it when the name is already written next to it. `size` is `sm`, `md` (default) or `lg`.
+
+### CodeBlock, Figure, Kbd and ScrollArea
+
+```tsx
+import { CodeBlock, Figure, Kbd, ScrollArea } from '@zigordev/react';
+
+<CodeBlock label={t('install')} language="bash" code="pnpm add @zigordev/react" copyLabel={t('copy')} copiedLabel={t('copied')} />
+<Figure caption={t('standingsCaption')}><img src={standings} alt={t('standings')} /></Figure>
+<p>{t('press')} <Kbd>⌘</Kbd> <Kbd>K</Kbd></p>
+<ScrollArea label={t('changelog')} className={styles.changelog}>{entries}</ScrollArea>
+```
+
+CodeBlock shows code in the mono face with an optional copy button; it does not colour syntax. Figure adds a caption to an image. Kbd shows a key. ScrollArea scrolls its content with thin scrollbars that appear on hover; size it with a `className`.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.

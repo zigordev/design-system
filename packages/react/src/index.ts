@@ -1,4 +1,13 @@
+export { Accordion, type AccordionItem, type AccordionProps } from './accordion/accordion.tsx';
 export { Alert, type AlertProps, type AlertTone } from './alert/alert.tsx';
+export {
+  Avatar,
+  AvatarGroup,
+  type AvatarGroupProps,
+  type AvatarProps,
+  type AvatarSize,
+  initials,
+} from './avatar/avatar.tsx';
 export {
   Badge,
   type BadgeProps,
@@ -36,12 +45,29 @@ export {
   type CheckboxProps,
 } from './checkbox/checkbox.tsx';
 export type { ChoiceOrientation } from './choice/choice.tsx';
+export { CodeBlock, type CodeBlockProps } from './code-block/code-block.tsx';
 export {
   type Command,
   CommandPalette,
   type CommandPaletteProps,
 } from './command-palette/command-palette.tsx';
 export { CopyButton, type CopyButtonProps } from './copy-button/copy-button.tsx';
+export {
+  type DescriptionItem,
+  DescriptionList,
+  type DescriptionListProps,
+  Figure,
+  type FigureProps,
+  Kbd,
+  type KbdProps,
+  StatTile,
+  type StatTileProps,
+  Table,
+  type TableProps,
+  Timeline,
+  type TimelineItem,
+  type TimelineProps,
+} from './data-display/data-display.tsx';
 export { DateInput, type DateInputProps, type DateInputType } from './date-input/date-input.tsx';
 export {
   AlertDialog,
@@ -119,6 +145,7 @@ export {
 } from './progress/progress.tsx';
 export { Prose, type ProseProps } from './prose/prose.tsx';
 export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from './radio/radio.tsx';
+export { ScrollArea, type ScrollAreaProps } from './scroll-area/scroll-area.tsx';
 export { SearchField, type SearchFieldProps } from './search-field/search-field.tsx';
 export {
   Autocomplete,
