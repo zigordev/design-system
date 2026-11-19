@@ -33,6 +33,7 @@ export const optimizedDependencies = baseUiEntries();
 export const sourceAliases = [
   { find: /^@zigordev\/react$/, replacement: source('../../packages/react/src/index.ts') },
   { find: /^@zigordev\/icons$/, replacement: source('../../packages/icons/src/index.ts') },
+  { find: /^@zigordev\/email$/, replacement: source('../../packages/email/src/index.ts') },
   { find: /^@zigordev\/css\/index\.css$/, replacement: source('../../packages/css/src/index.css') },
 ];
 

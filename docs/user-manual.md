@@ -762,6 +762,20 @@ import { AppShell, BottomTabBar, PageHeader, SkipLink, TopBar } from '@zigordev/
 - BottomTabBar items take `label`, `href`, `icon`, `current` and `render` for Next.js `Link`. It hides from 48rem unless `mobileOnly={false}`.
 - PageHeader's title is an `h1` (or `headingLevel={2}`) in the product's display style.
 
+### Chart colours and the data grid recipe
+
+Charts take their colours from the tokens, so they follow the theme and keep 3:1 against the page in every product, mode and contrast.
+
+| Token                            | Use                                                  |
+| -------------------------------- | ---------------------------------------------------- |
+| `--ds-color-chart-1` to `-5`     | Series, in this order: blue, amber, green, red, grey |
+| `--ds-color-chart-highlight`     | The series to emphasise, in the product accent       |
+| `--ds-color-chart-grid`, `-axis` | Grid lines and axis labels                           |
+
+The series colours do not depend on the product, so two products' charts read the same, and the product accent stays free for emphasis. Never use colour alone to tell series apart: label lines directly or add markers.
+
+Data grids for trading-bot follow the recipe in Storybook (Recipes, Data grid): TanStack Table, the same library and `legacy` entry point as trading-bot's operator console, rendered into Table, with sortable headers that set `aria-sort` on the `th` and wrap the label in a `button` with the `ds-table__sort` class, which shows the direction, and Checkbox for row selection.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.
@@ -840,6 +854,32 @@ import { SkipLink } from '@zigordev/react';
 ```
 
 `target` is the id of the main content, `main` by default. Give that element `tabIndex={-1}`, so the focus moves into it.
+
+### Email
+
+`@zigordev/email` builds the messages products send, with React Email on the design tokens. Products render them with `@zigordev/email` and send them through `@zigordev/notifications-client`.
+
+```tsx
+import { render } from '@react-email/render';
+import { EmailButton, EmailFooter, EmailHeading, EmailLayout, EmailText } from '@zigordev/email';
+
+const html = await render(
+  <EmailLayout
+    product="cv"
+    lang={locale}
+    preview={t('preview')}
+    footer={<EmailFooter>{t('why')}</EmailFooter>}
+  >
+    <EmailHeading>{t('newMessage')}</EmailHeading>
+    <EmailText>{t('from', { name })}</EmailText>
+    <EmailButton href={link}>{t('read')}</EmailButton>
+  </EmailLayout>
+);
+```
+
+- EmailLayout takes `product` (default `cv`), `lang`, `preview` (the inbox preview text) and `footer`. EmailText takes `tone` (`default` or `muted`).
+- Email clients ignore CSS variables and most of CSS, so every style is inlined from the product's light theme, generated from the tokens. Dark mode is left to the mail client.
+- The Storybook Email section previews a message in each product.
 
 ## Without React
 

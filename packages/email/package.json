@@ -1,0 +1,52 @@
+{
+  "name": "@zigordev/email",
+  "version": "0.3.0",
+  "description": "Email components for zigordev products, built with React Email on the design tokens",
+  "license": "UNLICENSED",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "generate": "node scripts/generate.ts",
+    "build": "tsc -p tsconfig.build.json && publint --strict && attw --pack . --profile esm-only --exclude-entrypoints ./package.json",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "react-email": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "catalog:",
+    "@react-email/render": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@zigordev/tokens": "workspace:*",
+    "@zigordev/tsconfig": "catalog:",
+    "colorjs.io": "catalog:",
+    "publint": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zigordev/design-system.git",
+    "directory": "packages/email"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
