@@ -1,0 +1,75 @@
+@layer ds.components {
+  .ds-toast-viewport {
+    position: fixed;
+    z-index: 60;
+    inset-block-end: var(--ds-space-4);
+    inset-inline-end: var(--ds-space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-2);
+    inline-size: min(calc(100% - var(--ds-space-8)), var(--ds-size-overlay-popover));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    outline: 0;
+  }
+
+  .ds-toast {
+    --_stripe: var(--ds-color-info-solid);
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: var(--ds-space-3);
+    box-sizing: border-box;
+    padding: var(--ds-space-4);
+    border: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+    border-inline-start: var(--ds-border-width-thick) solid var(--_stripe);
+    border-radius: var(--ds-radius-card);
+    background-color: var(--ds-color-bg-raised);
+    box-shadow: var(--ds-shadow-overlay);
+    color: var(--ds-color-fg-default);
+    translate: var(--toast-swipe-movement-x, 0) var(--toast-swipe-movement-y, 0);
+    transition-property: opacity, translate;
+    transition-duration: var(--ds-duration-base);
+    transition-timing-function: var(--ds-easing-emphasized);
+  }
+
+  .ds-toast:is([data-starting-style], [data-ending-style]) {
+    opacity: 0;
+    translate: 0 var(--ds-space-4);
+  }
+
+  .ds-toast[data-tone="success"] {
+    --_stripe: var(--ds-color-success-solid);
+  }
+
+  .ds-toast[data-tone="warning"] {
+    --_stripe: var(--ds-color-warning-solid);
+  }
+
+  .ds-toast[data-tone="danger"] {
+    --_stripe: var(--ds-color-danger-solid);
+  }
+
+  .ds-toast[data-tone="neutral"] {
+    --_stripe: var(--ds-color-neutral-solid);
+  }
+
+  .ds-toast__title {
+    margin: 0;
+    font-weight: var(--ds-font-weight-semibold);
+  }
+
+  .ds-toast__description {
+    margin: 0;
+    color: var(--ds-color-fg-muted);
+    font-size: var(--ds-font-size-sm);
+  }
+
+  @media (forced-colors: active) {
+    .ds-toast {
+      border-color: CanvasText;
+    }
+  }
+}

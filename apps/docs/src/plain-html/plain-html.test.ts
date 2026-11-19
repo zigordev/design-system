@@ -245,3 +245,16 @@ describe('the switchers page', () => {
     expect(getComputedStyle(element('#current')).textDecorationLine).toBe('underline');
   });
 });
+
+describe('the feedback page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('feedback.html', theme);
+    expect(getComputedStyle(element('#info')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-info-soft)')
+    );
+    expect(getComputedStyle(element('#danger')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-danger-border)')
+    );
+    expect(getComputedStyle(element('#empty')).textAlign).toBe('center');
+  });
+});

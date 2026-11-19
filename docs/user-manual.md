@@ -450,6 +450,69 @@ import { AlertDialog, AlertDialogClose, Button, Dialog, DialogClose, Drawer } fr
 - Dialog takes `size` (`sm`, `md`, `lg`; default `md`), `description`, `footer` and `closeLabel`, the accessible name of its close button. AlertDialog takes `actions`; wrap the button that cancels in `AlertDialogClose`. Drawer takes `side` (`right`, `left`, `bottom`; default `right`) and can be swiped closed.
 - Without `trigger`, control them with `open` and `onOpenChange`.
 
+### Alert
+
+A message in the page about something that happened or needs attention. The banner variant spans the page, for example to say that trading-bot is in Paper mode.
+
+```tsx
+import { Alert, Button } from '@zigordev/react';
+
+<Alert tone="success" title={t('sent')} live="polite">{t('replySoon')}</Alert>
+<Alert variant="banner" tone="warning" title={t('paper')} action={<Button size="sm">{t('goLive')}</Button>} />
+<Alert tone="info" title={t('updated')} onDismiss={hide} dismissLabel={t('dismiss')} />
+```
+
+- `tone` is `info` (default), `success`, `warning`, `danger` or `neutral`; each has its icon, so the tone never relies on colour alone.
+- `live` announces an alert that appears after the page loaded: `polite` for news, `assertive` only for errors that block the person. A static alert has no role.
+- `action` adds buttons, and `onDismiss` with `dismissLabel` adds a close button.
+
+### Toast
+
+A short message that confirms an action, such as a sent form, and disappears on its own. Wrap the app once in `ToastProvider` and add toasts with `useToast`.
+
+```tsx
+import { ToastProvider, useToast } from '@zigordev/react';
+
+<ToastProvider closeLabel={t('close')}>{children}</ToastProvider>;
+
+const toast = useToast();
+toast.add({ title: t('sent'), description: t('replySoon'), tone: 'success' });
+```
+
+Toasts appear at the bottom end of the screen, at most `limit` (default 3) at once, and close after `timeout` milliseconds (default 5000) unless hovered or focused. Screen readers announce them. Use an Alert instead for anything the person must not miss.
+
+### EmptyState
+
+What a list or a search shows when it has nothing: a title, a hint and the action that helps.
+
+```tsx
+import { SearchIcon } from '@zigordev/icons';
+import { Button, EmptyState } from '@zigordev/react';
+
+<EmptyState
+  icon={<SearchIcon />}
+  title={t('noMatches')}
+  description={t('tryShorter')}
+  action={<Button>{t('clearFilters')}</Button>}
+/>;
+```
+
+`headingLevel` (2, 3 or 4; default 2) fits the title into the page's outline.
+
+### Progress and Meter
+
+Progress shows how far a task has come, or that it is running when its length is unknown (`value={null}`). Meter shows a measurement within a range, such as a budget.
+
+```tsx
+import { Meter, Progress } from '@zigordev/react';
+
+<Progress label={t('uploading')} value={uploaded} showValue />
+<Progress label={t('loading')} value={null} />
+<Meter label={t('budgetUsed')} value={72} tone="warning" />
+```
+
+Both take `label`, `min`, `max`, `showValue` (Meter shows it by default) and `tone` (`accent`, `success`, `warning`, `danger`). The value is formatted for the page's language.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.

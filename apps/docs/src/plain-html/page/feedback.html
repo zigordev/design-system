@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alerts and empty states from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Alerts and empty states from CSS alone</h1>
+      <div class="ds-alert" id="info" data-tone="info">
+        <span class="ds-alert__icon" aria-hidden="true"></span>
+        <div class="ds-alert__body"><p class="ds-alert__title">The case studies were updated</p><div>Two new ones are about testing.</div></div>
+      </div>
+      <div class="ds-alert" id="danger" data-tone="danger" role="alert">
+        <span class="ds-alert__icon" aria-hidden="true"></span>
+        <div class="ds-alert__body"><p class="ds-alert__title">The message was not sent</p><div>Check the connection and try again.</div></div>
+      </div>
+      <div class="ds-empty-state" id="empty">
+        <h2 class="ds-empty-state__title">No case studies match</h2>
+        <p class="ds-empty-state__description">Try a shorter search.</p>
+      </div>
+    </main>
+  </body>
+</html>
