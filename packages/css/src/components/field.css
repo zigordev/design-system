@@ -1,0 +1,63 @@
+@layer ds.components {
+  .ds-field {
+    display: grid;
+    gap: var(--ds-space-1);
+    min-inline-size: 0;
+  }
+
+  .ds-field__label {
+    color: var(--ds-color-fg-default);
+    font-size: var(--ds-font-size-sm);
+    font-weight: var(--ds-font-weight-medium);
+    line-height: var(--ds-font-line-height-snug);
+  }
+
+  .ds-field__label[data-disabled] {
+    color: var(--ds-color-fg-disabled);
+  }
+
+  .ds-field__required {
+    margin-inline-start: var(--ds-space-1);
+    color: var(--ds-color-danger-text);
+  }
+
+  .ds-field__description {
+    margin: 0;
+    color: var(--ds-color-fg-muted);
+    font-size: var(--ds-font-size-sm);
+    line-height: var(--ds-font-line-height-snug);
+  }
+
+  .ds-field__error {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ds-space-1);
+    margin: 0;
+    color: var(--ds-color-danger-text);
+    font-size: var(--ds-font-size-sm);
+    font-weight: var(--ds-font-weight-medium);
+    line-height: var(--ds-font-line-height-snug);
+  }
+
+  .ds-field__error::before {
+    content: "";
+    flex: none;
+    inline-size: var(--ds-size-icon-sm);
+    block-size: var(--ds-size-icon-sm);
+    background-color: currentColor;
+    mask:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='8' cy='8' r='6.25'/%3E%3Cpath d='M8 4.75v3.5M8 11h.01'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+  }
+
+  .ds-field__error:empty {
+    display: none;
+  }
+
+  @media (forced-colors: active) {
+    .ds-field__error::before {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+}

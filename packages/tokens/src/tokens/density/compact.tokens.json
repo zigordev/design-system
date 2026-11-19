@@ -22,7 +22,8 @@
   },
   "font": {
     "size": {
-      "control": { "$type": "dimension", "$value": "{font.size.sm}" }
+      "control": { "$type": "dimension", "$value": "{font.size.sm}" },
+      "field": { "$type": "dimension", "$value": "{font.size.sm}" }
     }
   }
 }

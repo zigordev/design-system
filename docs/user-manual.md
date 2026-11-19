@@ -78,7 +78,7 @@ App styles go in CSS Modules and use the role tokens, never raw colours, sizes o
 | Type                     | `--ds-font-family-sans`, `-mono`, `--ds-font-size-xs` to `-3xl`, `--ds-font-weight-*`, `--ds-font-line-height-*`               |
 | Display                  | `--ds-font-display-stretch` and `--ds-font-display-weight`, the product's width and weight for headings and big numbers        |
 | Underline                | `--ds-font-underline-offset`, `-thickness` and `-thickness-strong`, the underline of links                                     |
-| Controls                 | `--ds-size-control-sm`, `-md`, `-lg`, `--ds-space-control-*` and `--ds-font-size-control`, which follow the density            |
+| Controls                 | `--ds-size-control-*`, `--ds-space-control-*`, `--ds-font-size-control` and `-field`, which follow the density                 |
 | Motion and depth         | `--ds-duration-fast`, `-base`, `-slow`, `--ds-easing-standard`, `-emphasized`, `-exit`, `--ds-shadow-raised`, `-overlay`       |
 
 Under `prefers-reduced-motion`, the durations become zero, so transitions built on them stop on their own. Tokens under `--ds-color-palette-*` and `--ds-color-scale-*` are primitives behind the roles; apps do not use them.
@@ -162,9 +162,38 @@ import { Link } from '@zigordev/react';
 
 Every other `<a>` attribute passes through. Mark the link to the current page with `aria-current="page"`: it gets a strong underline and the default text colour, whatever its `underline`. Use LinkButton instead when a link is the main call to action.
 
+### Field, TextInput and Textarea
+
+A Field labels one control and shows its description and its error. TextInput is a one-line text control and Textarea a multi-line one. Inside a Field they get their label, description and error wired to the control for screen readers, so every control has a visible label.
+
+```tsx
+import { Field, Textarea, TextInput } from '@zigordev/react';
+
+<Field label={t('email')} description={t('emailHint')} error={errors.email?.message} required>
+  <TextInput type="email" name="email" autoComplete="email" />
+</Field>
+<Field label={t('message')}>
+  <Textarea name="message" rows={4} />
+</Field>
+```
+
+| Field prop       | Values                                                                                | Default    |
+| ---------------- | ------------------------------------------------------------------------------------- | ---------- |
+| `label`          | the visible label                                                                     | required   |
+| `description`    | a hint shown between the label and the control                                        | none       |
+| `error`          | the error message; when set, the field is invalid and the control gets `aria-invalid` | none       |
+| `required`       | `true` shows an asterisk, hidden from screen readers, and makes the control required  | `false`    |
+| `disabled`       | `true` disables the control and dims the label                                        | `false`    |
+| `validationMode` | when Base UI validates the control itself: `onSubmit`, `onBlur` or `onChange`         | `onSubmit` |
+
+- With React Hook Form and Zod, pass the field's message as `error`. Without `error`, Base UI validates the control with the browser's constraints, such as `required` or `type="email"`, and shows the browser's message.
+- If a form marks required fields with the asterisk, the app says once, above the form, what it means. A form where almost every field is required can mark the optional ones in their labels instead and leave `required` on the controls.
+- TextInput takes `type` (`text`, `email`, `password`, `search`, `tel`, `url`; default `text`) and `size` (`sm`, `md`, `lg`; default `md`). Textarea takes `size` and `rows` (default 3) and grows with its content in browsers that support `field-sizing`. Both pass every other attribute through.
+- Text is 16px in comfortable density, so iOS Safari does not zoom in when a field gets focus. A TextInput outside a Field needs `aria-label`.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` or an `<a class="ds-link" data-tone="neutral">` renders the same as the React component. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html) and the [links](../apps/docs/src/plain-html/page/link.html).
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">` or an `<input class="ds-text-input">` inside a `.ds-field` renders the same as the React component. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html) and the [fields](../apps/docs/src/plain-html/page/field.html).
 
 ## Limits
 

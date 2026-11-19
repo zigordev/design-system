@@ -77,3 +77,9 @@
   padding: 0;
   list-style: none;
 }
+
+.form {
+  display: grid;
+  gap: var(--ds-space-6);
+  inline-size: min(100%, 24rem);
+}

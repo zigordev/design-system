@@ -126,3 +126,21 @@ describe('the links page', () => {
     );
   });
 });
+
+describe('the fields page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('field.html', theme);
+    expect(getComputedStyle(element('#email')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-border-field)')
+    );
+    expect(getComputedStyle(element('#name')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-danger-border-strong)')
+    );
+    expect(getComputedStyle(element('#name-error')).color).toBe(
+      probe('color', 'var(--ds-color-danger-text)')
+    );
+    expect(getComputedStyle(element('#message')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-bg-field)')
+    );
+  });
+});

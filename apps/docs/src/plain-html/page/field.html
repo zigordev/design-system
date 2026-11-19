@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fields from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Fields from CSS alone</h1>
+      <form action="#" method="get">
+        <div class="ds-field">
+          <label class="ds-field__label" for="email">Email</label>
+          <p class="ds-field__description" id="email-description">We reply within two days.</p>
+          <input class="ds-text-input" id="email" name="email" type="email" autocomplete="email" aria-describedby="email-description">
+        </div>
+        <div class="ds-field">
+          <label class="ds-field__label" for="name">Name<span class="ds-field__required" aria-hidden="true">*</span></label>
+          <input class="ds-text-input" id="name" name="name" autocomplete="name" required aria-invalid="true" aria-describedby="name-error">
+          <p class="ds-field__error" id="name-error">Enter your name</p>
+        </div>
+        <div class="ds-field">
+          <label class="ds-field__label" for="message">Message</label>
+          <textarea class="ds-textarea" id="message" name="message" rows="3"></textarea>
+        </div>
+        <button class="ds-button" type="submit">Send</button>
+      </form>
+    </main>
+  </body>
+</html>

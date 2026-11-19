@@ -1,0 +1,103 @@
+@layer ds.components {
+  .ds-text-input,
+  .ds-textarea {
+    --_border: var(--ds-color-border-field);
+    --_height: var(--ds-size-control-md);
+    --_padding: var(--ds-space-control-sm);
+
+    box-sizing: border-box;
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: var(--_height);
+    margin: 0;
+    padding-block: 0;
+    padding-inline: var(--_padding);
+    border: var(--ds-border-width-hairline) solid var(--_border);
+    border-radius: var(--ds-radius-field);
+    background-color: var(--ds-color-bg-field);
+    color: var(--ds-color-fg-default);
+    font-family: var(--ds-font-family-sans);
+    font-size: var(--ds-font-size-field);
+    line-height: var(--ds-font-line-height-normal);
+    transition-property: border-color, background-color;
+    transition-duration: var(--ds-duration-fast);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-text-input::placeholder,
+  .ds-textarea::placeholder {
+    color: var(--ds-color-fg-muted);
+    opacity: 1;
+  }
+
+  .ds-text-input:hover,
+  .ds-textarea:hover {
+    --_border: var(--ds-color-fg-muted);
+  }
+
+  .ds-text-input:focus-visible,
+  .ds-textarea:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-text-input[data-size="sm"],
+  .ds-textarea[data-size="sm"] {
+    --_height: var(--ds-size-control-sm);
+  }
+
+  .ds-text-input[data-size="lg"],
+  .ds-textarea[data-size="lg"] {
+    --_height: var(--ds-size-control-lg);
+    --_padding: var(--ds-space-control-md);
+  }
+
+  .ds-text-input[aria-invalid="true"],
+  .ds-text-input[data-invalid],
+  .ds-textarea[aria-invalid="true"],
+  .ds-textarea[data-invalid] {
+    --_border: var(--ds-color-danger-border-strong);
+  }
+
+  .ds-text-input:read-only,
+  .ds-textarea:read-only {
+    background-color: var(--ds-color-bg-sunken);
+  }
+
+  .ds-text-input:disabled,
+  .ds-text-input[data-disabled],
+  .ds-textarea:disabled,
+  .ds-textarea[data-disabled] {
+    --_border: var(--ds-color-border-subtle);
+
+    background-color: var(--ds-color-bg-disabled);
+    color: var(--ds-color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  .ds-textarea {
+    display: block;
+    min-block-size: calc(var(--_height) * 2);
+    max-block-size: calc(var(--ds-size-control-lg) * 8);
+    padding-block: var(--ds-space-2);
+    resize: vertical;
+    field-sizing: content;
+  }
+
+  @media (forced-colors: active) {
+    .ds-text-input,
+    .ds-textarea {
+      border-color: FieldText;
+    }
+
+    .ds-text-input:disabled,
+    .ds-textarea:disabled {
+      border-color: GrayText;
+    }
+
+    .ds-text-input:focus-visible,
+    .ds-textarea:focus-visible {
+      outline-color: Highlight;
+    }
+  }
+}
