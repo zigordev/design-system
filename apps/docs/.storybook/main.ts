@@ -1,6 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite';
 import { mergeConfig } from 'vite';
-import { sourceAliases } from '../vitest.projects.ts';
+import { optimizedDependencies, sourceAliases } from '../vitest.projects.ts';
 
 const config: StorybookConfig = {
   framework: '@storybook/react-vite',
@@ -18,7 +18,11 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
-  viteFinal: (viteConfig) => mergeConfig(viteConfig, { resolve: { alias: sourceAliases } }),
+  viteFinal: (viteConfig) =>
+    mergeConfig(viteConfig, {
+      resolve: { alias: sourceAliases },
+      optimizeDeps: { include: optimizedDependencies },
+    }),
 };
 
 export default config;

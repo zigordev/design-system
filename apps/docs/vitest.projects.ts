@@ -1,3 +1,4 @@
+import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
@@ -12,6 +13,22 @@ const configDir = fileURLToPath(new URL('./.storybook', import.meta.url));
 function source(path: string): string {
   return fileURLToPath(new URL(path, import.meta.url));
 }
+
+const reactSource = new URL('../../packages/react/src/', import.meta.url);
+
+function baseUiEntries(): string[] {
+  const entries = new Set<string>();
+  for (const file of readdirSync(reactSource, { recursive: true, encoding: 'utf8' })) {
+    if (!/\.tsx?$/.test(file)) continue;
+    const text = readFileSync(new URL(file, reactSource), 'utf8');
+    for (const [, entry = ''] of text.matchAll(/from '(@base-ui\/react\/[\w-]+)'/g)) {
+      entries.add(`@zigordev/react > ${entry}`);
+    }
+  }
+  return [...entries].sort();
+}
+
+export const optimizedDependencies = baseUiEntries();
 
 export const sourceAliases = [
   { find: /^@zigordev\/react$/, replacement: source('../../packages/react/src/index.ts') },
@@ -42,6 +59,7 @@ function storybook(theme: Theme, browserName: BrowserName): TestProjectInlineCon
     root,
     plugins: [storybookTest({ configDir, initialGlobals: { ...theme } })],
     resolve: { alias: sourceAliases },
+    optimizeDeps: { include: optimizedDependencies },
     test: {
       name: `stories ${browserName} ${theme.product} ${theme.mode} ${theme.contrast} ${theme.density}`,
       browser: browser(browserName),
