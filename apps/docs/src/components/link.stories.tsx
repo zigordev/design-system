@@ -92,6 +92,15 @@ export const WithIcon: Story = {
   },
 };
 
+export const WithStartIcon: Story = {
+  args: { children: 'Back to the case studies', href: '#cases', startIcon: <External /> },
+  render: (args) => <Link {...args} />,
+  play: async ({ canvas }) => {
+    const icon = canvas.getByRole('link').querySelector('.ds-link__icon');
+    await expect(icon).toHaveAttribute('data-side', 'start');
+  },
+};
+
 export const Keyboard: Story = {
   play: async ({ canvas, userEvent }) => {
     await userEvent.tab();

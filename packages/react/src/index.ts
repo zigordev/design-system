@@ -1,4 +1,11 @@
 export {
+  Badge,
+  type BadgeProps,
+  type BadgeSize,
+  type BadgeTone,
+  type BadgeVariant,
+} from './badge/badge.tsx';
+export {
   Button,
   type ButtonProps,
   type ButtonSize,
@@ -7,6 +14,15 @@ export {
   LinkButton,
   type LinkButtonProps,
 } from './button/button.tsx';
+export {
+  Card,
+  type CardElement,
+  CardLink,
+  type CardLinkProps,
+  type CardPadding,
+  type CardProps,
+  type CardVariant,
+} from './card/card.tsx';
 export {
   Checkbox,
   CheckboxGroup,
@@ -23,6 +39,18 @@ export {
 export { Form, type FormProps } from './form/form.tsx';
 export { Link, type LinkProps, type LinkTone, type LinkUnderline } from './link/link.tsx';
 export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from './radio/radio.tsx';
+export {
+  Separator,
+  type SeparatorOrientation,
+  type SeparatorProps,
+} from './separator/separator.tsx';
+export { Skeleton, type SkeletonProps, type SkeletonShape } from './skeleton/skeleton.tsx';
+export {
+  Spinner,
+  type SpinnerProps,
+  type SpinnerSize,
+  type SpinnerTone,
+} from './spinner/spinner.tsx';
 export { Switch, type SwitchProps } from './switch/switch.tsx';
 export {
   Textarea,
@@ -32,3 +60,4 @@ export {
   type TextInputSize,
   type TextInputType,
 } from './text-input/text-input.tsx';
+export { VisuallyHidden, type VisuallyHiddenProps } from './visually-hidden/visually-hidden.tsx';

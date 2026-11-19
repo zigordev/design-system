@@ -240,9 +240,91 @@ import { Button, ErrorSummary, Field, Form, TextInput } from '@zigordev/react';
 - When the summary appears, it takes the focus and screen readers announce it. Give each listed control the same `id`. With React Hook Form, set `shouldFocusError: false` so the summary keeps the focus.
 - A short form, like a contact form with three fields, needs no summary: the errors under the fields and the focus on the first one are enough.
 
+### Card and CardLink
+
+A surface that groups one subject, such as a case study or a match. CardLink makes the whole card a link: it renders a real link, usually in the card's heading, and stretches its click area over the card, so the link has one accessible name and the card one focus ring.
+
+```tsx
+import NextLink from 'next/link';
+import { Badge, Card, CardLink } from '@zigordev/react';
+
+<Card as="article">
+  <h3>
+    <CardLink render={<NextLink href="/cases/gpool" />}>gpool</CardLink>
+  </h3>
+  <p>{t('gpoolSummary')}</p>
+  <Badge size="sm">Next.js</Badge>
+</Card>;
+```
+
+| Prop      | Values                            | Default  |
+| --------- | --------------------------------- | -------- |
+| `as`      | `div`, `article`, `section`, `li` | `div`    |
+| `variant` | `raised`, `outline`, `sunken`     | `raised` |
+| `padding` | `none`, `sm`, `md`, `lg`          | `md`     |
+
+- The corners follow the product's `--ds-radius-card`. A card lays its children out in a column with a gap; app styles go in a CSS Module passed as `className`.
+- Put at most one CardLink in a card. Buttons and other links inside it stay clickable above the stretched area. Text in a linked card cannot be selected with the pointer, so keep long text out of linked cards.
+- CardLink takes the props of Link except `tone` and `underline`: its text keeps the card's colour and underlines on hover.
+
+### Badge
+
+A short status or category label, such as a technology or Live and Paper.
+
+```tsx
+import { Badge } from '@zigordev/react';
+
+<Badge>{t('draft')}</Badge>
+<Badge tone="success" variant="solid">{t('live')}</Badge>
+<Badge size="sm">PostgreSQL</Badge>
+```
+
+| Prop      | Values                                                                | Default   |
+| --------- | --------------------------------------------------------------------- | --------- |
+| `tone`    | `neutral`, `accent`, `second`, `success`, `warning`, `danger`, `info` | `neutral` |
+| `variant` | `soft`, `solid`, `outline`                                            | `soft`    |
+| `size`    | `sm`, `md`                                                            | `md`      |
+
+A badge is not interactive. Its corners follow the product's `--ds-radius-button`, so cv and trading-bot get tags and gpool gets pills. Every tone and variant meets the text contrast of the theme.
+
+### Spinner and Skeleton
+
+Spinner shows that something is loading when its size is unknown. Skeleton holds the place of content whose shape is known, such as a card's text.
+
+```tsx
+import { Skeleton, Spinner } from '@zigordev/react';
+
+<Spinner label={t('loadingCases')} />
+<section aria-busy={loading}>
+  {loading ? <Skeleton lines={3} /> : <CaseSummary />}
+</section>
+```
+
+- Spinner takes `label`, `size` (`sm`, `md`, `lg`; default `md`) and `tone` (`accent`, `neutral`; default `accent`). With a label it is a `role="status"` region whose label only screen readers read; without one it is hidden from them, for use next to visible text.
+- Skeleton takes `shape` (`text`, `rect`, `circle`; default `text`) and `lines` for text, where the last line is shorter. It is hidden from screen readers; mark the loading region with `aria-busy`. Size a rect or circle with a `className`.
+- Under `prefers-reduced-motion`, the spinner turns three times slower and the skeleton stops shimmering. Button's loading spinner follows the same rule.
+
+### Separator
+
+A thin line between groups of content, rendered as an `<hr>`.
+
+```tsx
+import { Separator } from '@zigordev/react';
+
+<Separator />
+<Separator orientation="vertical" />
+<Separator decorative />
+```
+
+`orientation` is `horizontal` (default) or `vertical`; a vertical separator needs a flex row around it, which stretches it to the row's height. `decorative` hides it from screen readers when it only adds rhythm and separates nothing.
+
+### VisuallyHidden
+
+Text that only screen readers read, such as a label for a control whose meaning is visual. It renders a `<span>` with the `ds-visually-hidden` class.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html) and a [form](../apps/docs/src/plain-html/page/form.html).
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) and the [display components](../apps/docs/src/plain-html/page/display.html).
 
 ## Limits
 

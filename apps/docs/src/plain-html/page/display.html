@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cards, badges and loading states from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Cards, badges and loading states from CSS alone</h1>
+      <article class="ds-card" id="card" data-variant="raised" data-padding="md">
+        <h2><a class="ds-link ds-card__link" data-tone="neutral" data-underline="hover" href="#card">gpool</a></h2>
+        <p>A football pool for friends, rebuilt on one design system.</p>
+        <p>
+          <span class="ds-badge" id="badge-soft" data-tone="accent" data-variant="soft">Next.js</span>
+          <span class="ds-badge" data-tone="success" data-variant="solid">Live</span>
+          <span class="ds-badge" data-tone="danger" data-variant="outline">Paper</span>
+        </p>
+      </article>
+      <hr class="ds-separator" id="separator">
+      <p>
+        <span class="ds-spinner-status" role="status">
+          <span class="ds-spinner" id="spinner" aria-hidden="true"></span>
+          <span class="ds-visually-hidden">Loading the case studies</span>
+        </span>
+      </p>
+      <div aria-busy="true">
+        <span class="ds-skeleton-text" aria-hidden="true">
+          <span class="ds-skeleton"></span>
+          <span class="ds-skeleton"></span>
+        </span>
+      </div>
+    </main>
+  </body>
+</html>
