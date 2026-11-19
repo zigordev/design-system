@@ -576,6 +576,48 @@ import { Meter, Progress } from '@zigordev/react';
 
 Both take `label`, `min`, `max`, `showValue` (Meter shows it by default) and `tone` (`accent`, `success`, `warning`, `danger`). The value is formatted for the page's language.
 
+### Tabs
+
+Sections of one view that the person switches between without leaving the page, such as a case study's approach, pieces and decisions.
+
+```tsx
+import { Tab, TabList, TabPanel, Tabs } from '@zigordev/react';
+
+<Tabs defaultValue="approach">
+  <TabList aria-label={t('caseStudy')}>
+    <Tab value="approach">{t('approach')}</Tab>
+    <Tab value="pieces">{t('pieces')}</Tab>
+  </TabList>
+  <TabPanel value="approach">{approach}</TabPanel>
+  <TabPanel value="pieces">{pieces}</TabPanel>
+</Tabs>;
+```
+
+Arrow keys move between tabs, Enter or Space selects one, and an underline in the accent colour slides to the selected tab. Tabs take Base UI's `value`, `defaultValue` and `onValueChange`; name the list with `aria-label`. For pages with their own address, use links instead.
+
+### Breadcrumbs, Pagination and SiteNavigation
+
+Breadcrumbs shows where a page sits, Pagination moves through the pages of a long list, and SiteNavigation is the site's main menu, with dropdowns for sections.
+
+```tsx
+import NextLink from 'next/link';
+import { Breadcrumbs, Pagination, SiteNavigation } from '@zigordev/react';
+
+<Breadcrumbs label={t('breadcrumb')} items={[{ label: t('home'), href: '/' }, { label: 'gpool', href: '/cases/gpool' }]} />
+<Pagination label={t('pages')} page={page} pageCount={12} href={(n) => `?page=${n}`} pageLabel={(n) => t('page', { n })} previousLabel={t('previous')} nextLabel={t('next')} />
+<SiteNavigation
+  label={t('main')}
+  items={[
+    { label: t('work'), href: '/work', current: true, render: <NextLink href="/work" /> },
+    { label: t('cases'), links: [{ label: 'gpool', href: '/cases/gpool', description: t('gpoolSummary') }] },
+  ]}
+/>
+```
+
+- Breadcrumbs marks the last item as the current page and never links it. Items take `render` for Next.js `Link`.
+- Pagination renders links, so every page has an address and works without JavaScript. It shows the first and last pages, the current one and its neighbours.
+- SiteNavigation follows Base UI's navigation menu: links and dropdown triggers in a row, with arrow keys between them. On narrow screens, put the same links in a Drawer.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.

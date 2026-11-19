@@ -7,6 +7,11 @@ export {
   type BadgeVariant,
 } from './badge/badge.tsx';
 export {
+  type BreadcrumbItem,
+  Breadcrumbs,
+  type BreadcrumbsProps,
+} from './breadcrumbs/breadcrumbs.tsx';
+export {
   Button,
   type ButtonProps,
   type ButtonSize,
@@ -70,6 +75,7 @@ export {
 export { Link, type LinkProps, type LinkTone, type LinkUnderline } from './link/link.tsx';
 export { NumberField, type NumberFieldProps } from './number-field/number-field.tsx';
 export { OtpField, type OtpFieldProps } from './otp-field/otp-field.tsx';
+export { Pagination, type PaginationProps, pageWindow } from './pagination/pagination.tsx';
 export {
   type OverlayAlign,
   Popover,
@@ -101,6 +107,12 @@ export {
   type SeparatorOrientation,
   type SeparatorProps,
 } from './separator/separator.tsx';
+export {
+  SiteNavigation,
+  type SiteNavigationItem,
+  type SiteNavigationLink,
+  type SiteNavigationProps,
+} from './site-navigation/site-navigation.tsx';
 export { Skeleton, type SkeletonProps, type SkeletonShape } from './skeleton/skeleton.tsx';
 export { SkipLink, type SkipLinkProps } from './skip-link/skip-link.tsx';
 export { Slider, type SliderProps } from './slider/slider.tsx';
@@ -111,6 +123,16 @@ export {
   type SpinnerTone,
 } from './spinner/spinner.tsx';
 export { Switch, type SwitchProps } from './switch/switch.tsx';
+export {
+  Tab,
+  TabList,
+  type TabListProps,
+  TabPanel,
+  type TabPanelProps,
+  type TabProps,
+  Tabs,
+  type TabsProps,
+} from './tabs/tabs.tsx';
 export {
   Textarea,
   type TextareaProps,

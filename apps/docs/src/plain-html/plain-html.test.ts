@@ -258,3 +258,15 @@ describe('the feedback page', () => {
     expect(getComputedStyle(element('#empty')).textAlign).toBe('center');
   });
 });
+
+describe('the navigation page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('navigation.html', theme);
+    expect(getComputedStyle(element('#page-2')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-accent-solid)')
+    );
+    expect(getComputedStyle(element('#current')).color).toBe(
+      probe('color', 'var(--ds-color-fg-default)')
+    );
+  });
+});
