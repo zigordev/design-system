@@ -1,0 +1,52 @@
+@layer ds.components {
+  .ds-choice {
+    display: grid;
+    gap: var(--ds-space-1);
+    min-inline-size: 0;
+  }
+
+  .ds-choice__label {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--ds-space-2);
+    color: var(--ds-color-fg-default);
+    font-size: var(--ds-font-size-md);
+    line-height: var(--ds-font-line-height-snug);
+    cursor: pointer;
+  }
+
+  .ds-choice__label[data-disabled] {
+    color: var(--ds-color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  .ds-choice__description,
+  .ds-choice .ds-field__error {
+    margin: 0;
+    padding-inline-start: calc(var(--ds-size-icon-md) + var(--ds-space-2));
+  }
+
+  .ds-choice__description {
+    color: var(--ds-color-fg-muted);
+    font-size: var(--ds-font-size-sm);
+    line-height: var(--ds-font-line-height-snug);
+  }
+
+  .ds-choice-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .ds-choice-group__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ds-space-3);
+    margin-block-start: var(--ds-space-2);
+  }
+
+  .ds-choice-group__items[data-orientation="horizontal"] {
+    flex-flow: row wrap;
+    column-gap: var(--ds-space-6);
+  }
+}
