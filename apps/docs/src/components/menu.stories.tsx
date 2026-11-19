@@ -66,8 +66,9 @@ export const Keyboard: Story = {
   play: async ({ canvas, canvasElement, userEvent }) => {
     rename.mockClear();
     const trigger = canvas.getByRole('button', { name: 'Pool actions' });
-    trigger.focus();
-    await userEvent.keyboard('{Enter}');
+    await userEvent.tab();
+    await expect(trigger).toHaveFocus();
+    await userEvent.keyboard('{ArrowDown}');
     const page = within(canvasElement.ownerDocument.body);
     await page.findByRole('menu');
     await waitFor(() => expect(page.getByRole('menuitem', { name: 'Rename' })).toHaveFocus());
@@ -98,10 +99,12 @@ export const Scope: Story = {
     const trigger = canvas.getByRole('button', { name: 'Pool: Friends pool' });
     await userEvent.click(trigger);
     const page = within(canvasElement.ownerDocument.body);
+    await page.findByRole('menu');
     await userEvent.click(await page.findByRole('menuitemradio', { name: 'Office pool' }));
     await waitFor(() =>
       expect(canvas.getByRole('button', { name: 'Pool: Office pool' })).toBeVisible()
     );
+    await waitFor(() => expect(page.queryByRole('menu')).toBeNull());
   },
 };
 

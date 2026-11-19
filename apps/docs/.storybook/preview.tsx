@@ -11,6 +11,9 @@ import {
   type Theme,
   themeAttributes,
 } from '@zigordev/tokens';
+import { configure } from 'storybook/test';
+
+configure({ asyncUtilTimeout: 3000 });
 
 const dimensions = Object.keys(themeAttributes) as (keyof Theme)[];
 

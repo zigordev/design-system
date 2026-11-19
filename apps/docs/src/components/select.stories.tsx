@@ -46,6 +46,7 @@ export const Choose: Story = {
     await userEvent.click(await page.findByRole('option', { name: 'A project' }));
     await waitFor(() => expect(trigger).toHaveTextContent('A project'));
     await expect(change).toHaveBeenCalledWith('project');
+    await waitFor(() => expect(page.queryByRole('listbox')).toBeNull());
   },
 };
 
@@ -72,6 +73,7 @@ export const ComboboxFilter: Story = {
     await waitFor(() => expect(page.getAllByRole('option')).toHaveLength(1));
     await userEvent.click(page.getByRole('option', { name: 'Athletic Club' }));
     await waitFor(() => expect(input).toHaveValue('Athletic Club'));
+    await waitFor(() => expect(page.queryByRole('listbox')).toBeNull());
   },
 };
 
@@ -105,5 +107,6 @@ export const AutocompleteSuggests: Story = {
     const page = within(canvasElement.ownerDocument.body);
     await userEvent.click(await page.findByRole('option', { name: 'Testing' }));
     await waitFor(() => expect(input).toHaveValue('Testing'));
+    await waitFor(() => expect(page.queryByRole('listbox')).toBeNull());
   },
 };

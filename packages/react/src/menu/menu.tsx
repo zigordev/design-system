@@ -191,7 +191,7 @@ export function ScopeSwitcher({
         onValueChange={(next) => onValueChange(String(next))}
       >
         {options.map((option) => (
-          <MenuRadioItem key={option.value} value={option.value}>
+          <MenuRadioItem key={option.value} value={option.value} closeOnClick>
             {option.label}
           </MenuRadioItem>
         ))}
