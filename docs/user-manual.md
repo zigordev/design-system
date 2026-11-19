@@ -323,6 +323,76 @@ import { Separator } from '@zigordev/react';
 
 Text that only screen readers read, such as a label for a control whose meaning is visual. It renders a `<span>` with the `ds-visually-hidden` class.
 
+### ToggleGroup and Toggle
+
+A row of buttons that switch between views or options, such as table, form and fixtures. It follows Base UI's toggle group: arrow keys move between the toggles and each one is a button with `aria-pressed`.
+
+```tsx
+import { Toggle, ToggleGroup } from '@zigordev/react';
+
+<ToggleGroup
+  aria-label={t('standingsView')}
+  value={[view]}
+  onValueChange={([next]) => next && setView(next)}
+>
+  <Toggle value="table">{t('table')}</Toggle>
+  <Toggle value="form">{t('form')}</Toggle>
+</ToggleGroup>;
+```
+
+- ToggleGroup takes `value` or `defaultValue` (an array), `onValueChange`, `multiple` (default `false`), `disabled`, `orientation` and `size` (`sm`, `md`; default `md`). Name it with `aria-label` or `aria-labelledby`.
+- Toggle takes `value`, an optional `icon`, and its label as children. An icon-only toggle requires `aria-label`.
+- The pressed toggle is raised, with a field border, so its state does not rely on colour alone. Corners follow the product's button radius.
+
+### ThemeSwitcher
+
+The light, dark and system choice, as a toggle group with the sun, moon and monitor icons. It is controlled: the app keeps the choice, applies it to the root element, and stores it.
+
+```tsx
+'use client';
+import { type ThemeChoice, ThemeSwitcher } from '@zigordev/react';
+import { themeAttributes } from '@zigordev/tokens';
+
+function applyMode(choice: ThemeChoice) {
+  const root = document.documentElement;
+  if (choice === 'system') root.removeAttribute(themeAttributes.mode);
+  else root.setAttribute(themeAttributes.mode, choice);
+}
+
+<ThemeSwitcher
+  label={t('theme')}
+  labels={{ light: t('light'), dark: t('dark'), system: t('system') }}
+  value={theme}
+  onValueChange={(next) => {
+    setTheme(next);
+    applyMode(next);
+  }}
+/>;
+```
+
+- `labels` name each choice; they are the accessible names of the icon-only toggles, or visible text with `showLabels`. `label` names the group.
+- Pressing the current choice again keeps it, so a choice is always selected. `size` is `sm` or `md`.
+- Store the choice in a cookie and render the root element's `data-mode` on the server, so the first paint already has the right mode.
+
+### LanguageSwitcher
+
+Links to the current page in the other languages. Each link has `hreflang` and `lang`, and the current language has `aria-current`.
+
+```tsx
+import { LanguageSwitcher } from '@zigordev/react';
+
+<LanguageSwitcher
+  label={t('language')}
+  current={locale}
+  languages={[
+    { code: 'en', name: 'English', href: '/en/cases' },
+    { code: 'es', name: 'Español', href: '/es/cases' },
+  ]}
+/>;
+```
+
+`display` is `code` (default), which shows EN and ES with the full name for screen readers, or `name`, which shows the names. Write each name in its own language. The links are full page loads, so the new language's messages load with the page.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.
@@ -404,7 +474,7 @@ import { SkipLink } from '@zigordev/react';
 
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) the [display components](../apps/docs/src/plain-html/page/display.html), the [icons](../apps/docs/src/plain-html/page/icon.html) and the [layout](../apps/docs/src/plain-html/page/layout.html). Without React, icons come from the sprite: copy `@zigordev/icons/sprite.svg` into the app's static files and write `<svg class="ds-icon" aria-hidden="true"><use href="/sprite.svg#search"></use></svg>`.
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) the [display components](../apps/docs/src/plain-html/page/display.html), the [icons](../apps/docs/src/plain-html/page/icon.html), the [layout](../apps/docs/src/plain-html/page/layout.html) and the [toggle groups and language links](../apps/docs/src/plain-html/page/switchers.html). Without React, icons come from the sprite: copy `@zigordev/icons/sprite.svg` into the app's static files and write `<svg class="ds-icon" aria-hidden="true"><use href="/sprite.svg#search"></use></svg>`.
 
 ## Limits
 

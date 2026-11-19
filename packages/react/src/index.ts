@@ -38,6 +38,11 @@ export {
 } from './form/error-summary.tsx';
 export { Form, type FormProps } from './form/form.tsx';
 export {
+  type LanguageOption,
+  LanguageSwitcher,
+  type LanguageSwitcherProps,
+} from './language-switcher/language-switcher.tsx';
+export {
   Container,
   type ContainerProps,
   Grid,
@@ -74,4 +79,17 @@ export {
   type TextInputSize,
   type TextInputType,
 } from './text-input/text-input.tsx';
+export {
+  type ThemeChoice,
+  ThemeSwitcher,
+  type ThemeSwitcherProps,
+  themeChoices,
+} from './theme-switcher/theme-switcher.tsx';
+export {
+  Toggle,
+  ToggleGroup,
+  type ToggleGroupProps,
+  type ToggleGroupSize,
+  type ToggleProps,
+} from './toggle-group/toggle-group.tsx';
 export { VisuallyHidden, type VisuallyHiddenProps } from './visually-hidden/visually-hidden.tsx';

@@ -1,0 +1,12 @@
+@layer ds.components {
+  .ds-language-switcher {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--ds-space-3);
+  }
+
+  .ds-language-switcher .ds-link {
+    font-weight: var(--ds-font-weight-medium);
+  }
+}

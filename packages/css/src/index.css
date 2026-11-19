@@ -11,6 +11,7 @@
 @import "./components/field.css";
 @import "./components/form.css";
 @import "./components/icon.css";
+@import "./components/language-switcher.css";
 @import "./components/layout.css";
 @import "./components/link.css";
 @import "./components/prose.css";
@@ -20,4 +21,5 @@
 @import "./components/spinner.css";
 @import "./components/switch.css";
 @import "./components/text-input.css";
+@import "./components/toggle-group.css";
 @import "./utilities.css";

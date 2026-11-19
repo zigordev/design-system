@@ -231,3 +231,17 @@ describe('the layout page', () => {
     );
   });
 });
+
+describe('the switchers page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('switchers.html', theme);
+    expect(getComputedStyle(element('#pressed')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-bg-raised)')
+    );
+    expect(getComputedStyle(element('#pressed')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-border-field)')
+    );
+    expect(getComputedStyle(element('#unpressed')).backgroundColor).toBe('rgba(0, 0, 0, 0)');
+    expect(getComputedStyle(element('#current')).textDecorationLine).toBe('underline');
+  });
+});
