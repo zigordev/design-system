@@ -1,0 +1,161 @@
+{
+  "color": {
+    "$type": "color",
+    "fg": {
+      "default": {
+        "$value": "{color.scale.neutral.12}"
+      },
+      "inverse": {
+        "$value": "{color.scale.neutral.1}"
+      },
+      "disabled": {
+        "$value": "{color.scale.neutral.9}"
+      }
+    },
+    "bg": {
+      "hover": {
+        "$value": "{color.scale.neutral.4}"
+      },
+      "pressed": {
+        "$value": "{color.scale.neutral.5}"
+      },
+      "inverse": {
+        "$value": "{color.scale.neutral.12}"
+      },
+      "disabled": {
+        "$value": "{color.scale.neutral.3}"
+      }
+    },
+    "neutral": {
+      "solid": {
+        "$value": "{color.scale.neutral.12}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.neutral.11}"
+      },
+      "soft": {
+        "$value": "{color.scale.neutral.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.neutral.4}"
+      },
+      "on": {
+        "$value": "{color.scale.neutral.1}"
+      }
+    },
+    "accent": {
+      "solid": {
+        "$value": "{color.scale.accent.9}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.accent.10}"
+      },
+      "soft": {
+        "$value": "{color.scale.accent.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.accent.4}"
+      },
+      "on": {
+        "$value": "{color.scale.accent.on}"
+      }
+    },
+    "second": {
+      "solid": {
+        "$value": "{color.scale.second.9}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.second.10}"
+      },
+      "soft": {
+        "$value": "{color.scale.second.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.second.4}"
+      },
+      "on": {
+        "$value": "{color.scale.second.on}"
+      }
+    },
+    "danger": {
+      "solid": {
+        "$value": "{color.scale.danger.9}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.danger.10}"
+      },
+      "soft": {
+        "$value": "{color.scale.danger.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.danger.4}"
+      },
+      "border": {
+        "$value": "{color.scale.danger.6}"
+      },
+      "on": {
+        "$value": "{color.scale.danger.on}"
+      }
+    },
+    "success": {
+      "solid": {
+        "$value": "{color.scale.success.9}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.success.10}"
+      },
+      "soft": {
+        "$value": "{color.scale.success.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.success.4}"
+      },
+      "border": {
+        "$value": "{color.scale.success.6}"
+      },
+      "on": {
+        "$value": "{color.scale.success.on}"
+      }
+    },
+    "warning": {
+      "solid": {
+        "$value": "{color.scale.warning.9}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.warning.10}"
+      },
+      "soft": {
+        "$value": "{color.scale.warning.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.warning.4}"
+      },
+      "border": {
+        "$value": "{color.scale.warning.6}"
+      },
+      "on": {
+        "$value": "{color.scale.warning.on}"
+      }
+    },
+    "info": {
+      "solid": {
+        "$value": "{color.scale.info.9}"
+      },
+      "solid-hover": {
+        "$value": "{color.scale.info.10}"
+      },
+      "soft": {
+        "$value": "{color.scale.info.3}"
+      },
+      "soft-hover": {
+        "$value": "{color.scale.info.4}"
+      },
+      "border": {
+        "$value": "{color.scale.info.6}"
+      },
+      "on": {
+        "$value": "{color.scale.info.on}"
+      }
+    }
+  }
+}

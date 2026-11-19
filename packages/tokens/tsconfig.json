@@ -1,0 +1,8 @@
+{
+  "extends": "@zigordev/tsconfig/node.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "rootDir": "."
+  },
+  "include": ["src", "scripts", "terrazzo.config.ts", "vitest.config.ts"]
+}

@@ -1,0 +1,65 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-space-3);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  align-items: center;
+  gap: var(--ds-space-3);
+}
+
+.stack {
+  display: grid;
+  gap: var(--ds-space-6);
+  max-inline-size: 100%;
+}
+
+.label {
+  margin: 0;
+  color: var(--ds-color-fg-muted);
+  font-size: var(--ds-font-size-sm);
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ds-space-1);
+}
+
+.swatch {
+  display: grid;
+  gap: var(--ds-space-1);
+  font-size: var(--ds-font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.chip {
+  block-size: var(--ds-size-control-lg);
+  border-radius: var(--ds-radius-sm);
+  box-shadow: var(--ds-shadow-raised);
+}
+
+.specimen {
+  margin: 0;
+  color: var(--ds-color-fg-default);
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.display {
+  margin: 0;
+  font-size: clamp(var(--ds-font-size-display-min), 4vw, var(--ds-font-size-display-max));
+  font-stretch: calc(var(--ds-font-display-stretch) * 1%);
+  font-weight: var(--ds-font-display-weight);
+  letter-spacing: calc(var(--ds-font-tracking-tight) * 1em);
+  line-height: var(--ds-font-line-height-tight);
+}
+
+.figures {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}

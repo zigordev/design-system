@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release
+    uses: zigordev/toolkit/.github/workflows/release-please.yml@016be28b63906e638bc99c8f40107c93337202d8 # workflows-v0.1.0
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+
+  publish:
+    name: Publish
+    needs: release
+    if: needs.release.outputs.releases_created == 'true'
+    uses: zigordev/toolkit/.github/workflows/publish-npm.yml@016be28b63906e638bc99c8f40107c93337202d8 # workflows-v0.1.0
+    permissions:
+      contents: read
+      packages: write
+    with:
+      paths: ${{ needs.release.outputs.paths_released }}

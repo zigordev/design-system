@@ -1,0 +1,74 @@
+{
+  "name": "zigordev design system",
+  "version": "2025.10",
+  "description": "One system with a skin per product. The base set is shared; product, mode, density and contrast are orthogonal modifiers.",
+  "sets": {
+    "base": {
+      "sources": [
+        { "$ref": "base/typography.tokens.json" },
+        { "$ref": "base/space.tokens.json" },
+        { "$ref": "base/shape.tokens.json" },
+        { "$ref": "base/motion.tokens.json" },
+        { "$ref": "generated/palette-status.tokens.json" },
+        { "$ref": "base/roles.tokens.json" }
+      ]
+    }
+  },
+  "modifiers": {
+    "product": {
+      "description": "The product skin: its colour ramps, corner radius and display width.",
+      "contexts": {
+        "cv": [
+          { "$ref": "generated/palette-cv.tokens.json" },
+          { "$ref": "product/cv.tokens.json" }
+        ],
+        "gpool": [
+          { "$ref": "generated/palette-gpool.tokens.json" },
+          { "$ref": "product/gpool.tokens.json" }
+        ],
+        "trading-bot": [
+          { "$ref": "generated/palette-trading-bot.tokens.json" },
+          { "$ref": "product/trading-bot.tokens.json" }
+        ]
+      },
+      "default": "cv"
+    },
+    "mode": {
+      "description": "Light or dark: which half of each ramp the scales use, the surfaces and the elevation.",
+      "contexts": {
+        "light": [
+          { "$ref": "generated/scale-light.tokens.json" },
+          { "$ref": "mode/light.tokens.json" }
+        ],
+        "dark": [
+          { "$ref": "generated/scale-dark.tokens.json" },
+          { "$ref": "mode/dark.tokens.json" }
+        ]
+      },
+      "default": "light"
+    },
+    "density": {
+      "description": "Control heights, inline padding and control text size.",
+      "contexts": {
+        "comfortable": [{ "$ref": "density/comfortable.tokens.json" }],
+        "compact": [{ "$ref": "density/compact.tokens.json" }]
+      },
+      "default": "comfortable"
+    },
+    "contrast": {
+      "description": "Standard targets WCAG 2.2 AA. High raises text to 7:1 and borders to 4.5:1.",
+      "contexts": {
+        "standard": [{ "$ref": "contrast/standard.tokens.json" }],
+        "high": [{ "$ref": "contrast/high.tokens.json" }]
+      },
+      "default": "standard"
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/modifiers/product" },
+    { "$ref": "#/modifiers/mode" },
+    { "$ref": "#/modifiers/density" },
+    { "$ref": "#/modifiers/contrast" }
+  ]
+}

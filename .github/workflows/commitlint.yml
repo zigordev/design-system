@@ -1,0 +1,21 @@
+name: Commitlint
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: commitlint-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  commitlint:
+    name: Commitlint
+    uses: zigordev/toolkit/.github/workflows/commit-messages.yml@016be28b63906e638bc99c8f40107c93337202d8 # workflows-v0.1.0
+    permissions:
+      contents: read
+      packages: read

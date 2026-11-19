@@ -1,0 +1,32 @@
+{
+  "color": {
+    "$type": "color",
+    "bg": {
+      "page": { "$value": "{color.scale.neutral.1}" },
+      "raised": { "$value": "{color.scale.neutral.2}" },
+      "sunken": { "$value": "{color.scale.neutral.3}" },
+      "field": { "$value": "{color.scale.neutral.3}" }
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "raised": {
+      "$value": {
+        "color": "{color.scale.neutral.6}",
+        "offsetX": { "value": 0, "unit": "px" },
+        "offsetY": { "value": 0, "unit": "px" },
+        "blur": { "value": 0, "unit": "px" },
+        "spread": { "value": 1, "unit": "px" }
+      }
+    },
+    "overlay": {
+      "$value": {
+        "color": "{color.scale.neutral.7}",
+        "offsetX": { "value": 0, "unit": "px" },
+        "offsetY": { "value": 0, "unit": "px" },
+        "blur": { "value": 0, "unit": "px" },
+        "spread": { "value": 1, "unit": "px" }
+      }
+    }
+  }
+}
