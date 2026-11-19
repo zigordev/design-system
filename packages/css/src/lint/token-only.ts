@@ -15,6 +15,7 @@ const variableReference = /var\(\s*(--[\w-]+)/g;
 const identifier = /(?<![\w-])[a-z][\w-]*/gi;
 const forcedColours = /forced-colors\s*:\s*active/;
 const primitiveTokens = /^--ds-color-(?:palette|scale)-/;
+const tokenTimesEm = /(var\(\s*--ds-[\w-]+\s*\))\s*\*\s*1em\b/g;
 
 function isZero(literal: string): boolean {
   return Number.parseFloat(literal) === 0;
@@ -26,7 +27,7 @@ function withoutComments(source: string): string {
 
 function checkValue(property: string, value: string, inForcedColours: boolean): string[] {
   const messages: string[] = [];
-  const bare = value.replace(/var\([^)]*\)/g, ' ');
+  const bare = value.replace(tokenTimesEm, '$1').replace(/var\([^)]*\)/g, ' ');
   for (const match of bare.match(lengthPattern) ?? []) {
     if (!isZero(match)) messages.push(`raw length ${match} in ${property}; use a token`);
   }

@@ -213,3 +213,21 @@ describe('the icons page', () => {
     expect(getComputedStyle(element('#plus')).width).toBe(probe('width', 'var(--ds-size-icon-sm)'));
   });
 });
+
+describe('the layout page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('layout.html', theme);
+    expect(getComputedStyle(element('#prose')).maxWidth).toBe(
+      probe('max-width', 'var(--ds-size-measure)')
+    );
+    expect(getComputedStyle(element('#content')).maxWidth).toBe(
+      probe('max-width', 'var(--ds-size-container-md)')
+    );
+    expect(getComputedStyle(element('#tags')).columnGap).toBe(
+      probe('column-gap', 'var(--ds-space-2)')
+    );
+    expect(getComputedStyle(element('#prose a')).color).toBe(
+      probe('color', 'var(--ds-color-accent-text)')
+    );
+  });
+});

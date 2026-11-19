@@ -1,0 +1,35 @@
+@layer ds.components {
+  .ds-skip-link {
+    position: absolute;
+    z-index: 100;
+    inset-block-start: var(--ds-space-2);
+    inset-inline-start: var(--ds-space-2);
+    padding-block: var(--ds-space-2);
+    padding-inline: var(--ds-space-4);
+    border-radius: var(--ds-radius-button);
+    background-color: var(--ds-color-accent-solid);
+    color: var(--ds-color-accent-on);
+    font-weight: var(--ds-font-weight-semibold);
+    text-decoration: none;
+    translate: 0 calc(-100% - var(--ds-space-4));
+    transition-property: translate;
+    transition-duration: var(--ds-duration-fast);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-skip-link:focus {
+    translate: 0 0;
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  @media (forced-colors: active) {
+    .ds-skip-link {
+      border: var(--ds-border-width-hairline) solid LinkText;
+    }
+
+    .ds-skip-link:focus {
+      outline-color: Highlight;
+    }
+  }
+}
