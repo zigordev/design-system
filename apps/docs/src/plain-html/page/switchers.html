@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Toggle groups and language links from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Toggle groups and language links from CSS alone</h1>
+      <fieldset class="ds-toggle-group" aria-label="Standings view" data-size="md">
+        <button class="ds-toggle" id="pressed" type="button" aria-pressed="true">Table</button>
+        <button class="ds-toggle" id="unpressed" type="button" aria-pressed="false">Form</button>
+      </fieldset>
+      <nav class="ds-language-switcher" aria-label="Language">
+        <a class="ds-link" id="current" data-tone="neutral" data-underline="hover" href="#en" hreflang="en" lang="en" aria-current="true">EN<span class="ds-visually-hidden"> English</span></a>
+        <a class="ds-link" data-tone="neutral" data-underline="hover" href="#es" hreflang="es" lang="es">ES<span class="ds-visually-hidden"> Español</span></a>
+      </nav>
+    </main>
+  </body>
+</html>

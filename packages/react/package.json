@@ -20,7 +20,8 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@base-ui/react": "catalog:"
+    "@base-ui/react": "catalog:",
+    "@zigordev/icons": "workspace:*"
   },
   "peerDependencies": {
     "react": "^19.0.0",
