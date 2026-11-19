@@ -9,6 +9,7 @@
         { "$ref": "base/space.tokens.json" },
         { "$ref": "base/shape.tokens.json" },
         { "$ref": "base/motion.tokens.json" },
+        { "$ref": "base/layout.tokens.json" },
         { "$ref": "generated/palette-status.tokens.json" },
         { "$ref": "base/roles.tokens.json" }
       ]

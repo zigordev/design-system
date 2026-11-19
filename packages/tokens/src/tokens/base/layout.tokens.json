@@ -1,0 +1,24 @@
+{
+  "size": {
+    "container": {
+      "$type": "dimension",
+      "$description": "The widest a page's content grows, centred with gutters.",
+      "sm": { "$value": { "value": 40, "unit": "rem" } },
+      "md": { "$value": { "value": 48, "unit": "rem" } },
+      "lg": { "$value": { "value": 64, "unit": "rem" } },
+      "xl": { "$value": { "value": 80, "unit": "rem" } }
+    },
+    "column": {
+      "$type": "dimension",
+      "$description": "The narrowest a column of a responsive grid gets before the grid drops a column.",
+      "sm": { "$value": { "value": 12, "unit": "rem" } },
+      "md": { "$value": { "value": 16, "unit": "rem" } },
+      "lg": { "$value": { "value": 20, "unit": "rem" } }
+    },
+    "measure": {
+      "$type": "dimension",
+      "$description": "The longest comfortable line of running text.",
+      "$value": { "value": 42, "unit": "rem" }
+    }
+  }
+}

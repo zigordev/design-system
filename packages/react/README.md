@@ -9,7 +9,7 @@ pnpm add @zigordev/react @zigordev/css
 ```
 
 ```tsx
-import { Badge, Button, Card, Field, Link, Spinner, TextInput } from '@zigordev/react';
+import { Button, Card, Container, Field, Link, Prose, Stack } from '@zigordev/react';
 ```
 
 Import `@zigordev/css/index.css` once in the app's root layout. Interactive components carry `"use client"`; the rest work as server components. Every label is a prop, so the app translates it.

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Layout and prose from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <a class="ds-skip-link" id="skip" href="#content">Skip to content</a>
+    <main class="ds-container" id="content" tabindex="-1" data-size="md">
+      <div class="ds-stack" data-gap="6">
+        <h1>Layout and prose from CSS alone</h1>
+        <ul class="ds-inline" id="tags" role="list" data-gap="2">
+          <li><span class="ds-badge" data-size="sm">Next.js</span></li>
+          <li><span class="ds-badge" data-size="sm">PostgreSQL</span></li>
+        </ul>
+        <ul class="ds-grid" role="list" data-min="sm">
+          <li><article class="ds-card"><h2>gpool</h2></article></li>
+          <li><article class="ds-card"><h2>cv</h2></article></li>
+        </ul>
+        <article class="ds-prose" id="prose">
+          <h2>Rebuilding gpool</h2>
+          <p>gpool moved onto the shared <a href="#content">design system</a>.</p>
+          <ul>
+            <li>One component library for every screen.</li>
+          </ul>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>

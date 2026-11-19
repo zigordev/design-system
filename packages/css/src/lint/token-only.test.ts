@@ -28,6 +28,14 @@ describe('checkCss', () => {
     ]);
   });
 
+  it('accepts a token times 1em, the conversion the tracking tokens ask for, and nothing else in em', () => {
+    expect(messages('letter-spacing: calc(var(--ds-font-tracking-tight) * 1em);')).toEqual([]);
+    expect(messages('letter-spacing: 1em; margin: calc(2 * 1em);')).toEqual([
+      'raw length 1em in letter-spacing; use a token',
+      'raw length 1em in margin; use a token',
+    ]);
+  });
+
   it('rejects hex, functional and named colours', () => {
     expect(messages('color: #fff; background: oklch(50% 0.1 250); border-color: red;')).toEqual([
       'raw colour in color; use a colour token',

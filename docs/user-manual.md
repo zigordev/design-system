@@ -78,6 +78,7 @@ App styles go in CSS Modules and use the role tokens, never raw colours, sizes o
 | Type                     | `--ds-font-family-sans`, `-mono`, `--ds-font-size-xs` to `-3xl`, `--ds-font-weight-*`, `--ds-font-line-height-*`               |
 | Display                  | `--ds-font-display-stretch` and `--ds-font-display-weight`, the product's width and weight for headings and big numbers        |
 | Underline                | `--ds-font-underline-offset`, `-thickness` and `-thickness-strong`, the underline of links                                     |
+| Layout                   | `--ds-size-container-sm` to `-xl`, `--ds-size-column-sm` to `-lg` and `--ds-size-measure`                                      |
 | Controls                 | `--ds-size-control-*`, `--ds-space-control-*`, `--ds-font-size-control` and `-field`, which follow the density                 |
 | Motion and depth         | `--ds-duration-fast`, `-base`, `-slow`, `--ds-easing-standard`, `-emphasized`, `-exit`, `--ds-shadow-raised`, `-overlay`       |
 
@@ -340,9 +341,70 @@ import { Button, Link } from '@zigordev/react';
 - Icons draw with `currentColor`, so they take the colour of the text around them.
 - The Icons page in Storybook shows the whole set. A missing icon is added to this repo by its Lucide name, never drawn in an app.
 
+### Stack, Inline, Grid and Container
+
+Layout helpers, so screens need no layout CSS of their own. Each takes `as` (`div`, `section`, `article`, `aside`, `header`, `footer`, `main`, `nav`, `ul` or `ol`; default `div`); as a list, it keeps `role="list"` so Safari still announces it.
+
+```tsx
+import { Badge, Card, Container, Grid, Inline, Stack } from '@zigordev/react';
+
+<Container as="main" size="lg">
+  <Stack gap={8}>
+    <Inline as="ul" gap={2} aria-label={t('technologies')}>
+      <li>
+        <Badge size="sm">Next.js</Badge>
+      </li>
+    </Inline>
+    <Grid as="ul" min="sm">
+      <li>
+        <Card>{t('gpool')}</Card>
+      </li>
+    </Grid>
+  </Stack>
+</Container>;
+```
+
+- `gap` is a step of the space scale: 0, 1, 2, 3, 4, 5, 6, 8, 10, 12 or 16. Stack defaults to 4, Inline to 2 and Grid to 4.
+- Stack is a column; `align` is `stretch` (default), `start`, `center` or `end`.
+- Inline is a row that wraps; `align` is `center` (default), `start`, `end`, `baseline` or `stretch`, `justify` is `start` (default), `center`, `end` or `between`, and `wrap={false}` keeps it on one line.
+- Grid fills the row with as many columns as fit, each at least `min` wide: `sm` 12rem, `md` 16rem (default) or `lg` 20rem.
+- Container centres its content at `size` `sm` 40rem, `md` 48rem, `lg` 64rem (default) or `xl` 80rem, with 16px gutters on phones and 32px from 48rem.
+
+### Prose
+
+Typography for long-form content, such as a case study written in Markdown. Prose styles the elements inside it: headings in the product's display style, paragraphs, links, lists, quotes, code, tables, rules and images, at a comfortable line length.
+
+```tsx
+import { Prose } from '@zigordev/react';
+
+<Prose as="article">
+  <MDXContent />
+</Prose>;
+```
+
+Use Prose only around content the app does not build from components. Its links look like Link, and its text is one step larger than the interface text.
+
+### SkipLink
+
+The first element of every page: a link that jumps past the navigation to the main content. It stays off screen until it gets keyboard focus.
+
+```tsx
+import { SkipLink } from '@zigordev/react';
+
+<body>
+  <SkipLink target="main">{t('skipToContent')}</SkipLink>
+  <Header />
+  <main id="main" tabIndex={-1}>
+    {children}
+  </main>
+</body>;
+```
+
+`target` is the id of the main content, `main` by default. Give that element `tabIndex={-1}`, so the focus moves into it.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) the [display components](../apps/docs/src/plain-html/page/display.html) and the [icons](../apps/docs/src/plain-html/page/icon.html). Without React, icons come from the sprite: copy `@zigordev/icons/sprite.svg` into the app's static files and write `<svg class="ds-icon" aria-hidden="true"><use href="/sprite.svg#search"></use></svg>`.
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) the [display components](../apps/docs/src/plain-html/page/display.html), the [icons](../apps/docs/src/plain-html/page/icon.html) and the [layout](../apps/docs/src/plain-html/page/layout.html). Without React, icons come from the sprite: copy `@zigordev/icons/sprite.svg` into the app's static files and write `<svg class="ds-icon" aria-hidden="true"><use href="/sprite.svg#search"></use></svg>`.
 
 ## Limits
 

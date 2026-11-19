@@ -12,7 +12,9 @@
   "overrides": [
     {
       "includes": ["apps/docs/src/plain-html/page/**"],
-      "linter": { "rules": { "a11y": { "useAriaPropsForRole": "off" } } }
+      "linter": {
+        "rules": { "a11y": { "useAriaPropsForRole": "off", "noRedundantRoles": "off" } }
+      }
     }
   ]
 }
