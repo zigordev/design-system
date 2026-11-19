@@ -17,4 +17,6 @@ Nothing is released without that merge. The first release is 0.1.0. Before 1.0.0
 - A published version never changes. To undo a release, revert the change and release again, or fix forward.
 - If publishing fails, re-run the Publish job: the tags already exist, so it publishes the same versions.
 - `CHANGELOG.md`, `.release-please-manifest.json` and the files in `packages/tokens/src/tokens/generated/` are generated. Nobody edits them by hand.
-- The pins of toolkit's shared workflows are commit SHAs with the release tag as a comment. Renovate does not know those tags yet, so they are bumped by hand when toolkit releases new workflows.
+- Every pull request runs Dependency Review, which fails only when the pull request adds a dependency with a known vulnerability. It reads the dependency graph that Dependabot alerts turn on. Dependabot's own fix pull requests stay off, because Renovate opens the updates.
+- The Security workflow runs every Monday at 05:23 UTC, and on demand, with zizmor's online audits of the workflows. Its findings, and CodeQL's from its default setup, appear in the repository's Security tab.
+- The pins of toolkit's shared workflows are commit SHAs with the release tag as a comment. Renovate proposes a new pin when toolkit releases its workflows. A release that adds a check also needs that check added to the ruleset.
