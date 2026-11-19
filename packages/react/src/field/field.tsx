@@ -3,6 +3,7 @@
 import { Field as BaseField } from '@base-ui/react/field';
 import type { ComponentPropsWithRef, ReactNode } from 'react';
 import { classNames } from '../internal/class-names.ts';
+import { present } from '../internal/present.ts';
 import { FieldContext } from './field-context.ts';
 
 export type FieldProps = Omit<
@@ -16,10 +17,6 @@ export type FieldProps = Omit<
   className?: string;
   children: ReactNode;
 };
-
-function present(node: ReactNode): boolean {
-  return node !== undefined && node !== null && node !== false && node !== '';
-}
 
 export function Field({
   label,

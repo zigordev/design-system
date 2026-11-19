@@ -4,5 +4,11 @@
   "extends": ["@zigordev/biome-config/biome"],
   "files": {
     "includes": ["!**/CHANGELOG.md", "!packages/tokens/src/tokens/generated"]
-  }
+  },
+  "overrides": [
+    {
+      "includes": ["apps/docs/src/plain-html/page/**"],
+      "linter": { "rules": { "a11y": { "useAriaPropsForRole": "off" } } }
+    }
+  ]
 }

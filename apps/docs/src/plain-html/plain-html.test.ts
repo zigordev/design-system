@@ -144,3 +144,26 @@ describe('the fields page', () => {
     );
   });
 });
+
+describe('the choices page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('choice.html', theme);
+    const accent = probe('background-color', 'var(--ds-color-accent-solid)');
+    expect(getComputedStyle(element('#newsletter')).backgroundColor).toBe(accent);
+    expect(getComputedStyle(element('#reply-email')).backgroundColor).toBe(accent);
+    expect(getComputedStyle(element('#reply-phone')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-border-field)')
+    );
+    expect(getComputedStyle(element('#tax')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-border-field)')
+    );
+  });
+
+  it('moves the switch thumb when the switch is on', () => {
+    unmount = mount('choice.html', defaultTheme);
+    const toggle = element('#tax') as HTMLInputElement;
+    const off = getComputedStyle(toggle, '::before').translate;
+    toggle.checked = true;
+    expect(getComputedStyle(toggle, '::before').translate).not.toBe(off);
+  });
+});

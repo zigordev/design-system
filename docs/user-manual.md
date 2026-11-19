@@ -191,9 +191,34 @@ import { Field, Textarea, TextInput } from '@zigordev/react';
 - TextInput takes `type` (`text`, `email`, `password`, `search`, `tel`, `url`; default `text`) and `size` (`sm`, `md`, `lg`; default `md`). Textarea takes `size` and `rows` (default 3) and grows with its content in browsers that support `field-sizing`. Both pass every other attribute through.
 - Text is 16px in comfortable density, so iOS Safari does not zoom in when a field gets focus. A TextInput outside a Field needs `aria-label`.
 
+### Checkbox, Switch, CheckboxGroup and RadioGroup
+
+Choices with a visible label beside the control. Checkbox is for a yes or no that takes effect when the form is sent, Switch for a setting that applies at once, RadioGroup for one choice among a few, and CheckboxGroup for any number of them.
+
+```tsx
+import { Checkbox, CheckboxGroup, Radio, RadioGroup, Switch } from '@zigordev/react';
+
+<Checkbox name="newsletter" label={t('newsletter')} description={t('newsletterHint')} />
+<Switch label={t('pricesWithTax')} checked={withTax} onCheckedChange={setWithTax} />
+<RadioGroup name="reply" label={t('reply')} defaultValue="email" error={errors.reply?.message}>
+  <Radio value="email" label={t('email')} />
+  <Radio value="phone" label={t('phone')} description={t('phoneHours')} />
+</RadioGroup>
+<CheckboxGroup name="topics" label={t('topics')} defaultValue={[]}>
+  <Checkbox value="design" label={t('designSystems')} />
+  <Checkbox value="testing" label={t('testing')} />
+</CheckboxGroup>
+```
+
+- Every choice takes `label` and an optional `description`. A Checkbox or Switch on its own also takes `error`; inside a group, the group shows the error.
+- Checkbox takes `checked` or `defaultChecked`, `onCheckedChange` and `indeterminate`. Switch takes the same, without `indeterminate`.
+- RadioGroup takes `value` or `defaultValue` and `onValueChange`. CheckboxGroup takes the same with an array of values. Both take `label`, `description`, `error`, `name`, `disabled` and `orientation` (`vertical` or `horizontal`; default `vertical`).
+- Each item in a group takes `value`. Arrow keys move between radios; Tab moves between checkboxes.
+- The group's label, description and error, and each choice's description, reach screen readers through Base UI.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">` or an `<input class="ds-text-input">` inside a `.ds-field` renders the same as the React component. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html) and the [fields](../apps/docs/src/plain-html/page/field.html).
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html) and the [choices](../apps/docs/src/plain-html/page/choice.html).
 
 ## Limits
 

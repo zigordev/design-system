@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Checkboxes, radios and switches from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Checkboxes, radios and switches from CSS alone</h1>
+      <form action="#" method="get">
+        <h2>Checkbox</h2>
+        <div class="ds-choice">
+          <label class="ds-choice__label">
+            <input class="ds-checkbox" id="newsletter" name="newsletter" type="checkbox" checked aria-describedby="newsletter-description">
+            <span>Send me the monthly newsletter</span>
+          </label>
+          <p class="ds-choice__description" id="newsletter-description">One email a month.</p>
+        </div>
+        <h2>Radio group</h2>
+        <fieldset class="ds-field ds-choice-group">
+          <legend class="ds-field__label">How should I reply?</legend>
+          <div class="ds-choice-group__items">
+            <div class="ds-choice">
+              <label class="ds-choice__label"><input class="ds-radio" id="reply-email" name="reply" type="radio" value="email" checked><span>Email</span></label>
+            </div>
+            <div class="ds-choice">
+              <label class="ds-choice__label"><input class="ds-radio" id="reply-phone" name="reply" type="radio" value="phone"><span>Phone</span></label>
+            </div>
+          </div>
+        </fieldset>
+        <h2>Switch</h2>
+        <div class="ds-choice">
+          <label class="ds-choice__label">
+            <input class="ds-switch" id="tax" name="tax" type="checkbox" role="switch">
+            <span>Show prices with tax</span>
+          </label>
+        </div>
+        <p><button class="ds-button" type="submit">Save</button></p>
+      </form>
+    </main>
+  </body>
+</html>
