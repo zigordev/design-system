@@ -1,0 +1,144 @@
+# User manual
+
+How an app uses the design system: installing it, choosing its theme, styling with the tokens and using the components. Every UI element in a zigordev app comes from here; a missing component or variant is added to this repo in its own pull request.
+
+## Install
+
+Map the scope to GitHub Packages in the app's `.npmrc`, and authenticate with a token that has `read:packages`, as [local-first-start.md](local-first-start.md) describes:
+
+```text
+@zigordev:registry=https://npm.pkg.github.com
+```
+
+```bash
+pnpm add @zigordev/css @zigordev/react @zigordev/tokens @fontsource-variable/mona-sans
+```
+
+Add `@fontsource-variable/jetbrains-mono` when the app shows code.
+
+## Set it up in a Next.js app
+
+Import the CSS and the fonts once, in the root layout, and put the theme on the root element:
+
+```tsx
+import '@fontsource-variable/mona-sans/wdth.css';
+import '@zigordev/css/index.css';
+import type { ReactNode } from 'react';
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="es" data-product="gpool" data-density="comfortable">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+`wdth.css` loads Mona Sans with its width axis, which the condensed display width needs.
+
+## Themes
+
+Four dimensions choose the theme. Each is an attribute on the root element.
+
+| Dimension | Attribute       | Values                       | When absent                                |
+| --------- | --------------- | ---------------------------- | ------------------------------------------ |
+| Product   | `data-product`  | `cv`, `gpool`, `trading-bot` | cv                                         |
+| Mode      | `data-mode`     | `light`, `dark`              | follows the system's light or dark setting |
+| Density   | `data-density`  | `comfortable`, `compact`     | comfortable                                |
+| Contrast  | `data-contrast` | `standard`, `high`           | follows the system's contrast setting      |
+
+- Each app sets its product. trading-bot also sets `data-density="compact"` and, until the person chooses otherwise, `data-mode="dark"`.
+- A theme switcher writes these attributes. `@zigordev/tokens` exports the values and their attribute names for TypeScript: `products`, `modes`, `densities`, `contrasts`, `defaultTheme` and `themeAttributes`.
+- The attributes work on the root element only. A dark panel inside a light page is not supported yet.
+
+## Style with the tokens
+
+App styles go in CSS Modules and use the role tokens, never raw colours, sizes or durations. The design system's styles sit in cascade layers, so a CSS Module always wins over them without specificity tricks.
+
+```css
+.matchCard {
+  display: grid;
+  gap: var(--ds-space-3);
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-card);
+  background-color: var(--ds-color-bg-raised);
+  box-shadow: var(--ds-shadow-raised);
+}
+```
+
+| Group                    | Tokens                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Surfaces                 | `--ds-color-bg-page`, `-raised`, `-sunken`, `-field`, `-hover`, `-pressed`, `-inverse`, `-disabled`                            |
+| Text                     | `--ds-color-fg-default`, `-muted`, `-inverse`, `-disabled`                                                                     |
+| Borders and focus        | `--ds-color-border-subtle`, `-default`, `-field`, `--ds-color-focus-ring`, `--ds-focus-width`, `--ds-focus-offset`             |
+| Accent and second accent | `--ds-color-accent-solid`, `-solid-hover`, `-soft`, `-soft-hover`, `-text`, `-on`, `-border-strong`, and the same for `second` |
+| Status                   | the same set for `danger`, `success`, `warning` and `info`, plus a subtle `-border`                                            |
+| Space                    | `--ds-space-1` to `--ds-space-24`, in steps of 0.25 rem                                                                        |
+| Shape                    | `--ds-radius-xs` to `--ds-radius-full`, and the product's `--ds-radius-button`, `-field` and `-card`                           |
+| Type                     | `--ds-font-family-sans`, `-mono`, `--ds-font-size-xs` to `-3xl`, `--ds-font-weight-*`, `--ds-font-line-height-*`               |
+| Display                  | `--ds-font-display-stretch` and `--ds-font-display-weight`, the product's width and weight for headings and big numbers        |
+| Controls                 | `--ds-size-control-sm`, `-md`, `-lg`, `--ds-space-control-*` and `--ds-font-size-control`, which follow the density            |
+| Motion and depth         | `--ds-duration-fast`, `-base`, `-slow`, `--ds-easing-standard`, `-emphasized`, `-exit`, `--ds-shadow-raised`, `-overlay`       |
+
+Under `prefers-reduced-motion`, the durations become zero, so transitions built on them stop on their own. Tokens under `--ds-color-palette-*` and `--ds-color-scale-*` are primitives behind the roles; apps do not use them.
+
+A heading in the product's display style:
+
+```css
+.score {
+  font-size: var(--ds-font-size-3xl);
+  font-stretch: calc(var(--ds-font-display-stretch) * 1%);
+  font-weight: var(--ds-font-display-weight);
+  font-variant-numeric: tabular-nums;
+}
+```
+
+## Components
+
+Components hold no copy. Every label comes in as a prop, translated by the app in English and Spanish.
+
+### Button
+
+An action. It renders a `<button>` and defaults to `type="button"`.
+
+```tsx
+import { Button } from '@zigordev/react';
+
+<Button onClick={save}>{t('save')}</Button>
+<Button variant="outline" tone="neutral" onClick={cancel}>{t('cancel')}</Button>
+<Button tone="danger" loading={deleting} onClick={remove}>{t('delete')}</Button>
+<Button iconOnly aria-label={t('addMatch')}><PlusIcon /></Button>
+```
+
+| Prop                   | Values                                                                      | Default  |
+| ---------------------- | --------------------------------------------------------------------------- | -------- |
+| `variant`              | `solid`, `soft`, `outline`, `ghost`                                         | `solid`  |
+| `tone`                 | `accent`, `neutral`, `danger`                                               | `accent` |
+| `size`                 | `sm`, `md`, `lg`                                                            | `md`     |
+| `startIcon`, `endIcon` | an icon element, hidden from screen readers                                 | none     |
+| `iconOnly`             | `true` makes the button square and requires `aria-label`                    | `false`  |
+| `loading`              | `true` shows a spinner, blocks clicks, sets `aria-busy` and keeps the focus | `false`  |
+| `disabled`             | `true` disables it                                                          | `false`  |
+
+Every other `<button>` attribute passes through. Use one solid accent button per view for the main action, outline or ghost neutral buttons for the rest, and the danger tone only for destructive actions.
+
+### LinkButton
+
+Navigation that looks like a button. It renders a real link, so the browser's link behaviour keeps working. It takes the same `variant`, `tone`, `size`, icon and `iconOnly` props as Button. With Next.js, compose it with `Link` through `render`:
+
+```tsx
+import Link from 'next/link';
+import { LinkButton } from '@zigordev/react';
+
+<LinkButton render={<Link href="/cases/gpool" />}>{t('readCaseStudy')}</LinkButton>;
+```
+
+## Without React
+
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` renders the same as the React component. The Storybook site serves a [plain HTML page](../apps/docs/src/plain-html/page/button.html) that uses only the CSS bundle.
+
+## Limits
+
+- Browser support is Baseline 2023: Chrome and Edge 111, Firefox 113, Safari 16.4.
+- Themes apply on the root element only.
+- The inventory grows one component per pull request; the order follows the cv rebuild.
