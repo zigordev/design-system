@@ -488,7 +488,7 @@ import { Button, Link, Popover, PreviewCard } from '@zigordev/react';
 <PreviewCard trigger={<Link href="/cases/gpool">gpool</Link>}>{summary}</PreviewCard>
 ```
 
-Both take `side` and `align`, and the open state props of Base UI (`open`, `defaultOpen`, `onOpenChange`). Popover takes `title` and `description`, which name and describe it for screen readers. Escape closes either, and the focus returns to the trigger.
+Both take `side` and `align`, and the open state props of Base UI (`open`, `defaultOpen`, `onOpenChange`). Popover takes `title` or, without a visible title, `aria-label`, so it always has a name, and an optional `description`. Escape closes either, and the focus returns to the trigger.
 
 ### Dialog, AlertDialog and Drawer
 

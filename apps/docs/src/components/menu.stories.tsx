@@ -7,6 +7,9 @@ import {
   MenuCheckboxItem,
   MenuGroup,
   MenuItem,
+  MenuLinkItem,
+  MenuRadioGroup,
+  MenuRadioItem,
   MenuSeparator,
   ScopeSwitcher,
 } from '@zigordev/react';
@@ -115,5 +118,32 @@ export const Context: Story = {
     });
     const page = within(canvasElement.ownerDocument.body);
     await expect(await page.findByRole('menuitem', { name: 'Copy the link' })).toBeInTheDocument();
+  },
+};
+
+export const LinksAndChoices: Story = {
+  args: {
+    children: (
+      <>
+        <MenuLinkItem href="#profile">Profile</MenuLinkItem>
+        <MenuSeparator />
+        <MenuRadioGroup defaultValue="table">
+          <MenuRadioItem value="table">Table</MenuRadioItem>
+          <MenuRadioItem value="cards">Cards</MenuRadioItem>
+        </MenuRadioGroup>
+      </>
+    ),
+  },
+  play: async ({ canvas, canvasElement, userEvent }) => {
+    await userEvent.click(canvas.getByRole('button', { name: 'Pool actions' }));
+    const page = within(canvasElement.ownerDocument.body);
+    await expect(await page.findByRole('menuitem', { name: 'Profile' })).toHaveAttribute(
+      'href',
+      '#profile'
+    );
+    await expect(page.getByRole('menuitemradio', { name: 'Table' })).toHaveAttribute(
+      'aria-checked',
+      'true'
+    );
   },
 };

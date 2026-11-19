@@ -8,15 +8,19 @@ import type { OverlaySide } from '../tooltip/tooltip.tsx';
 
 export type OverlayAlign = 'start' | 'center' | 'end';
 
-export type PopoverProps = Omit<ComponentProps<typeof BasePopover.Root>, 'children'> & {
-  trigger: ReactElement;
-  title?: ReactNode;
-  description?: ReactNode;
-  children?: ReactNode;
-  side?: OverlaySide;
-  align?: OverlayAlign;
-  className?: string;
-};
+type PopoverName =
+  | { title: ReactNode; 'aria-label'?: never }
+  | { title?: never; 'aria-label': string };
+
+export type PopoverProps = Omit<ComponentProps<typeof BasePopover.Root>, 'children'> &
+  PopoverName & {
+    trigger: ReactElement;
+    description?: ReactNode;
+    children?: ReactNode;
+    side?: OverlaySide;
+    align?: OverlayAlign;
+    className?: string;
+  };
 
 export type PreviewCardProps = Omit<ComponentProps<typeof BasePreviewCard.Root>, 'children'> & {
   trigger: ReactElement;
@@ -30,6 +34,7 @@ export type PreviewCardProps = Omit<ComponentProps<typeof BasePreviewCard.Root>,
 export function Popover({
   trigger,
   title,
+  'aria-label': label,
   description,
   children,
   side = 'bottom',
@@ -42,7 +47,7 @@ export function Popover({
       <BasePopover.Trigger render={trigger} />
       <BasePopover.Portal>
         <BasePopover.Positioner className="ds-positioner" side={side} align={align} sideOffset={8}>
-          <BasePopover.Popup className={classNames('ds-popup', className)}>
+          <BasePopover.Popup className={classNames('ds-popup', className)} aria-label={label}>
             {title ? (
               <BasePopover.Title className="ds-popup__title">{title}</BasePopover.Title>
             ) : null}
