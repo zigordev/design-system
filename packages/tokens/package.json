@@ -1,6 +1,6 @@
 {
   "name": "@zigordev/tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Design tokens for zigordev apps: DTCG source with a resolver for product, mode, density and contrast, built into CSS custom properties",
   "license": "UNLICENSED",
   "type": "module",

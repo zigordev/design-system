@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/zigordev/design-system/compare/tokens-v0.2.0...tokens-v0.3.0) (2026-11-19)
+
+
+### Features
+
+* add the layout helpers, prose and skip link ([#13](https://github.com/zigordev/design-system/issues/13)) ([2e4d4cf](https://github.com/zigordev/design-system/commit/2e4d4cf2d172a4aa1755e43ab8ae5f7c44abe38f))
+
 ## [0.2.0](https://github.com/zigordev/design-system/compare/tokens-v0.1.0...tokens-v0.2.0) (2026-11-19)
 
 
