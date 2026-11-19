@@ -8,12 +8,14 @@
 @import "./components/card.css";
 @import "./components/checkbox.css";
 @import "./components/choice.css";
+@import "./components/dialog.css";
 @import "./components/field.css";
 @import "./components/form.css";
 @import "./components/icon.css";
 @import "./components/language-switcher.css";
 @import "./components/layout.css";
 @import "./components/link.css";
+@import "./components/popup.css";
 @import "./components/prose.css";
 @import "./components/separator.css";
 @import "./components/skeleton.css";

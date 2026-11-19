@@ -393,6 +393,63 @@ import { LanguageSwitcher } from '@zigordev/react';
 
 `display` is `code` (default), which shows EN and ES with the full name for screen readers, or `name`, which shows the names. Write each name in its own language. The links are full page loads, so the new language's messages load with the page.
 
+### Tooltip
+
+A short label that appears on hover and keyboard focus, for controls whose meaning is visual, such as an icon-only button.
+
+```tsx
+import { PlusIcon } from '@zigordev/icons';
+import { Button, Tooltip } from '@zigordev/react';
+
+<Tooltip content={t('addMatch')}>
+  <Button iconOnly aria-label={t('addMatch')}>
+    <PlusIcon />
+  </Button>
+</Tooltip>;
+```
+
+- `content` is the label, `children` the single element it describes, `side` is `top` (default), `bottom`, `left` or `right`, and `delay` is the hover delay in milliseconds.
+- Tooltips hold text only and never the only copy of essential information; touch screens do not show them. They do not open on disabled controls.
+- Wrap an area in `TooltipProvider` to share one delay between its tooltips.
+
+### Popover and PreviewCard
+
+Popover opens a small non-modal panel from a button, such as share options. PreviewCard shows a preview when a link is hovered or focused.
+
+```tsx
+import { Button, Link, Popover, PreviewCard } from '@zigordev/react';
+
+<Popover trigger={<Button variant="outline" tone="neutral">{t('share')}</Button>} title={t('shareTitle')}>
+  <Link href={url}>{t('copyLink')}</Link>
+</Popover>
+<PreviewCard trigger={<Link href="/cases/gpool">gpool</Link>}>{summary}</PreviewCard>
+```
+
+Both take `side` and `align`, and the open state props of Base UI (`open`, `defaultOpen`, `onOpenChange`). Popover takes `title` and `description`, which name and describe it for screen readers. Escape closes either, and the focus returns to the trigger.
+
+### Dialog, AlertDialog and Drawer
+
+Modal panels. Dialog is for a focused task, AlertDialog for a confirmation the person has to answer, and Drawer for a panel that slides in from a side, such as the mobile navigation.
+
+```tsx
+import { AlertDialog, AlertDialogClose, Button, Dialog, DialogClose, Drawer } from '@zigordev/react';
+
+<Dialog
+  trigger={<Button>{t('editProfile')}</Button>}
+  title={t('editProfile')}
+  closeLabel={t('close')}
+  footer={<><DialogClose><Button variant="outline" tone="neutral">{t('cancel')}</Button></DialogClose><Button>{t('save')}</Button></>}
+>
+  {fields}
+</Dialog>
+<AlertDialog trigger={<Button tone="danger">{t('delete')}</Button>} title={t('deleteTitle')} description={t('deleteWarning')} actions={actions} />
+<Drawer trigger={<Button>{t('menu')}</Button>} title={t('sections')} closeLabel={t('close')} side="left">{links}</Drawer>
+```
+
+- They trap the focus while open, close on Escape (AlertDialog only through its actions), and return the focus to the trigger.
+- Dialog takes `size` (`sm`, `md`, `lg`; default `md`), `description`, `footer` and `closeLabel`, the accessible name of its close button. AlertDialog takes `actions`; wrap the button that cancels in `AlertDialogClose`. Drawer takes `side` (`right`, `left`, `bottom`; default `right`) and can be swiped closed.
+- Without `trigger`, control them with `open` and `onOpenChange`.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.

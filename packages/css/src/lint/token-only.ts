@@ -15,6 +15,8 @@ const variableReference = /var\(\s*(--[\w-]+)/g;
 const identifier = /(?<![\w-])[a-z][\w-]*/gi;
 const forcedColours = /forced-colors\s*:\s*active/;
 const primitiveTokens = /^--ds-color-(?:palette|scale)-/;
+const baseUiVariables =
+  /^--(?:transform-origin|anchor-(?:width|height)|available-(?:width|height)|active-tab-(?:left|right|top|bottom|width|height)|accordion-panel-(?:height|width)|toast-[a-z-]+|scroll-area-[a-z-]+|drawer-[a-z-]+)$/;
 const tokenTimesEm = /(var\(\s*--ds-[\w-]+\s*\))\s*\*\s*1em\b/g;
 
 function isZero(literal: string): boolean {
@@ -46,8 +48,10 @@ function checkValue(property: string, value: string, inForcedColours: boolean): 
     }
   }
   for (const [, name = ''] of value.matchAll(variableReference)) {
-    if (!name.startsWith('--ds-') && !name.startsWith('--_')) {
-      messages.push(`${name} in ${property} is neither a design token nor a local --_ property`);
+    if (!name.startsWith('--ds-') && !name.startsWith('--_') && !baseUiVariables.test(name)) {
+      messages.push(
+        `${name} in ${property} is neither a design token, a local --_ property nor a Base UI variable`
+      );
     } else if (primitiveTokens.test(name)) {
       messages.push(`${name} in ${property} is a primitive; use a role token`);
     }

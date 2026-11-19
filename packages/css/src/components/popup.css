@@ -1,0 +1,77 @@
+@layer ds.components {
+  .ds-positioner {
+    z-index: 50;
+    outline: 0;
+  }
+
+  .ds-popup,
+  .ds-tooltip {
+    transform-origin: var(--transform-origin);
+    transition-property: opacity, scale;
+    transition-duration: var(--ds-duration-fast);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-popup:is([data-starting-style], [data-ending-style]),
+  .ds-tooltip:is([data-starting-style], [data-ending-style]) {
+    opacity: 0;
+    scale: 0.96;
+  }
+
+  .ds-popup {
+    box-sizing: border-box;
+    max-inline-size: min(var(--ds-size-overlay-popover), var(--available-width));
+    max-block-size: var(--available-height);
+    overflow: auto;
+    padding: var(--ds-space-4);
+    border: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+    border-radius: var(--ds-radius-card);
+    background-color: var(--ds-color-bg-raised);
+    box-shadow: var(--ds-shadow-overlay);
+    color: var(--ds-color-fg-default);
+    font-size: var(--ds-font-size-md);
+    line-height: var(--ds-font-line-height-normal);
+  }
+
+  .ds-popup > * + * {
+    margin-block-start: var(--ds-space-2);
+  }
+
+  .ds-popup:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-popup__title {
+    margin: 0;
+    font-size: var(--ds-font-size-md);
+    font-weight: var(--ds-font-weight-semibold);
+    line-height: var(--ds-font-line-height-snug);
+  }
+
+  .ds-popup__description {
+    margin: 0;
+    color: var(--ds-color-fg-muted);
+    font-size: var(--ds-font-size-sm);
+  }
+
+  .ds-tooltip {
+    box-sizing: border-box;
+    max-inline-size: var(--ds-size-column-sm);
+    padding-block: var(--ds-space-1);
+    padding-inline: var(--ds-space-2);
+    border: var(--ds-border-width-hairline) solid transparent;
+    border-radius: var(--ds-radius-sm);
+    background-color: var(--ds-color-bg-inverse);
+    color: var(--ds-color-fg-inverse);
+    font-size: var(--ds-font-size-sm);
+    line-height: var(--ds-font-line-height-snug);
+  }
+
+  @media (forced-colors: active) {
+    .ds-popup,
+    .ds-tooltip {
+      border-color: CanvasText;
+    }
+  }
+}

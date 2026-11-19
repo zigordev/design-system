@@ -30,6 +30,16 @@ export {
   type CheckboxProps,
 } from './checkbox/checkbox.tsx';
 export type { ChoiceOrientation } from './choice/choice.tsx';
+export {
+  AlertDialog,
+  AlertDialogClose,
+  type AlertDialogProps,
+  Dialog,
+  DialogClose,
+  type DialogProps,
+  type DialogSize,
+} from './dialog/dialog.tsx';
+export { Drawer, DrawerClose, type DrawerProps, type DrawerSide } from './drawer/drawer.tsx';
 export { Field, type FieldProps } from './field/field.tsx';
 export {
   ErrorSummary,
@@ -55,6 +65,13 @@ export {
   type StackProps,
 } from './layout/layout.tsx';
 export { Link, type LinkProps, type LinkTone, type LinkUnderline } from './link/link.tsx';
+export {
+  type OverlayAlign,
+  Popover,
+  type PopoverProps,
+  PreviewCard,
+  type PreviewCardProps,
+} from './popover/popover.tsx';
 export { Prose, type ProseProps } from './prose/prose.tsx';
 export { Radio, RadioGroup, type RadioGroupProps, type RadioProps } from './radio/radio.tsx';
 export {
@@ -92,4 +109,10 @@ export {
   type ToggleGroupSize,
   type ToggleProps,
 } from './toggle-group/toggle-group.tsx';
+export {
+  type OverlaySide,
+  Tooltip,
+  type TooltipProps,
+  TooltipProvider,
+} from './tooltip/tooltip.tsx';
 export { VisuallyHidden, type VisuallyHiddenProps } from './visually-hidden/visually-hidden.tsx';
