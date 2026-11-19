@@ -11,7 +11,7 @@ Map the scope to GitHub Packages in the app's `.npmrc`, and authenticate with a 
 ```
 
 ```bash
-pnpm add @zigordev/css @zigordev/react @zigordev/tokens @fontsource-variable/mona-sans
+pnpm add @zigordev/css @zigordev/react @zigordev/tokens @zigordev/icons @fontsource-variable/mona-sans
 ```
 
 Add `@fontsource-variable/jetbrains-mono` when the app shows code.
@@ -322,9 +322,27 @@ import { Separator } from '@zigordev/react';
 
 Text that only screen readers read, such as a label for a control whose meaning is visual. It renders a `<span>` with the `ds-visually-hidden` class.
 
+### Icons
+
+`@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.
+
+```tsx
+import { ArrowUpRightIcon, SearchIcon } from '@zigordev/icons';
+import { Button, Link } from '@zigordev/react';
+
+<Link href="https://github.com/zigordev" endIcon={<ArrowUpRightIcon />}>GitHub</Link>
+<Button iconOnly aria-label={t('search')}><SearchIcon /></Button>
+<SearchIcon label={t('search')} size="lg" />
+```
+
+- An icon is hidden from screen readers unless it gets a `label`, which makes it an image with that name. In a Button or Link icon slot, leave it unlabelled: the control carries the name.
+- `size` is `sm`, `md` (default) or `lg`, from the icon tokens, so it follows the density. In a Button or Link slot, the slot sets the size.
+- Icons draw with `currentColor`, so they take the colour of the text around them.
+- The Icons page in Storybook shows the whole set. A missing icon is added to this repo by its Lucide name, never drawn in an app.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) and the [display components](../apps/docs/src/plain-html/page/display.html).
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` an `<a class="ds-link" data-tone="neutral">`, an `<input class="ds-text-input">` inside a `.ds-field`, or an `<input class="ds-checkbox" type="checkbox">` inside a `.ds-choice__label` renders the same as the React component. A switch is `<input class="ds-switch" type="checkbox" role="switch">`. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html), the [links](../apps/docs/src/plain-html/page/link.html), the [fields](../apps/docs/src/plain-html/page/field.html), the [choices](../apps/docs/src/plain-html/page/choice.html), a [form](../apps/docs/src/plain-html/page/form.html) the [display components](../apps/docs/src/plain-html/page/display.html) and the [icons](../apps/docs/src/plain-html/page/icon.html). Without React, icons come from the sprite: copy `@zigordev/icons/sprite.svg` into the app's static files and write `<svg class="ds-icon" aria-hidden="true"><use href="/sprite.svg#search"></use></svg>`.
 
 ## Limits
 

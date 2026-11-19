@@ -13,12 +13,13 @@ The legacy design system copied CSS into apps, injected styles from JavaScript, 
 | [`@zigordev/tokens`](packages/tokens/README.md) | The design tokens: DTCG 2025.10 sources with a resolver for product, mode, density and contrast, built into CSS custom properties, plus the theme names for TypeScript |
 | [`@zigordev/css`](packages/css/README.md)       | The tokens, a small reset, base styles and every component style, in cascade layers, bundled into one file                                                             |
 | [`@zigordev/react`](packages/react/README.md)   | React components on Base UI, styled by `@zigordev/css`                                                                                                                 |
+| [`@zigordev/icons`](packages/icons/README.md)   | The curated Lucide icon set, as React components and an SVG sprite                                                                                                     |
 
 `apps/docs` is the Storybook site: the component catalogue, the foundations pages and the test harness. It is not published; `pnpm dev` runs it locally.
 
 ## Technologies and tools
 
-Node.js 26 and pnpm 12, pinned in `mise.toml`, with TypeScript 7. Tokens are written in the DTCG 2025.10 format and built by Terrazzo. CSS is bundled by Lightning CSS. Components use React 19 and Base UI. Storybook 10 documents them, and its stories run as tests in Chromium, Firefox and WebKit through Vitest browser mode and Playwright, with axe checking accessibility. Biome lints and formats, lefthook runs the git hooks, commitlint checks commit messages, release-please versions the packages, and Renovate keeps dependencies current. The house typeface is Mona Sans, with JetBrains Mono for code, both from Fontsource.
+Node.js 26 and pnpm 12, pinned in `mise.toml`, with TypeScript 7. Tokens are written in the DTCG 2025.10 format and built by Terrazzo. CSS is bundled by Lightning CSS. Components use React 19 and Base UI. Storybook 10 documents them, and its stories run as tests in Chromium, Firefox and WebKit through Vitest browser mode and Playwright, with axe checking accessibility. Biome lints and formats, lefthook runs the git hooks, commitlint checks commit messages, release-please versions the packages, and Renovate keeps dependencies current. The house typeface is Mona Sans, with JetBrains Mono for code, both from Fontsource. Icons are a curated set from Lucide, generated from `lucide-static`.
 
 ## Dependencies
 

@@ -3,7 +3,11 @@
   "root": true,
   "extends": ["@zigordev/biome-config/biome"],
   "files": {
-    "includes": ["!**/CHANGELOG.md", "!packages/tokens/src/tokens/generated"]
+    "includes": [
+      "!**/CHANGELOG.md",
+      "!packages/tokens/src/tokens/generated",
+      "!packages/icons/src/generated"
+    ]
   },
   "overrides": [
     {

@@ -116,3 +116,22 @@
   align-items: center;
   gap: var(--ds-space-3);
 }
+
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--ds-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.iconCell {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  padding: var(--ds-space-2);
+  border-radius: var(--ds-radius-sm);
+  background-color: var(--ds-color-bg-sunken);
+  font-size: var(--ds-font-size-sm);
+}

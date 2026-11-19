@@ -1,14 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ArrowUpRightIcon } from '@zigordev/icons';
 import { LinkButton } from '@zigordev/react';
 import { expect } from 'storybook/test';
-
-function External() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M6 3h7v7M13 3 4 12" />
-    </svg>
-  );
-}
 
 const meta = {
   title: 'Components/LinkButton',
@@ -29,11 +22,16 @@ export const Default: Story = {
 };
 
 export const Outline: Story = {
-  args: { variant: 'outline', tone: 'neutral', children: 'Visit gpool', endIcon: <External /> },
+  args: {
+    variant: 'outline',
+    tone: 'neutral',
+    children: 'Visit gpool',
+    endIcon: <ArrowUpRightIcon />,
+  },
 };
 
 export const IconOnly: Story = {
-  args: { iconOnly: true, 'aria-label': 'Open gpool', children: <External /> },
+  args: { iconOnly: true, 'aria-label': 'Open gpool', children: <ArrowUpRightIcon /> },
   play: async ({ canvas }) => {
     await expect(canvas.getByRole('link', { name: 'Open gpool' })).toHaveAttribute(
       'data-icon-only'

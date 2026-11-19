@@ -1,15 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ArrowUpRightIcon } from '@zigordev/icons';
 import { Link } from '@zigordev/react';
 import { expect } from 'storybook/test';
 import styles from '../docs.module.css';
-
-function External() {
-  return (
-    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M6 3h7v7M13 3 4 12" />
-    </svg>
-  );
-}
 
 const meta = {
   title: 'Components/Link',
@@ -82,7 +75,7 @@ export const Navigation: Story = {
 };
 
 export const WithIcon: Story = {
-  args: { children: 'GitHub', href: 'https://github.com/zigordev', endIcon: <External /> },
+  args: { children: 'GitHub', href: 'https://github.com/zigordev', endIcon: <ArrowUpRightIcon /> },
   render: (args) => <Link {...args} />,
   play: async ({ canvas }) => {
     const link = canvas.getByRole('link', { name: 'GitHub' });
@@ -93,7 +86,7 @@ export const WithIcon: Story = {
 };
 
 export const WithStartIcon: Story = {
-  args: { children: 'Back to the case studies', href: '#cases', startIcon: <External /> },
+  args: { children: 'Back to the case studies', href: '#cases', startIcon: <ArrowUpRightIcon /> },
   render: (args) => <Link {...args} />,
   play: async ({ canvas }) => {
     const icon = canvas.getByRole('link').querySelector('.ds-link__icon');

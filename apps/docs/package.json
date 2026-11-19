@@ -22,6 +22,7 @@
     "@vitejs/plugin-react": "catalog:",
     "@vitest/browser-playwright": "catalog:",
     "@zigordev/css": "workspace:*",
+    "@zigordev/icons": "workspace:*",
     "@zigordev/react": "workspace:*",
     "@zigordev/tokens": "workspace:*",
     "@zigordev/tsconfig": "catalog:",
