@@ -1,6 +1,17 @@
 export { Accordion, type AccordionItem, type AccordionProps } from './accordion/accordion.tsx';
 export { Alert, type AlertProps, type AlertTone } from './alert/alert.tsx';
 export {
+  AppShell,
+  type AppShellProps,
+  BottomTabBar,
+  type BottomTabBarProps,
+  PageHeader,
+  type PageHeaderProps,
+  type TabBarItem,
+  TopBar,
+  type TopBarProps,
+} from './app-layout/app-layout.tsx';
+export {
   Avatar,
   AvatarGroup,
   type AvatarGroupProps,

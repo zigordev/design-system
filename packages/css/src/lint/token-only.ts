@@ -17,6 +17,7 @@ const forcedColours = /forced-colors\s*:\s*active/;
 const primitiveTokens = /^--ds-color-(?:palette|scale)-/;
 const baseUiVariables =
   /^--(?:transform-origin|anchor-(?:width|height)|available-(?:width|height)|active-tab-(?:left|right|top|bottom|width|height)|accordion-panel-(?:height|width)|toast-[a-z-]+|scroll-area-[a-z-]+|drawer-[a-z-]+)$/;
+const fullViewport = /(?<![\w.#-])100(?:d|s|l)?v(?:h|w|b|i)\b/gi;
 const tokenTimesEm = /(var\(\s*--ds-[\w-]+\s*\))\s*\*\s*1em\b/g;
 
 function isZero(literal: string): boolean {
@@ -29,7 +30,10 @@ function withoutComments(source: string): string {
 
 function checkValue(property: string, value: string, inForcedColours: boolean): string[] {
   const messages: string[] = [];
-  const bare = value.replace(tokenTimesEm, '$1').replace(/var\([^)]*\)/g, ' ');
+  const bare = value
+    .replace(tokenTimesEm, '$1')
+    .replace(fullViewport, ' ')
+    .replace(/var\([^)]*\)/g, ' ');
   for (const match of bare.match(lengthPattern) ?? []) {
     if (!isZero(match)) messages.push(`raw length ${match} in ${property}; use a token`);
   }

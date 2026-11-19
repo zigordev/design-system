@@ -47,6 +47,11 @@ describe('checkCss', () => {
     ]);
   });
 
+  it('accepts the full viewport, which is not a design value, and no other viewport length', () => {
+    expect(messages('min-block-size: 100dvh; inline-size: 100vw;')).toEqual([]);
+    expect(messages('block-size: 50dvh;')).toEqual(['raw length 50dvh in block-size; use a token']);
+  });
+
   it('rejects hex, functional and named colours', () => {
     expect(messages('color: #fff; background: oklch(50% 0.1 250); border-color: red;')).toEqual([
       'raw colour in color; use a colour token',

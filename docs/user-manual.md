@@ -738,6 +738,30 @@ import { CodeBlock, Figure, Kbd, ScrollArea } from '@zigordev/react';
 
 CodeBlock shows code in the mono face with an optional copy button; it does not colour syntax. Figure adds a caption to an image. Kbd shows a key. ScrollArea scrolls its content with thin scrollbars that appear on hover; size it with a `className`.
 
+### AppShell, TopBar, BottomTabBar and PageHeader
+
+The frame of an app. AppShell places a header, an optional sidebar, the main content, a footer and an optional bottom tab bar. TopBar is the header's row, BottomTabBar the phone navigation of gpool, and PageHeader a page's title with its breadcrumbs, description and actions.
+
+```tsx
+import { AppShell, BottomTabBar, PageHeader, SkipLink, TopBar } from '@zigordev/react';
+
+<SkipLink>{t('skipToContent')}</SkipLink>
+<AppShell
+  header={<TopBar start={<ProductName />} end={<ThemeSwitcher {...theme} />}>{siteNavigation}</TopBar>}
+  sidebar={poolLinks}
+  sidebarLabel={t('pool')}
+  tabBar={<BottomTabBar label={t('sections')} items={tabs} />}
+>
+  <PageHeader title={pool.name} description={t('players', { count })} actions={<Button>{t('invite')}</Button>} />
+  {content}
+</AppShell>
+```
+
+- AppShell's main element has the id `main` (or `mainId`) and `tabIndex={-1}`, so SkipLink lands in it. The header stays at the top and the tab bar at the bottom while the page scrolls.
+- The sidebar is a navigation landmark named by `sidebarLabel`. It shows from 64rem; below that, put the same links in a Drawer.
+- BottomTabBar items take `label`, `href`, `icon`, `current` and `render` for Next.js `Link`. It hides from 48rem unless `mobileOnly={false}`.
+- PageHeader's title is an `h1` (or `headingLevel={2}`) in the product's display style.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.
