@@ -77,6 +77,7 @@ App styles go in CSS Modules and use the role tokens, never raw colours, sizes o
 | Shape                    | `--ds-radius-xs` to `--ds-radius-full`, and the product's `--ds-radius-button`, `-field` and `-card`                           |
 | Type                     | `--ds-font-family-sans`, `-mono`, `--ds-font-size-xs` to `-3xl`, `--ds-font-weight-*`, `--ds-font-line-height-*`               |
 | Display                  | `--ds-font-display-stretch` and `--ds-font-display-weight`, the product's width and weight for headings and big numbers        |
+| Underline                | `--ds-font-underline-offset`, `-thickness` and `-thickness-strong`, the underline of links                                     |
 | Controls                 | `--ds-size-control-sm`, `-md`, `-lg`, `--ds-space-control-*` and `--ds-font-size-control`, which follow the density            |
 | Motion and depth         | `--ds-duration-fast`, `-base`, `-slow`, `--ds-easing-standard`, `-emphasized`, `-exit`, `--ds-shadow-raised`, `-overlay`       |
 
@@ -133,9 +134,37 @@ import { LinkButton } from '@zigordev/react';
 <LinkButton render={<Link href="/cases/gpool" />}>{t('readCaseStudy')}</LinkButton>;
 ```
 
+### Link
+
+Navigation in running text and in lists of links. It renders a real `<a>`, so the browser's link behaviour keeps working. In running text it is underlined, so a link never relies on colour alone.
+
+```tsx
+import NextLink from 'next/link';
+import { Link } from '@zigordev/react';
+
+<p>
+  {t.rich('intro', {
+    cases: (chunks) => <Link render={<NextLink href="/cases" />}>{chunks}</Link>,
+  })}
+</p>
+<Link href="https://github.com/zigordev" endIcon={<ExternalIcon />}>GitHub</Link>
+<Link render={<NextLink href="/work" />} tone="neutral" underline="hover" aria-current="page">
+  {t('work')}
+</Link>
+```
+
+| Prop                   | Values                                                                                 | Default  |
+| ---------------------- | -------------------------------------------------------------------------------------- | -------- |
+| `tone`                 | `accent`, or `neutral` to take the colour of the text around it                        | `accent` |
+| `underline`            | `always`, or `hover` for lists of links outside running text, such as a navigation bar | `always` |
+| `startIcon`, `endIcon` | an icon element, hidden from screen readers                                            | none     |
+| `render`               | an element or function to render instead of `<a>`, such as Next.js `Link`              | `<a>`    |
+
+Every other `<a>` attribute passes through. Mark the link to the current page with `aria-current="page"`: it gets a strong underline and the default text colour, whatever its `underline`. Use LinkButton instead when a link is the main call to action.
+
 ## Without React
 
-`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` renders the same as the React component. The Storybook site serves a [plain HTML page](../apps/docs/src/plain-html/page/button.html) that uses only the CSS bundle.
+`@zigordev/css` works on its own. A `<button class="ds-button" data-variant="outline" data-tone="neutral">` or an `<a class="ds-link" data-tone="neutral">` renders the same as the React component. The Storybook site serves plain HTML pages that use only the CSS bundle, one per component, such as the [buttons](../apps/docs/src/plain-html/page/button.html) and the [links](../apps/docs/src/plain-html/page/link.html).
 
 ## Limits
 

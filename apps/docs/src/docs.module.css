@@ -63,3 +63,17 @@
   font-variant-numeric: tabular-nums;
   text-align: end;
 }
+
+.measure {
+  max-inline-size: 60ch;
+  margin: 0;
+}
+
+.inlineList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
