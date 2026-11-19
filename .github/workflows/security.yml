@@ -1,0 +1,21 @@
+name: Security
+
+on:
+  schedule:
+    - cron: "23 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: Audit
+    uses: zigordev/toolkit/.github/workflows/security-audit.yml@06f81d27c38f31c78b4bc963808d41ac0062b178 # workflows-v0.2.0
+    permissions:
+      contents: read
+      security-events: write

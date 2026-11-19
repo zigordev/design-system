@@ -15,7 +15,7 @@ concurrency:
 jobs:
   commitlint:
     name: Commitlint
-    uses: zigordev/toolkit/.github/workflows/commit-messages.yml@016be28b63906e638bc99c8f40107c93337202d8 # workflows-v0.1.0
+    uses: zigordev/toolkit/.github/workflows/commit-messages.yml@06f81d27c38f31c78b4bc963808d41ac0062b178 # workflows-v0.2.0
     permissions:
       contents: read
       packages: read
