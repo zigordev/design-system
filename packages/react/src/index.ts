@@ -36,6 +36,12 @@ export {
   type CheckboxProps,
 } from './checkbox/checkbox.tsx';
 export type { ChoiceOrientation } from './choice/choice.tsx';
+export {
+  type Command,
+  CommandPalette,
+  type CommandPaletteProps,
+} from './command-palette/command-palette.tsx';
+export { CopyButton, type CopyButtonProps } from './copy-button/copy-button.tsx';
 export { DateInput, type DateInputProps, type DateInputType } from './date-input/date-input.tsx';
 export {
   AlertDialog,
@@ -73,6 +79,27 @@ export {
   type StackProps,
 } from './layout/layout.tsx';
 export { Link, type LinkProps, type LinkTone, type LinkUnderline } from './link/link.tsx';
+export {
+  ContextMenu,
+  type ContextMenuProps,
+  Menu,
+  MenuCheckboxItem,
+  type MenuCheckboxItemProps,
+  MenuGroup,
+  MenuItem,
+  type MenuItemProps,
+  MenuLinkItem,
+  type MenuLinkItemProps,
+  type MenuProps,
+  MenuRadioGroup,
+  type MenuRadioGroupProps,
+  MenuRadioItem,
+  type MenuRadioItemProps,
+  MenuSeparator,
+  type ScopeOption,
+  ScopeSwitcher,
+  type ScopeSwitcherProps,
+} from './menu/menu.tsx';
 export { NumberField, type NumberFieldProps } from './number-field/number-field.tsx';
 export { OtpField, type OtpFieldProps } from './otp-field/otp-field.tsx';
 export { Pagination, type PaginationProps, pageWindow } from './pagination/pagination.tsx';
@@ -161,6 +188,14 @@ export {
   type ToggleGroupSize,
   type ToggleProps,
 } from './toggle-group/toggle-group.tsx';
+export {
+  Toolbar,
+  ToolbarButton,
+  type ToolbarButtonProps,
+  ToolbarGroup,
+  type ToolbarProps,
+  ToolbarSeparator,
+} from './toolbar/toolbar.tsx';
 export {
   type OverlaySide,
   Tooltip,

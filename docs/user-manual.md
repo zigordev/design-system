@@ -618,6 +618,67 @@ import { Breadcrumbs, Pagination, SiteNavigation } from '@zigordev/react';
 - Pagination renders links, so every page has an address and works without JavaScript. It shows the first and last pages, the current one and its neighbours.
 - SiteNavigation follows Base UI's navigation menu: links and dropdown triggers in a row, with arrow keys between them. On narrow screens, put the same links in a Drawer.
 
+### Menu, ContextMenu and ScopeSwitcher
+
+Menu lists actions behind a button, such as a pool's rename and delete. ContextMenu shows the same items on right-click or long-press. ScopeSwitcher is a menu that switches the current scope, such as gpool's pool.
+
+```tsx
+import { PencilIcon } from '@zigordev/icons';
+import { Button, ContextMenu, Menu, MenuItem, MenuSeparator, ScopeSwitcher } from '@zigordev/react';
+
+<Menu trigger={<Button variant="outline" tone="neutral">{t('actions')}</Button>}>
+  <MenuItem icon={<PencilIcon />} onClick={rename}>{t('rename')}</MenuItem>
+  <MenuSeparator />
+  <MenuItem tone="danger" onClick={confirmDelete}>{t('delete')}</MenuItem>
+</Menu>
+<ContextMenu content={<MenuItem onClick={copyLink}>{t('copyLink')}</MenuItem>}>{match}</ContextMenu>
+<ScopeSwitcher label={t('pool')} value={pool} options={pools} onValueChange={setPool} />
+```
+
+- Menu takes `trigger`, `side` and `align`, and the items: `MenuItem` (with `icon` and `tone`), `MenuLinkItem` (`href`, or `render` for Next.js `Link`), `MenuCheckboxItem`, `MenuRadioGroup` with `MenuRadioItem`, `MenuGroup` with a `label`, and `MenuSeparator`.
+- Arrow keys move through the items, Enter or Space activates one, typing a letter jumps to it, and Escape closes the menu and returns the focus.
+- A context menu has no keyboard way in, so every action in it must also be reachable another way.
+- ScopeSwitcher's options are `{ value, label }`; its button reads the label and the current option to screen readers.
+
+### Toolbar and CopyButton
+
+Toolbar groups related buttons into one tab stop, with arrow keys between them, such as trading-bot's order actions. CopyButton copies a text and confirms it.
+
+```tsx
+import { CopyButton, Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from '@zigordev/react';
+
+<Toolbar aria-label={t('order')}>
+  <ToolbarGroup aria-label={t('side')}>
+    <ToolbarButton>{t('buy')}</ToolbarButton>
+    <ToolbarButton>{t('sell')}</ToolbarButton>
+  </ToolbarGroup>
+  <ToolbarSeparator />
+  <ToolbarButton tone="danger">{t('cancelAll')}</ToolbarButton>
+</Toolbar>
+<CopyButton text={command} label={t('copy')} copiedLabel={t('copied')} />
+```
+
+ToolbarButton takes Button's props. CopyButton takes `text`, `label`, `copiedLabel`, `iconOnly` and Button's appearance; after a copy it shows `copiedLabel` for two seconds and announces it.
+
+### CommandPalette
+
+A searchable list of commands in a dialog, usually opened with ⌘K or Ctrl+K.
+
+```tsx
+import { CommandPalette } from '@zigordev/react';
+
+<CommandPalette
+  open={open}
+  onOpenChange={setOpen}
+  title={t('commands')}
+  placeholder={t('typeCommand')}
+  emptyText={t('noCommand')}
+  commands={[{ id: 'cases', label: t('openCases'), onSelect: () => router.push('/cases') }]}
+/>;
+```
+
+Typing filters the commands, arrow keys move through them, and Enter or a click runs one and closes the palette. The app owns the shortcut that opens it.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.
