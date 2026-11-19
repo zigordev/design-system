@@ -167,3 +167,16 @@ describe('the choices page', () => {
     expect(getComputedStyle(toggle, '::before').translate).not.toBe(off);
   });
 });
+
+describe('the form page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('form.html', theme);
+    expect(getComputedStyle(element('#summary')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-danger-border-strong)')
+    );
+    expect(getComputedStyle(element('.ds-error-summary__link')).color).toBe(
+      probe('color', 'var(--ds-color-danger-text)')
+    );
+    expect(getComputedStyle(element('form')).rowGap).toBe(probe('row-gap', 'var(--ds-space-6)'));
+  });
+});

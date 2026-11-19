@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A form from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>A form from CSS alone</h1>
+      <form class="ds-form" action="#" method="get" novalidate>
+        <div class="ds-error-summary" id="summary" tabindex="-1">
+          <div class="ds-error-summary__body" role="alert">
+            <h2 class="ds-error-summary__title">There is a problem</h2>
+            <ul class="ds-error-summary__list">
+              <li><a class="ds-error-summary__link" href="#name">Enter your name</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ds-field">
+          <label class="ds-field__label" for="name">Name</label>
+          <input class="ds-text-input" id="name" name="name" autocomplete="name" aria-invalid="true" aria-describedby="name-error">
+          <p class="ds-field__error" id="name-error">Enter your name</p>
+        </div>
+        <div>
+          <button class="ds-button" type="submit">Send message</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
