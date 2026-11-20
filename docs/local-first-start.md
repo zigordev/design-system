@@ -5,8 +5,18 @@ How to work on the design system on a laptop, from nothing. It runs no services,
 ## Prerequisites
 
 - git, with the zigordev identity set in this repo
-- [mise](https://mise.jdx.dev), which installs the Node, pnpm and gitleaks versions in `mise.toml`
+- [mise](https://mise.jdx.dev), activated in your shell, which installs and selects the Node, pnpm and gitleaks versions in `mise.toml`
 - the GitHub CLI, signed in as zigordev, with the `read:packages` scope
+
+## Activate mise
+
+`mise install` only downloads the versions. Activate mise in your shell once, so that inside this repo they come first on your `PATH`, ahead of any Node from nvm or pnpm from Homebrew:
+
+```bash
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+```
+
+Use `mise activate bash` in `~/.bashrc` for bash. Open a new terminal afterwards: in the repo, `node --version` prints v26 and `pnpm --version` prints 12.21.0. To skip activation, prefix each command with `mise exec --`, such as `mise exec -- pnpm install`.
 
 ## Access to GitHub Packages
 
