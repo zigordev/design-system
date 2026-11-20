@@ -94,6 +94,8 @@ export const ControlledDialog: Story = {
     const dialog = await page.findByRole('dialog', { name: 'Details' });
     await expect(dialog).toHaveAttribute('data-size', 'lg');
     await expect(dialog).not.toHaveAccessibleDescription();
+    await userEvent.click(page.getByRole('button', { name: 'Close' }));
+    await waitFor(() => expect(page.queryByRole('dialog')).toBeNull());
   },
 };
 
