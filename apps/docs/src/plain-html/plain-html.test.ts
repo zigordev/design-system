@@ -1,4 +1,4 @@
-import { contrasts, modes, products, themeAttributes } from '@zigordev/tokens';
+import { defaultTheme, modes, type Theme, themeAttributes } from '@zigordev/tokens';
 import axe from 'axe-core';
 import { afterEach, describe, expect, it } from 'vitest';
 import bundle from '../../../../packages/css/dist/index.css?inline';
@@ -11,15 +11,7 @@ const pages = import.meta.glob<string>('./page/*.html', {
 
 const document = globalThis.document;
 
-interface Theme {
-  product: string;
-  mode: string;
-  contrast: string;
-}
-
-const themes: Theme[] = products.flatMap((product) =>
-  modes.flatMap((mode) => contrasts.map((contrast) => ({ product, mode, contrast })))
-);
+const themes: Theme[] = modes.map((mode) => ({ mode }));
 
 function parse(name: string): Document {
   const page = pages[`./page/${name}`];
@@ -33,9 +25,7 @@ function mount(name: string, theme: Theme) {
   document.head.append(style);
   document.body.innerHTML = parse(name).querySelector('main')?.outerHTML ?? '';
   const root = document.documentElement;
-  root.setAttribute(themeAttributes.product, theme.product);
   root.setAttribute(themeAttributes.mode, theme.mode);
-  root.setAttribute(themeAttributes.contrast, theme.contrast);
   return () => {
     style.remove();
     document.body.innerHTML = '';
@@ -57,8 +47,6 @@ function element(selector: string): HTMLElement {
   return found;
 }
 
-const defaultTheme: Theme = { product: 'cv', mode: 'light', contrast: 'standard' };
-
 let unmount = () => {};
 
 afterEach(() => unmount());
@@ -68,7 +56,7 @@ describe.each(Object.keys(pages).map((path) => path.replace('./page/', '')))('%s
     expect(parse(name).querySelectorAll('script')).toHaveLength(0);
   });
 
-  it.each(themes)('passes axe for $product, $mode, $contrast', async (theme) => {
+  it.each(themes)('passes axe for $mode mode', async (theme) => {
     unmount = mount(name, theme);
     const results = await axe.run(document.body, {
       runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] },
@@ -82,7 +70,7 @@ describe('the buttons page', () => {
     expect(parse('button.html').querySelectorAll('main .ds-button')).toHaveLength(7);
   });
 
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('button.html', theme);
     const background = getComputedStyle(
       element('button.ds-button:not([data-variant])')
@@ -91,19 +79,19 @@ describe('the buttons page', () => {
     expect(background).not.toBe('rgba(0, 0, 0, 0)');
   });
 
-  it('takes each product its own accent', () => {
-    const accents = products.map((product) => {
-      unmount = mount('button.html', { ...defaultTheme, product });
-      const value = probe('background-color', 'var(--ds-color-accent-solid)');
+  it('takes its page colour from the mode', () => {
+    const backgrounds = modes.map((mode) => {
+      unmount = mount('button.html', { mode });
+      const value = probe('background-color', 'var(--ds-color-bg-page)');
       unmount();
       return value;
     });
-    expect(new Set(accents).size).toBe(products.length);
+    expect(new Set(backgrounds).size).toBe(modes.length);
   });
 });
 
 describe('the links page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('link.html', theme);
     const inline = getComputedStyle(element('p .ds-link:not([data-tone])'));
     expect(inline.color).toBe(probe('color', 'var(--ds-color-accent-text)'));
@@ -128,7 +116,7 @@ describe('the links page', () => {
 });
 
 describe('the fields page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('field.html', theme);
     expect(getComputedStyle(element('#email')).borderTopColor).toBe(
       probe('border-top-color', 'var(--ds-color-border-field)')
@@ -146,7 +134,7 @@ describe('the fields page', () => {
 });
 
 describe('the choices page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('choice.html', theme);
     const accent = probe('background-color', 'var(--ds-color-accent-solid)');
     expect(getComputedStyle(element('#newsletter')).backgroundColor).toBe(accent);
@@ -169,7 +157,7 @@ describe('the choices page', () => {
 });
 
 describe('the form page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('form.html', theme);
     expect(getComputedStyle(element('#summary')).borderTopColor).toBe(
       probe('border-top-color', 'var(--ds-color-danger-border-strong)')
@@ -182,7 +170,7 @@ describe('the form page', () => {
 });
 
 describe('the display page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('display.html', theme);
     expect(getComputedStyle(element('#card')).backgroundColor).toBe(
       probe('background-color', 'var(--ds-color-bg-raised)')
@@ -215,7 +203,7 @@ describe('the icons page', () => {
 });
 
 describe('the layout page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('layout.html', theme);
     expect(getComputedStyle(element('#prose')).maxWidth).toBe(
       probe('max-width', 'var(--ds-size-measure)')
@@ -233,7 +221,7 @@ describe('the layout page', () => {
 });
 
 describe('the switchers page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('switchers.html', theme);
     expect(getComputedStyle(element('#pressed')).backgroundColor).toBe(
       probe('background-color', 'var(--ds-color-bg-raised)')
@@ -247,7 +235,7 @@ describe('the switchers page', () => {
 });
 
 describe('the feedback page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('feedback.html', theme);
     expect(getComputedStyle(element('#info')).backgroundColor).toBe(
       probe('background-color', 'var(--ds-color-info-soft)')
@@ -260,7 +248,7 @@ describe('the feedback page', () => {
 });
 
 describe('the navigation page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('navigation.html', theme);
     expect(getComputedStyle(element('#page-2')).backgroundColor).toBe(
       probe('background-color', 'var(--ds-color-accent-solid)')
@@ -272,7 +260,7 @@ describe('the navigation page', () => {
 });
 
 describe('the data page', () => {
-  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+  it.each(themes)('is styled by the bundle alone for $mode mode', (theme) => {
     unmount = mount('data.html', theme);
     expect(getComputedStyle(element('#term')).color).toBe(
       probe('color', 'var(--ds-color-fg-muted)')

@@ -26,8 +26,8 @@ describe('tokenIds', () => {
 describe('ownedTokens', () => {
   const owned = ownedTokens(resolver);
 
-  it('finds the four modifiers of the resolver', () => {
-    expect(Object.keys(owned).sort()).toEqual(['contrast', 'density', 'mode', 'product']);
+  it('finds the one modifier of the resolver', () => {
+    expect(Object.keys(owned)).toEqual(['mode']);
   });
 
   it('gives every token to one modifier only', () => {
@@ -35,17 +35,12 @@ describe('ownedTokens', () => {
     expect(new Set(all).size).toBe(all.length);
   });
 
-  it('gives each modifier the tokens its context files declare', () => {
-    expect(owned.product).toEqual(
-      expect.arrayContaining([
-        'color.palette.accent.light.9',
-        'radius.button',
-        'font.display.stretch',
-      ])
+  it('gives the mode the tokens its context files declare and nothing from the base', () => {
+    expect(owned.mode).toEqual(
+      expect.arrayContaining(['color.scale.neutral.12', 'color.bg.page', 'color.focus.ring'])
     );
-    expect(owned.mode).toEqual(expect.arrayContaining(['color.scale.neutral.12', 'color.bg.page']));
-    expect(owned.density).toEqual(expect.arrayContaining(['size.control.md', 'font.size.control']));
-    expect(owned.contrast).toEqual(expect.arrayContaining(['color.fg.muted', 'focus.width']));
+    expect(owned.mode).not.toContain('radius.button');
+    expect(owned.mode).not.toContain('color.fg.muted');
   });
 
   it('reads contexts written inline in the resolver as well as referenced files', () => {

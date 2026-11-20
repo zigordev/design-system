@@ -5,7 +5,6 @@ export {
   EmailHeading,
   EmailLayout,
   type EmailLayoutProps,
-  type EmailProduct,
   EmailText,
 } from './email.tsx';
-export { themes } from './generated/themes.ts';
+export { theme } from './generated/theme.ts';

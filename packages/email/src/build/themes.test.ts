@@ -1,23 +1,23 @@
 import { readFileSync } from 'node:fs';
-import { products } from '@zigordev/tokens';
 import { describe, expect, it } from 'vitest';
 import { tokensCss } from '../../scripts/tokens.ts';
-import { emailTheme, hex, parseBlocks, pixels, renderThemes, resolve } from './themes.ts';
+import { emailTheme, hex, parseBlocks, pixels, renderTheme, resolve } from './themes.ts';
 
 const sample = `@layer ds.tokens {
   :root { --ds-a: var(--ds-b); --ds-b: 1rem; }
-  :root[data-product="gpool"] { --ds-b: 2px; }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-mode="light"]) { --ds-b: 9px; }
+  :root[data-mode="light"] { --ds-b: 2px; }
+  @media (prefers-color-scheme: light) {
+    :root[data-mode="system"] { --ds-b: 9px; }
   }
 }`;
 
 describe('parseBlocks', () => {
-  it('reads the declarations of each root block and skips nested media rules', () => {
+  it('reads the declarations of every root block, including those inside media queries', () => {
     const blocks = parseBlocks(sample);
     expect(blocks.get(':root')).toEqual({ '--ds-a': 'var(--ds-b)', '--ds-b': '1rem' });
-    expect(blocks.get(':root[data-product="gpool"]')).toEqual({ '--ds-b': '2px' });
-    expect(blocks.size).toBe(2);
+    expect(blocks.get(':root[data-mode="light"]')).toEqual({ '--ds-b': '2px' });
+    expect(blocks.get(':root[data-mode="system"]')).toEqual({ '--ds-b': '9px' });
+    expect(blocks.size).toBe(3);
   });
 });
 
@@ -41,21 +41,24 @@ describe('hex and pixels', () => {
   });
 });
 
+function lightness(colour: string): number {
+  return Number.parseInt(colour.slice(1, 3), 16);
+}
+
 describe('emailTheme', () => {
-  it('gives each product its accent and radius from the tokens', () => {
-    const cv = emailTheme(tokensCss, 'cv');
-    const gpool = emailTheme(tokensCss, 'gpool');
-    expect(cv.colors.accent).toMatch(/^#[0-9a-f]{6}$/);
-    expect(gpool.colors.accent).not.toBe(cv.colors.accent);
-    expect(cv.radius.button).toBe('4px');
-    expect(gpool.radius.button).toBe('9999px');
-    expect(cv.width).toBe('640px');
+  it('takes the light mode of the brand from the tokens', () => {
+    const theme = emailTheme(tokensCss);
+    expect(theme.colors.accent).toMatch(/^#[0-9a-f]{6}$/);
+    expect(lightness(theme.colors.page)).toBeGreaterThan(lightness(theme.colors.text));
+    expect(theme.radius.button).toBe('4px');
+    expect(theme.radius.card).toBe('6px');
+    expect(theme.width).toBe('640px');
   });
 });
 
-describe('the generated themes', () => {
-  it('match the built tokens, so run pnpm --filter @zigordev/email run generate', () => {
-    const generated = readFileSync(new URL('../generated/themes.ts', import.meta.url), 'utf8');
-    expect(generated).toBe(renderThemes(tokensCss, products));
+describe('the generated theme', () => {
+  it('matches the built tokens, so run pnpm --filter @zigordev/email run generate', () => {
+    const generated = readFileSync(new URL('../generated/theme.ts', import.meta.url), 'utf8');
+    expect(generated).toBe(renderTheme(tokensCss));
   });
 });

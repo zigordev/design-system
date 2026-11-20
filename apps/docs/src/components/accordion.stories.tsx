@@ -11,12 +11,12 @@ const meta = {
       {
         value: 'why',
         title: 'Why one design system?',
-        content: 'Every product shares the tested parts.',
+        content: 'Every app shares the tested parts.',
       },
       {
         value: 'how',
-        title: 'How are products different?',
-        content: 'Accent, neutral tint, radius and density.',
+        title: 'How do the apps differ?',
+        content: 'They compose the same components in their own way.',
       },
     ],
   },
@@ -34,7 +34,7 @@ export const Expand: Story = {
     await userEvent.click(trigger);
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
     await waitFor(() =>
-      expect(canvas.getByText('Every product shares the tested parts.')).toBeVisible()
+      expect(canvas.getByText('Every app shares the tested parts.')).toBeVisible()
     );
   },
 };
@@ -44,7 +44,7 @@ export const Keyboard: Story = {
     await userEvent.tab();
     await expect(canvas.getByRole('button', { name: 'Why one design system?' })).toHaveFocus();
     await userEvent.tab();
-    const second = canvas.getByRole('button', { name: 'How are products different?' });
+    const second = canvas.getByRole('button', { name: 'How do the apps differ?' });
     await expect(second).toHaveFocus();
     await userEvent.keyboard('{Enter}');
     await expect(second).toHaveAttribute('aria-expanded', 'true');

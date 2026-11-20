@@ -2,11 +2,30 @@
   "color": {
     "$type": "color",
     "bg": {
-      "page": { "$value": "{color.scale.neutral.2}" },
-      "raised": { "$value": "{color.scale.neutral.1}" },
-      "sunken": { "$value": "{color.scale.neutral.3}" },
-      "field": { "$value": "{color.scale.neutral.1}" },
-      "scrim": { "$value": { "colorSpace": "oklch", "components": [0.2, 0, 0], "alpha": 0.45 } }
+      "page": {
+        "$value": "{color.scale.neutral.2}"
+      },
+      "raised": {
+        "$value": "{color.scale.neutral.1}"
+      },
+      "sunken": {
+        "$value": "{color.scale.neutral.3}"
+      },
+      "field": {
+        "$value": "{color.scale.neutral.1}"
+      },
+      "scrim": {
+        "$value": {
+          "colorSpace": "oklch",
+          "components": [0.2, 0, 0],
+          "alpha": 0.45
+        }
+      }
+    },
+    "focus": {
+      "ring": {
+        "$value": "{color.scale.accent.11}"
+      }
     }
   },
   "shadow": {
@@ -14,36 +33,100 @@
     "raised": {
       "$value": [
         {
-          "color": { "colorSpace": "oklch", "components": [0.2, 0, 0], "alpha": 0.08 },
-          "offsetX": { "value": 0, "unit": "px" },
-          "offsetY": { "value": 1, "unit": "px" },
-          "blur": { "value": 2, "unit": "px" },
-          "spread": { "value": 0, "unit": "px" }
+          "color": {
+            "colorSpace": "oklch",
+            "components": [0.2, 0, 0],
+            "alpha": 0.08
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
         },
         {
-          "color": { "colorSpace": "oklch", "components": [0.2, 0, 0], "alpha": 0.06 },
-          "offsetX": { "value": 0, "unit": "px" },
-          "offsetY": { "value": 4, "unit": "px" },
-          "blur": { "value": 12, "unit": "px" },
-          "spread": { "value": 0, "unit": "px" }
+          "color": {
+            "colorSpace": "oklch",
+            "components": [0.2, 0, 0],
+            "alpha": 0.06
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 12,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
         }
       ]
     },
     "overlay": {
       "$value": [
         {
-          "color": { "colorSpace": "oklch", "components": [0.2, 0, 0], "alpha": 0.08 },
-          "offsetX": { "value": 0, "unit": "px" },
-          "offsetY": { "value": 2, "unit": "px" },
-          "blur": { "value": 4, "unit": "px" },
-          "spread": { "value": 0, "unit": "px" }
+          "color": {
+            "colorSpace": "oklch",
+            "components": [0.2, 0, 0],
+            "alpha": 0.08
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 2,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 4,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
         },
         {
-          "color": { "colorSpace": "oklch", "components": [0.2, 0, 0], "alpha": 0.12 },
-          "offsetX": { "value": 0, "unit": "px" },
-          "offsetY": { "value": 12, "unit": "px" },
-          "blur": { "value": 28, "unit": "px" },
-          "spread": { "value": 0, "unit": "px" }
+          "color": {
+            "colorSpace": "oklch",
+            "components": [0.2, 0, 0],
+            "alpha": 0.12
+          },
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 12,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 28,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          }
         }
       ]
     }

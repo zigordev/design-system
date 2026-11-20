@@ -56,14 +56,11 @@ export interface EmailTheme {
   width: string;
 }
 
-export function emailTheme(css: string, product: string): EmailTheme {
+export function emailTheme(css: string): EmailTheme {
   const blocks = parseBlocks(css);
   const declarations: Declarations = {
     ...blocks.get(':root'),
-    ...blocks.get(`:root[data-product="${product}"]`),
     ...blocks.get(':root[data-mode="light"]'),
-    ...blocks.get(':root[data-contrast="standard"]'),
-    ...blocks.get(':root[data-density="comfortable"]'),
   };
   const colour = (name: string) => hex(resolve(`--ds-color-${name}`, declarations));
   const length = (name: string) => pixels(resolve(`--ds-${name}`, declarations));
@@ -90,14 +87,11 @@ export function emailTheme(css: string, product: string): EmailTheme {
   };
 }
 
-export function renderThemes(css: string, products: readonly string[]): string {
-  const entries = Object.fromEntries(
-    products.map((product) => [product, emailTheme(css, product)])
-  );
+export function renderTheme(css: string): string {
   return [
     "import type { EmailTheme } from '../build/themes.ts';",
     '',
-    `export const themes = ${JSON.stringify(entries, null, 2)} satisfies Record<string, EmailTheme>;`,
+    `export const theme = ${JSON.stringify(emailTheme(css), null, 2)} satisfies EmailTheme;`,
     '',
   ].join('\n');
 }

@@ -3,14 +3,30 @@
     "$type": "color",
     "chart": {
       "$description": "Series colours for charts, product-independent and readable on the page; highlight is the product accent.",
-      "1": { "$value": "{color.info.text}" },
-      "2": { "$value": "{color.warning.text}" },
-      "3": { "$value": "{color.success.text}" },
-      "4": { "$value": "{color.danger.text}" },
-      "5": { "$value": "{color.fg.muted}" },
-      "highlight": { "$value": "{color.accent.text}" },
-      "grid": { "$value": "{color.border.subtle}" },
-      "axis": { "$value": "{color.fg.muted}" }
+      "1": {
+        "$value": "{color.info.text}"
+      },
+      "2": {
+        "$value": "{color.warning.text}"
+      },
+      "3": {
+        "$value": "{color.success.text}"
+      },
+      "4": {
+        "$value": "{color.danger.text}"
+      },
+      "5": {
+        "$value": "{color.fg.muted}"
+      },
+      "highlight": {
+        "$value": "{color.accent.text}"
+      },
+      "grid": {
+        "$value": "{color.border.subtle}"
+      },
+      "axis": {
+        "$value": "{color.fg.muted}"
+      }
     },
     "fg": {
       "default": {
@@ -21,6 +37,9 @@
       },
       "disabled": {
         "$value": "{color.scale.neutral.9}"
+      },
+      "muted": {
+        "$value": "{color.scale.neutral.11}"
       }
     },
     "bg": {
@@ -69,23 +88,12 @@
       },
       "on": {
         "$value": "{color.scale.accent.on}"
-      }
-    },
-    "second": {
-      "solid": {
-        "$value": "{color.scale.second.9}"
       },
-      "solid-hover": {
-        "$value": "{color.scale.second.10}"
+      "text": {
+        "$value": "{color.scale.accent.11}"
       },
-      "soft": {
-        "$value": "{color.scale.second.3}"
-      },
-      "soft-hover": {
-        "$value": "{color.scale.second.4}"
-      },
-      "on": {
-        "$value": "{color.scale.second.on}"
+      "border-strong": {
+        "$value": "{color.scale.accent.8}"
       }
     },
     "danger": {
@@ -106,6 +114,12 @@
       },
       "on": {
         "$value": "{color.scale.danger.on}"
+      },
+      "text": {
+        "$value": "{color.scale.danger.11}"
+      },
+      "border-strong": {
+        "$value": "{color.scale.danger.8}"
       }
     },
     "success": {
@@ -126,6 +140,12 @@
       },
       "on": {
         "$value": "{color.scale.success.on}"
+      },
+      "text": {
+        "$value": "{color.scale.success.11}"
+      },
+      "border-strong": {
+        "$value": "{color.scale.success.8}"
       }
     },
     "warning": {
@@ -146,6 +166,12 @@
       },
       "on": {
         "$value": "{color.scale.warning.on}"
+      },
+      "text": {
+        "$value": "{color.scale.warning.11}"
+      },
+      "border-strong": {
+        "$value": "{color.scale.warning.8}"
       }
     },
     "info": {
@@ -166,6 +192,32 @@
       },
       "on": {
         "$value": "{color.scale.info.on}"
+      },
+      "text": {
+        "$value": "{color.scale.info.11}"
+      },
+      "border-strong": {
+        "$value": "{color.scale.info.8}"
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.scale.neutral.6}"
+      },
+      "default": {
+        "$value": "{color.scale.neutral.7}"
+      },
+      "field": {
+        "$value": "{color.scale.neutral.8}"
+      }
+    }
+  },
+  "focus": {
+    "width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
       }
     }
   }

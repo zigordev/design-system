@@ -60,9 +60,10 @@ The tests need the packages built first, which `pnpm run check` does. CI also li
 npx --yes markdownlint-cli2 "**/*.md"
 ```
 
-## Change a product's colours
+## Change the brand colours
 
-1. Change its seed, or add a hand override for one step, in `packages/tokens/src/palette/seeds.ts`.
+1. Change a seed, or add a hand override for one step, in `packages/tokens/src/palette/seeds.ts`. ADR 0014 lists the accents already compared, with their seeds.
 2. Run `pnpm --filter @zigordev/tokens run generate`. It rewrites the files in `packages/tokens/src/tokens/generated/`, which are never edited by hand.
-3. Open Foundations, Colour in Storybook to see the scales and their contrast against the page in each product and mode.
-4. Run `pnpm test`. The theme tests fail if any text, border or focus pairing drops below WCAG 2.2 AA, or below 7:1 for text in high contrast.
+3. Run `pnpm --filter @zigordev/email run generate`, so emails follow the new colours.
+4. Open Foundations, Colour in Storybook to see the scales and their contrast against the page in each mode.
+5. Run `pnpm test`. The theme tests fail if any text, border, focus or chart pairing drops below WCAG 2.2 AA.

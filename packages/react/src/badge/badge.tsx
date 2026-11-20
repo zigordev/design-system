@@ -1,7 +1,7 @@
 import type { HTMLAttributes } from 'react';
 import { classNames } from '../internal/class-names.ts';
 
-export type BadgeTone = 'neutral' | 'accent' | 'second' | 'success' | 'warning' | 'danger' | 'info';
+export type BadgeTone = 'neutral' | 'accent' | 'success' | 'warning' | 'danger' | 'info';
 export type BadgeVariant = 'soft' | 'solid' | 'outline';
 export type BadgeSize = 'sm' | 'md';
 

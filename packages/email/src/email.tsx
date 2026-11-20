@@ -1,4 +1,4 @@
-import { createContext, type ReactNode, useContext } from 'react';
+import type { ReactNode } from 'react';
 import {
   Body,
   Button,
@@ -11,73 +11,53 @@ import {
   Section,
   Text,
 } from 'react-email';
-import type { EmailTheme } from './build/themes.ts';
-import { themes } from './generated/themes.ts';
-
-export type EmailProduct = keyof typeof themes;
-
-const ThemeContext = createContext<EmailTheme>(themes.cv);
-
-function useTheme(): EmailTheme {
-  return useContext(ThemeContext);
-}
+import { theme } from './generated/theme.ts';
 
 export interface EmailLayoutProps {
-  product?: EmailProduct;
   lang?: string;
   preview?: string;
   footer?: ReactNode;
   children: ReactNode;
 }
 
-export function EmailLayout({
-  product = 'cv',
-  lang = 'en',
-  preview,
-  footer,
-  children,
-}: EmailLayoutProps) {
-  const theme = themes[product];
+export function EmailLayout({ lang = 'en', preview, footer, children }: EmailLayoutProps) {
   return (
     <Html lang={lang} dir="ltr">
       <Head />
       {preview ? <Preview>{preview}</Preview> : null}
-      <ThemeContext.Provider value={theme}>
-        <Body
+      <Body
+        style={{
+          margin: 0,
+          backgroundColor: theme.colors.page,
+          color: theme.colors.text,
+          fontFamily: theme.font,
+        }}
+      >
+        <Container
           style={{
-            margin: 0,
-            backgroundColor: theme.colors.page,
-            color: theme.colors.text,
-            fontFamily: theme.font,
+            maxWidth: theme.width,
+            margin: '0 auto',
+            padding: `${theme.space.lg} ${theme.space.md}`,
           }}
         >
-          <Container
+          <Section
             style={{
-              maxWidth: theme.width,
-              margin: '0 auto',
-              padding: `${theme.space.lg} ${theme.space.md}`,
+              backgroundColor: theme.colors.raised,
+              border: `1px solid ${theme.colors.border}`,
+              borderRadius: theme.radius.card,
+              padding: theme.space.lg,
             }}
           >
-            <Section
-              style={{
-                backgroundColor: theme.colors.raised,
-                border: `1px solid ${theme.colors.border}`,
-                borderRadius: theme.radius.card,
-                padding: theme.space.lg,
-              }}
-            >
-              {children}
-            </Section>
-            {footer}
-          </Container>
-        </Body>
-      </ThemeContext.Provider>
+            {children}
+          </Section>
+          {footer}
+        </Container>
+      </Body>
     </Html>
   );
 }
 
 export function EmailHeading({ children }: { children: ReactNode }) {
-  const theme = useTheme();
   return (
     <Heading
       as="h1"
@@ -100,7 +80,6 @@ export function EmailText({
   children: ReactNode;
   tone?: 'default' | 'muted';
 }) {
-  const theme = useTheme();
   return (
     <Text
       style={{
@@ -116,7 +95,6 @@ export function EmailText({
 }
 
 export function EmailButton({ href, children }: { href: string; children: ReactNode }) {
-  const theme = useTheme();
   return (
     <Button
       href={href}
@@ -137,7 +115,6 @@ export function EmailButton({ href, children }: { href: string; children: ReactN
 }
 
 export function EmailFooter({ children }: { children: ReactNode }) {
-  const theme = useTheme();
   return (
     <>
       <Hr

@@ -21,7 +21,7 @@ const meta = {
         </li>
       </ul>
       <blockquote>
-        <p>Every pairing meets WCAG 2.2 AA in every product and mode.</p>
+        <p>Every pairing meets WCAG 2.2 AA in both modes.</p>
       </blockquote>
       <pre>
         <code>pnpm add @zigordev/react @zigordev/css</code>

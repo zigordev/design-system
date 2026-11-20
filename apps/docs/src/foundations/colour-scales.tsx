@@ -2,7 +2,7 @@ import Color from 'colorjs.io';
 import { useLayoutEffect, useRef, useState } from 'react';
 import styles from '../docs.module.css';
 
-const ramps = ['accent', 'second', 'neutral', 'danger', 'success', 'warning', 'info'] as const;
+const ramps = ['accent', 'neutral', 'danger', 'success', 'warning', 'info'] as const;
 const steps = Array.from({ length: 12 }, (_, index) => index + 1);
 
 function contrastAgainstPage(element: HTMLElement): string {
