@@ -1,6 +1,17 @@
 {
   "color": {
     "$type": "color",
+    "chart": {
+      "$description": "Series colours for charts, product-independent and readable on the page; highlight is the product accent.",
+      "1": { "$value": "{color.info.text}" },
+      "2": { "$value": "{color.warning.text}" },
+      "3": { "$value": "{color.success.text}" },
+      "4": { "$value": "{color.danger.text}" },
+      "5": { "$value": "{color.fg.muted}" },
+      "highlight": { "$value": "{color.accent.text}" },
+      "grid": { "$value": "{color.border.subtle}" },
+      "axis": { "$value": "{color.fg.muted}" }
+    },
     "fg": {
       "default": {
         "$value": "{color.scale.neutral.12}"

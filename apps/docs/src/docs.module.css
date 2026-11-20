@@ -135,3 +135,14 @@
   background-color: var(--ds-color-bg-sunken);
   font-size: var(--ds-font-size-sm);
 }
+
+.scrollBox {
+  block-size: 10rem;
+  inline-size: 16rem;
+}
+
+.emailFrame {
+  inline-size: min(100%, 44rem);
+  block-size: 36rem;
+  border: 0;
+}

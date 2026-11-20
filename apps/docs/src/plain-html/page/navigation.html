@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Breadcrumbs and pagination from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Breadcrumbs and pagination from CSS alone</h1>
+      <nav class="ds-breadcrumbs" aria-label="Breadcrumb">
+        <ol class="ds-breadcrumbs__list" role="list">
+          <li class="ds-breadcrumbs__item"><a class="ds-link" data-tone="neutral" data-underline="hover" href="#home">Home</a></li>
+          <li class="ds-breadcrumbs__item"><span id="current" aria-current="page">Case studies</span></li>
+        </ol>
+      </nav>
+      <nav class="ds-pagination" aria-label="Pages">
+        <ul class="ds-pagination__list">
+          <li><a class="ds-pagination__link" href="#page-1" aria-label="Page 1">1</a></li>
+          <li><a class="ds-pagination__link" id="page-2" href="#page-2" aria-label="Page 2" aria-current="page">2</a></li>
+          <li><a class="ds-pagination__link" href="#page-3" aria-label="Page 3">3</a></li>
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>

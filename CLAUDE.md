@@ -8,6 +8,7 @@ One design system for every zigordev app, with a skin per product. The estate ru
 - `packages/css`: `@zigordev/css`. `src/index.css` sets the layer order and imports the tokens, `reset.css`, `base.css` and one file per component in `src/components/`. `scripts/build.ts` bundles them with Lightning CSS.
 - `packages/react`: `@zigordev/react`. One folder per component in `src/`, built on Base UI.
 - `packages/icons`: `@zigordev/icons`. The curated Lucide names in `src/names.ts`, `renderIcon`, and the generated components and sprite in `src/generated/`.
+- `packages/email`: `@zigordev/email`. React Email components that inline each product's light theme from `src/generated/themes.ts`.
 - `apps/docs`: Storybook. Stories and MDX in `src/`, the theme toolbar in `.storybook/preview.tsx`, the test projects in `vitest.projects.ts`.
 
 ## Commands
@@ -17,6 +18,7 @@ One design system for every zigordev app, with a skin per product. The estate ru
 - `pnpm dev` starts Storybook at <http://localhost:6006>.
 - `pnpm --filter @zigordev/tokens run generate` regenerates the colour scales after a seed changes.
 - `pnpm --filter @zigordev/icons run generate` regenerates the icons after `src/names.ts` or `lucide-static` changes.
+- `pnpm --filter @zigordev/email run generate` regenerates the email themes after the tokens change.
 
 ## Rules
 
@@ -27,6 +29,6 @@ One design system for every zigordev app, with a skin per product. The estate ru
 - A token belongs to the base set or to exactly one modifier, so the resolver stays orthogonal. The theme tests check every text, border and focus pairing in every product, mode and contrast.
 - Every component has stories with play functions for its keyboard and state behaviour. The stories run with axe in every theme in Chromium and in the default theme in Firefox and WebKit.
 - Components hold no copy: labels are props. Interactive parts use Base UI; links stay real links.
-- The four packages are linked and always release together.
+- The five packages are linked and always release together.
 - Never edit `packages/icons/src/generated/`. Change `src/names.ts` and regenerate; apps never draw or import icons from elsewhere.
 - A new decision gets a record from `docs/adr/template.md` with the next number, added to the index in the same pull request.

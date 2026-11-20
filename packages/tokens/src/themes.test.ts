@@ -105,4 +105,16 @@ describe.each(themes)('$product, $mode, $contrast contrast', (theme) => {
       .filter(({ ratio, minimum }) => ratio < minimum);
     expect(failures).toEqual([]);
   });
+
+  it('gives every chart series 3:1 against the page', () => {
+    const tokens = resolver.apply(theme);
+    const series = ['1', '2', '3', '4', '5', 'highlight'].map((step) => `color.chart.${step}`);
+    const low = series
+      .map((id) => ({
+        id,
+        ratio: contrast(colourOf(tokens, id), colourOf(tokens, 'color.bg.page')),
+      }))
+      .filter(({ ratio }) => ratio < 3);
+    expect(low).toEqual([]);
+  });
 });

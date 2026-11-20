@@ -1,0 +1,114 @@
+@layer ds.components {
+  .ds-table-wrap {
+    overflow-x: auto;
+    border: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+    border-radius: var(--ds-radius-card);
+  }
+
+  .ds-table-wrap:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    color: var(--ds-color-fg-default);
+    font-size: var(--ds-font-size-control);
+  }
+
+  .ds-table caption {
+    padding: var(--ds-space-3);
+    color: var(--ds-color-fg-muted);
+    font-size: var(--ds-font-size-sm);
+    text-align: start;
+  }
+
+  .ds-table :is(th, td) {
+    padding-block: var(--ds-space-control-gap);
+    padding-inline: var(--ds-space-control-sm);
+    border-block-end: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+    text-align: start;
+    vertical-align: middle;
+  }
+
+  .ds-table thead th {
+    position: sticky;
+    inset-block-start: 0;
+    background-color: var(--ds-color-bg-sunken);
+    color: var(--ds-color-fg-muted);
+    font-size: var(--ds-font-size-sm);
+    font-weight: var(--ds-font-weight-semibold);
+  }
+
+  .ds-table tbody tr:last-child :is(th, td) {
+    border-block-end: 0;
+  }
+
+  .ds-table tbody tr:hover {
+    background-color: var(--ds-color-bg-hover);
+  }
+
+  .ds-table tbody tr[aria-selected="true"] {
+    background-color: var(--ds-color-accent-soft);
+  }
+
+  .ds-table :is(th, td)[data-numeric] {
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+  }
+
+  .ds-table__sort {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-1);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--ds-radius-xs);
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .ds-table__sort:hover {
+    color: var(--ds-color-fg-default);
+  }
+
+  .ds-table__sort:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-table__sort::after {
+    content: "";
+    inline-size: var(--ds-size-icon-sm);
+    block-size: var(--ds-size-icon-sm);
+    background-color: currentColor;
+    mask:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 10l4-4 4 4'/%3E%3C/svg%3E")
+      center / contain no-repeat;
+    opacity: 0;
+  }
+
+  [aria-sort="ascending"] > .ds-table__sort::after {
+    opacity: 1;
+  }
+
+  [aria-sort="descending"] > .ds-table__sort::after {
+    opacity: 1;
+    rotate: 180deg;
+  }
+
+  @media (forced-colors: active) {
+    .ds-table :is(th, td) {
+      border-color: CanvasText;
+    }
+
+    .ds-table__sort::after {
+      forced-color-adjust: none;
+      background-color: CanvasText;
+    }
+  }
+}

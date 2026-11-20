@@ -6,7 +6,8 @@
     "includes": [
       "!**/CHANGELOG.md",
       "!packages/tokens/src/tokens/generated",
-      "!packages/icons/src/generated"
+      "!packages/icons/src/generated",
+      "!packages/email/src/generated"
     ]
   },
   "overrides": [

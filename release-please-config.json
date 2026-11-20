@@ -11,13 +11,14 @@
     {
       "type": "linked-versions",
       "groupName": "design-system",
-      "components": ["tokens", "css", "react", "icons"]
+      "components": ["tokens", "css", "react", "icons", "email"]
     }
   ],
   "packages": {
     "packages/tokens": { "component": "tokens" },
     "packages/css": { "component": "css" },
     "packages/react": { "component": "react" },
-    "packages/icons": { "component": "icons" }
+    "packages/icons": { "component": "icons" },
+    "packages/email": { "component": "email" }
   }
 }

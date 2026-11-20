@@ -36,6 +36,22 @@ describe('checkCss', () => {
     ]);
   });
 
+  it('accepts the CSS variables Base UI sets on its parts, and no other foreign variable', () => {
+    expect(
+      messages(
+        'transform-origin: var(--transform-origin); min-inline-size: var(--anchor-width); block-size: var(--accordion-panel-height);'
+      )
+    ).toEqual([]);
+    expect(messages('color: var(--brand-blue);')).toEqual([
+      '--brand-blue in color is neither a design token, a local --_ property nor a Base UI variable',
+    ]);
+  });
+
+  it('accepts the full viewport, which is not a design value, and no other viewport length', () => {
+    expect(messages('min-block-size: 100dvh; inline-size: 100vw;')).toEqual([]);
+    expect(messages('block-size: 50dvh;')).toEqual(['raw length 50dvh in block-size; use a token']);
+  });
+
   it('rejects hex, functional and named colours', () => {
     expect(messages('color: #fff; background: oklch(50% 0.1 250); border-color: red;')).toEqual([
       'raw colour in color; use a colour token',
@@ -54,7 +70,7 @@ describe('checkCss', () => {
 
   it('rejects variables that are not tokens and primitive colour tokens', () => {
     expect(messages('color: var(--brand); background: var(--ds-color-scale-accent-9);')).toEqual([
-      '--brand in color is neither a design token nor a local --_ property',
+      '--brand in color is neither a design token, a local --_ property nor a Base UI variable',
       '--ds-color-scale-accent-9 in background is a primitive; use a role token',
     ]);
   });

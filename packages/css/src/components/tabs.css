@@ -1,0 +1,82 @@
+@layer ds.components {
+  .ds-tabs {
+    display: grid;
+    gap: var(--ds-space-4);
+    min-inline-size: 0;
+  }
+
+  .ds-tabs__list {
+    position: relative;
+    display: flex;
+    gap: var(--ds-space-1);
+    overflow-x: auto;
+    border-block-end: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+  }
+
+  .ds-tabs__tab {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: var(--ds-space-control-gap);
+    min-block-size: var(--ds-size-control-md);
+    margin: 0;
+    padding-block: 0;
+    padding-inline: var(--ds-space-control-sm);
+    border: 0;
+    border-radius: var(--ds-radius-button) var(--ds-radius-button) 0 0;
+    background-color: transparent;
+    color: var(--ds-color-fg-muted);
+    font-family: var(--ds-font-family-sans);
+    font-size: var(--ds-font-size-control);
+    font-weight: var(--ds-font-weight-medium);
+    white-space: nowrap;
+    cursor: pointer;
+    transition-property: color, background-color;
+    transition-duration: var(--ds-duration-fast);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-tabs__tab:hover {
+    background-color: var(--ds-color-bg-hover);
+    color: var(--ds-color-fg-default);
+  }
+
+  .ds-tabs__tab[data-active] {
+    color: var(--ds-color-fg-default);
+  }
+
+  .ds-tabs__tab:focus-visible,
+  .ds-tabs__panel:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: calc(var(--ds-focus-offset) * -1);
+  }
+
+  .ds-tabs__tab:is(:disabled, [data-disabled]) {
+    color: var(--ds-color-fg-disabled);
+    cursor: not-allowed;
+  }
+
+  .ds-tabs__indicator {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-start: var(--active-tab-left);
+    inline-size: var(--active-tab-width);
+    block-size: var(--ds-border-width-thick);
+    background-color: var(--ds-color-accent-solid);
+    transition-property: inset-inline-start, inline-size;
+    transition-duration: var(--ds-duration-base);
+    transition-timing-function: var(--ds-easing-emphasized);
+  }
+
+  .ds-tabs__panel {
+    min-inline-size: 0;
+    border-radius: var(--ds-radius-sm);
+  }
+
+  @media (forced-colors: active) {
+    .ds-tabs__indicator {
+      forced-color-adjust: none;
+      background-color: Highlight;
+    }
+  }
+}

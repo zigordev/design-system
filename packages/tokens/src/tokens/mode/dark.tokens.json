@@ -5,7 +5,8 @@
       "page": { "$value": "{color.scale.neutral.1}" },
       "raised": { "$value": "{color.scale.neutral.2}" },
       "sunken": { "$value": "{color.scale.neutral.3}" },
-      "field": { "$value": "{color.scale.neutral.3}" }
+      "field": { "$value": "{color.scale.neutral.3}" },
+      "scrim": { "$value": { "colorSpace": "oklch", "components": [0, 0, 0], "alpha": 0.6 } }
     }
   },
   "shadow": {

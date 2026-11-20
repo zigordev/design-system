@@ -245,3 +245,44 @@ describe('the switchers page', () => {
     expect(getComputedStyle(element('#current')).textDecorationLine).toBe('underline');
   });
 });
+
+describe('the feedback page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('feedback.html', theme);
+    expect(getComputedStyle(element('#info')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-info-soft)')
+    );
+    expect(getComputedStyle(element('#danger')).borderTopColor).toBe(
+      probe('border-top-color', 'var(--ds-color-danger-border)')
+    );
+    expect(getComputedStyle(element('#empty')).textAlign).toBe('center');
+  });
+});
+
+describe('the navigation page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('navigation.html', theme);
+    expect(getComputedStyle(element('#page-2')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-accent-solid)')
+    );
+    expect(getComputedStyle(element('#current')).color).toBe(
+      probe('color', 'var(--ds-color-fg-default)')
+    );
+  });
+});
+
+describe('the data page', () => {
+  it.each(themes)('is styled by the bundle alone for $product, $mode, $contrast', (theme) => {
+    unmount = mount('data.html', theme);
+    expect(getComputedStyle(element('#term')).color).toBe(
+      probe('color', 'var(--ds-color-fg-muted)')
+    );
+    expect(getComputedStyle(element('#head')).backgroundColor).toBe(
+      probe('background-color', 'var(--ds-color-bg-sunken)')
+    );
+    expect(getComputedStyle(element('#points')).textAlign).toBe('end');
+    expect(getComputedStyle(element('#kbd')).fontFamily).toBe(
+      probe('font-family', 'var(--ds-font-family-mono)')
+    );
+  });
+});

@@ -14,6 +14,7 @@ The legacy design system copied CSS into apps, injected styles from JavaScript, 
 | [`@zigordev/css`](packages/css/README.md)       | The tokens, a small reset, base styles and every component style, in cascade layers, bundled into one file                                                             |
 | [`@zigordev/react`](packages/react/README.md)   | React components on Base UI, styled by `@zigordev/css`                                                                                                                 |
 | [`@zigordev/icons`](packages/icons/README.md)   | The curated Lucide icon set, as React components and an SVG sprite                                                                                                     |
+| [`@zigordev/email`](packages/email/README.md)   | Email components on React Email that inline each product's theme from the tokens                                                                                       |
 
 `apps/docs` is the Storybook site: the component catalogue, the foundations pages and the test harness. It is not published; `pnpm dev` runs it locally.
 

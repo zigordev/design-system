@@ -1,0 +1,79 @@
+@layer ds.components {
+  .ds-accordion {
+    display: grid;
+    border-block: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+  }
+
+  .ds-accordion__item + .ds-accordion__item {
+    border-block-start: var(--ds-border-width-hairline) solid var(--ds-color-border-subtle);
+  }
+
+  .ds-accordion__header {
+    margin: 0;
+    font-size: var(--ds-font-size-md);
+    font-weight: var(--ds-font-weight-semibold);
+  }
+
+  .ds-accordion__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-3);
+    inline-size: 100%;
+    min-block-size: var(--ds-size-control-lg);
+    margin: 0;
+    padding-block: var(--ds-space-2);
+    padding-inline: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--ds-color-fg-default);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .ds-accordion__trigger:hover {
+    color: var(--ds-color-accent-text);
+  }
+
+  .ds-accordion__trigger:focus-visible {
+    outline: var(--ds-focus-width) solid var(--ds-color-focus-ring);
+    outline-offset: var(--ds-focus-offset);
+  }
+
+  .ds-accordion__icon {
+    display: inline-flex;
+    flex: none;
+    inline-size: var(--ds-size-icon-sm);
+    block-size: var(--ds-size-icon-sm);
+    transition-property: rotate;
+    transition-duration: var(--ds-duration-base);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-accordion__icon > svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .ds-accordion__trigger[data-panel-open] .ds-accordion__icon {
+    rotate: 180deg;
+  }
+
+  .ds-accordion__panel {
+    overflow: hidden;
+    block-size: var(--accordion-panel-height);
+    transition-property: block-size;
+    transition-duration: var(--ds-duration-base);
+    transition-timing-function: var(--ds-easing-standard);
+  }
+
+  .ds-accordion__panel:is([data-starting-style], [data-ending-style]) {
+    block-size: 0;
+  }
+
+  .ds-accordion__content {
+    padding-block-end: var(--ds-space-4);
+    color: var(--ds-color-fg-muted);
+  }
+}

@@ -1,4 +1,5 @@
 export const iconNames = [
+  'arrow-down-right',
   'arrow-left',
   'arrow-right',
   'arrow-up-right',

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" data-product="cv" data-density="comfortable">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data display from CSS alone</title>
+    <link rel="stylesheet" href="../css/index.css">
+  </head>
+  <body>
+    <main>
+      <h1>Data display from CSS alone</h1>
+      <dl class="ds-description-list" data-layout="columns">
+        <div class="ds-description-list__item"><dt class="ds-description-list__term" id="term">Role</dt><dd class="ds-description-list__details">Platform engineer</dd></div>
+      </dl>
+      <ol class="ds-timeline" role="list">
+        <li class="ds-timeline__item"><time class="ds-timeline__time" datetime="2024">2024</time><p class="ds-timeline__title">Platform engineer</p></li>
+      </ol>
+      <section class="ds-table-wrap" aria-label="Matchday results">
+        <table class="ds-table">
+          <caption>Matchday results</caption>
+          <thead><tr><th scope="col" id="head">Player</th><th scope="col" data-numeric>Points</th></tr></thead>
+          <tbody><tr><td>Ada</td><td data-numeric id="points">12</td></tr></tbody>
+        </table>
+      </section>
+      <p>Press <kbd class="ds-kbd" id="kbd">K</kbd> to search.</p>
+    </main>
+  </body>
+</html>

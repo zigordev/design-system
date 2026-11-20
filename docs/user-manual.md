@@ -192,6 +192,69 @@ import { Field, Textarea, TextInput } from '@zigordev/react';
 - TextInput takes `type` (`text`, `email`, `password`, `search`, `tel`, `url`; default `text`) and `size` (`sm`, `md`, `lg`; default `md`). Textarea takes `size` and `rows` (default 3) and grows with its content in browsers that support `field-sizing`. Both pass every other attribute through.
 - Text is 16px in comfortable density, so iOS Safari does not zoom in when a field gets focus. A TextInput outside a Field needs `aria-label`.
 
+### SearchField
+
+A search box with a search icon and a clear button, such as the cv's Ask bar. Put it in a Field for its label, and its form in a `<search>` element so screen readers list it as a search landmark.
+
+```tsx
+import { Field, SearchField } from '@zigordev/react';
+
+<search>
+  <form onSubmit={ask}>
+    <Field label={t('ask')}>
+      <SearchField clearLabel={t('clearSearch')} value={query} onValueChange={setQuery} />
+    </Field>
+  </form>
+</search>;
+```
+
+It takes `value` or `defaultValue`, `onValueChange(value)`, `size` and `clearLabel`, the accessible name of the clear button, which appears when there is text and puts the focus back in the box.
+
+### Select, Combobox and Autocomplete
+
+Select picks one option from a short list. Combobox picks one option from a long list by typing to filter it. Autocomplete suggests values while the person types any text.
+
+```tsx
+import { Autocomplete, Combobox, Field, Select } from '@zigordev/react';
+
+<Field label={t('reason')}>
+  <Select options={reasons} placeholder={t('chooseReason')} value={reason} onValueChange={setReason} />
+</Field>
+<Field label={t('team')}>
+  <Combobox options={teams} emptyText={t('noTeam')} onValueChange={setTeam} />
+</Field>
+<Field label={t('topic')}>
+  <Autocomplete suggestions={topics} onValueChange={setTopic} />
+</Field>
+```
+
+- Options are `{ value, label, disabled? }`. Select's value is the option's `value`; Combobox's is the whole option, so the label shows in the box; Autocomplete's is the text.
+- All three take `name`, `disabled`, `size` and `placeholder`; Select and Combobox take `required`, and Combobox takes `emptyText` for when nothing matches. Arrow keys move through the list, Enter picks, and Escape closes it.
+
+### NumberField, Slider, OtpField and DateInput
+
+NumberField enters a whole number with buttons to step it, such as a score. Slider picks a value or a range. OtpField enters a one-time code. DateInput enters a date or time with the browser's own picker, which is localised and works with every assistive technology.
+
+```tsx
+import { DateInput, Field, NumberField, OtpField, Slider } from '@zigordev/react';
+
+<Field label={t('homeGoals')}>
+  <NumberField min={0} max={20} decrementLabel={t('fewer')} incrementLabel={t('more')} />
+</Field>
+<Slider label={t('price')} defaultValue={[20, 80]} showValue thumbLabels={[t('lowest'), t('highest')]} />
+<Field label={t('code')}>
+  <OtpField length={6} inputLabel={(position, length) => t('digit', { position, length })} />
+</Field>
+<Field label={t('startDate')}>
+  <DateInput type="date" />
+</Field>
+```
+
+- NumberField takes Base UI's `value`, `min`, `max`, `step` and `format`, and labels for its two buttons.
+- Slider takes a number or an array of two numbers, `min`, `max`, `step`, `label`, `showValue` and `thumbLabels`; arrow keys move a thumb.
+- OtpField's first input takes the Field's label, and `inputLabel` names the others.
+- DateInput's `type` is `date` (default), `time`, `datetime-local` or `month`.
+
 ### Checkbox, Switch, CheckboxGroup and RadioGroup
 
 Choices with a visible label beside the control. Checkbox is for a yes or no that takes effect when the form is sent, Switch for a setting that applies at once, RadioGroup for one choice among a few, and CheckboxGroup for any number of them.
@@ -393,6 +456,326 @@ import { LanguageSwitcher } from '@zigordev/react';
 
 `display` is `code` (default), which shows EN and ES with the full name for screen readers, or `name`, which shows the names. Write each name in its own language. The links are full page loads, so the new language's messages load with the page.
 
+### Tooltip
+
+A short label that appears on hover and keyboard focus, for controls whose meaning is visual, such as an icon-only button.
+
+```tsx
+import { PlusIcon } from '@zigordev/icons';
+import { Button, Tooltip } from '@zigordev/react';
+
+<Tooltip content={t('addMatch')}>
+  <Button iconOnly aria-label={t('addMatch')}>
+    <PlusIcon />
+  </Button>
+</Tooltip>;
+```
+
+- `content` is the label, `children` the single element it describes, `side` is `top` (default), `bottom`, `left` or `right`, and `delay` is the hover delay in milliseconds.
+- Tooltips hold text only and never the only copy of essential information; touch screens do not show them. They do not open on disabled controls.
+- Wrap an area in `TooltipProvider` to share one delay between its tooltips.
+
+### Popover and PreviewCard
+
+Popover opens a small non-modal panel from a button, such as share options. PreviewCard shows a preview when a link is hovered or focused.
+
+```tsx
+import { Button, Link, Popover, PreviewCard } from '@zigordev/react';
+
+<Popover trigger={<Button variant="outline" tone="neutral">{t('share')}</Button>} title={t('shareTitle')}>
+  <Link href={url}>{t('copyLink')}</Link>
+</Popover>
+<PreviewCard trigger={<Link href="/cases/gpool">gpool</Link>}>{summary}</PreviewCard>
+```
+
+Both take `side` and `align`, and the open state props of Base UI (`open`, `defaultOpen`, `onOpenChange`). Popover takes `title` or, without a visible title, `aria-label`, so it always has a name, and an optional `description`. Escape closes either, and the focus returns to the trigger.
+
+### Dialog, AlertDialog and Drawer
+
+Modal panels. Dialog is for a focused task, AlertDialog for a confirmation the person has to answer, and Drawer for a panel that slides in from a side, such as the mobile navigation.
+
+```tsx
+import { AlertDialog, AlertDialogClose, Button, Dialog, DialogClose, Drawer } from '@zigordev/react';
+
+<Dialog
+  trigger={<Button>{t('editProfile')}</Button>}
+  title={t('editProfile')}
+  closeLabel={t('close')}
+  footer={<><DialogClose><Button variant="outline" tone="neutral">{t('cancel')}</Button></DialogClose><Button>{t('save')}</Button></>}
+>
+  {fields}
+</Dialog>
+<AlertDialog trigger={<Button tone="danger">{t('delete')}</Button>} title={t('deleteTitle')} description={t('deleteWarning')} actions={actions} />
+<Drawer trigger={<Button>{t('menu')}</Button>} title={t('sections')} closeLabel={t('close')} side="left">{links}</Drawer>
+```
+
+- They trap the focus while open, close on Escape (AlertDialog only through its actions), and return the focus to the trigger.
+- Dialog takes `size` (`sm`, `md`, `lg`; default `md`), `description`, `footer` and `closeLabel`, the accessible name of its close button. AlertDialog takes `actions`; wrap the button that cancels in `AlertDialogClose`. Drawer takes `side` (`right`, `left`, `bottom`; default `right`) and can be swiped closed.
+- Without `trigger`, control them with `open` and `onOpenChange`.
+
+### Alert
+
+A message in the page about something that happened or needs attention. The banner variant spans the page, for example to say that trading-bot is in Paper mode.
+
+```tsx
+import { Alert, Button } from '@zigordev/react';
+
+<Alert tone="success" title={t('sent')} live="polite">{t('replySoon')}</Alert>
+<Alert variant="banner" tone="warning" title={t('paper')} action={<Button size="sm">{t('goLive')}</Button>} />
+<Alert tone="info" title={t('updated')} onDismiss={hide} dismissLabel={t('dismiss')} />
+```
+
+- `tone` is `info` (default), `success`, `warning`, `danger` or `neutral`; each has its icon, so the tone never relies on colour alone.
+- `live` announces an alert that appears after the page loaded: `polite` for news, `assertive` only for errors that block the person. A static alert has no role.
+- `action` adds buttons, and `onDismiss` with `dismissLabel` adds a close button.
+
+### Toast
+
+A short message that confirms an action, such as a sent form, and disappears on its own. Wrap the app once in `ToastProvider` and add toasts with `useToast`.
+
+```tsx
+import { ToastProvider, useToast } from '@zigordev/react';
+
+<ToastProvider closeLabel={t('close')}>{children}</ToastProvider>;
+
+const toast = useToast();
+toast.add({ title: t('sent'), description: t('replySoon'), tone: 'success' });
+```
+
+Toasts appear at the bottom end of the screen, at most `limit` (default 3) at once, and close after `timeout` milliseconds (default 5000) unless hovered or focused. Screen readers announce them. Use an Alert instead for anything the person must not miss.
+
+### EmptyState
+
+What a list or a search shows when it has nothing: a title, a hint and the action that helps.
+
+```tsx
+import { SearchIcon } from '@zigordev/icons';
+import { Button, EmptyState } from '@zigordev/react';
+
+<EmptyState
+  icon={<SearchIcon />}
+  title={t('noMatches')}
+  description={t('tryShorter')}
+  action={<Button>{t('clearFilters')}</Button>}
+/>;
+```
+
+`headingLevel` (2, 3 or 4; default 2) fits the title into the page's outline.
+
+### Progress and Meter
+
+Progress shows how far a task has come, or that it is running when its length is unknown (`value={null}`). Meter shows a measurement within a range, such as a budget.
+
+```tsx
+import { Meter, Progress } from '@zigordev/react';
+
+<Progress label={t('uploading')} value={uploaded} showValue />
+<Progress label={t('loading')} value={null} />
+<Meter label={t('budgetUsed')} value={72} tone="warning" />
+```
+
+Both take `label`, `min`, `max`, `showValue` (Meter shows it by default) and `tone` (`accent`, `success`, `warning`, `danger`). The value is formatted for the page's language.
+
+### Tabs
+
+Sections of one view that the person switches between without leaving the page, such as a case study's approach, pieces and decisions.
+
+```tsx
+import { Tab, TabList, TabPanel, Tabs } from '@zigordev/react';
+
+<Tabs defaultValue="approach">
+  <TabList aria-label={t('caseStudy')}>
+    <Tab value="approach">{t('approach')}</Tab>
+    <Tab value="pieces">{t('pieces')}</Tab>
+  </TabList>
+  <TabPanel value="approach">{approach}</TabPanel>
+  <TabPanel value="pieces">{pieces}</TabPanel>
+</Tabs>;
+```
+
+Arrow keys move between tabs, Enter or Space selects one, and an underline in the accent colour slides to the selected tab. Tabs take Base UI's `value`, `defaultValue` and `onValueChange`; name the list with `aria-label`. For pages with their own address, use links instead.
+
+### Breadcrumbs, Pagination and SiteNavigation
+
+Breadcrumbs shows where a page sits, Pagination moves through the pages of a long list, and SiteNavigation is the site's main menu, with dropdowns for sections.
+
+```tsx
+import NextLink from 'next/link';
+import { Breadcrumbs, Pagination, SiteNavigation } from '@zigordev/react';
+
+<Breadcrumbs label={t('breadcrumb')} items={[{ label: t('home'), href: '/' }, { label: 'gpool', href: '/cases/gpool' }]} />
+<Pagination label={t('pages')} page={page} pageCount={12} href={(n) => `?page=${n}`} pageLabel={(n) => t('page', { n })} previousLabel={t('previous')} nextLabel={t('next')} />
+<SiteNavigation
+  label={t('main')}
+  items={[
+    { label: t('work'), href: '/work', current: true, render: <NextLink href="/work" /> },
+    { label: t('cases'), links: [{ label: 'gpool', href: '/cases/gpool', description: t('gpoolSummary') }] },
+  ]}
+/>
+```
+
+- Breadcrumbs marks the last item as the current page and never links it. Items take `render` for Next.js `Link`.
+- Pagination renders links, so every page has an address and works without JavaScript. It shows the first and last pages, the current one and its neighbours.
+- SiteNavigation follows Base UI's navigation menu: links and dropdown triggers in a row, with arrow keys between them. On narrow screens, put the same links in a Drawer.
+
+### Menu, ContextMenu and ScopeSwitcher
+
+Menu lists actions behind a button, such as a pool's rename and delete. ContextMenu shows the same items on right-click or long-press. ScopeSwitcher is a menu that switches the current scope, such as gpool's pool.
+
+```tsx
+import { PencilIcon } from '@zigordev/icons';
+import { Button, ContextMenu, Menu, MenuItem, MenuSeparator, ScopeSwitcher } from '@zigordev/react';
+
+<Menu trigger={<Button variant="outline" tone="neutral">{t('actions')}</Button>}>
+  <MenuItem icon={<PencilIcon />} onClick={rename}>{t('rename')}</MenuItem>
+  <MenuSeparator />
+  <MenuItem tone="danger" onClick={confirmDelete}>{t('delete')}</MenuItem>
+</Menu>
+<ContextMenu content={<MenuItem onClick={copyLink}>{t('copyLink')}</MenuItem>}>{match}</ContextMenu>
+<ScopeSwitcher label={t('pool')} value={pool} options={pools} onValueChange={setPool} />
+```
+
+- Menu takes `trigger`, `side` and `align`, and the items: `MenuItem` (with `icon` and `tone`), `MenuLinkItem` (`href`, or `render` for Next.js `Link`), `MenuCheckboxItem`, `MenuRadioGroup` with `MenuRadioItem`, `MenuGroup` with a `label`, and `MenuSeparator`.
+- Arrow keys move through the items, Enter or Space activates one, typing a letter jumps to it, and Escape closes the menu and returns the focus.
+- A context menu has no keyboard way in, so every action in it must also be reachable another way.
+- ScopeSwitcher's options are `{ value, label }`; its button reads the label and the current option to screen readers.
+
+### Toolbar and CopyButton
+
+Toolbar groups related buttons into one tab stop, with arrow keys between them, such as trading-bot's order actions. CopyButton copies a text and confirms it.
+
+```tsx
+import { CopyButton, Toolbar, ToolbarButton, ToolbarGroup, ToolbarSeparator } from '@zigordev/react';
+
+<Toolbar aria-label={t('order')}>
+  <ToolbarGroup aria-label={t('side')}>
+    <ToolbarButton>{t('buy')}</ToolbarButton>
+    <ToolbarButton>{t('sell')}</ToolbarButton>
+  </ToolbarGroup>
+  <ToolbarSeparator />
+  <ToolbarButton tone="danger">{t('cancelAll')}</ToolbarButton>
+</Toolbar>
+<CopyButton text={command} label={t('copy')} copiedLabel={t('copied')} />
+```
+
+ToolbarButton takes Button's props. CopyButton takes `text`, `label`, `copiedLabel`, `iconOnly` and Button's appearance; after a copy it shows `copiedLabel` for two seconds and announces it.
+
+### CommandPalette
+
+A searchable list of commands in a dialog, usually opened with ⌘K or Ctrl+K.
+
+```tsx
+import { CommandPalette } from '@zigordev/react';
+
+<CommandPalette
+  open={open}
+  onOpenChange={setOpen}
+  title={t('commands')}
+  placeholder={t('typeCommand')}
+  emptyText={t('noCommand')}
+  commands={[{ id: 'cases', label: t('openCases'), onSelect: () => router.push('/cases') }]}
+/>;
+```
+
+Typing filters the commands, arrow keys move through them, and Enter or a click runs one and closes the palette. The app owns the shortcut that opens it.
+
+### DescriptionList, Timeline, Table and StatTile
+
+Ways to show facts. DescriptionList pairs terms with details, Timeline lists events in order, such as the cv's experience, Table shows rows of data, and StatTile shows one number with its change.
+
+```tsx
+import { DescriptionList, StatTile, Table, Timeline } from '@zigordev/react';
+
+<DescriptionList layout="columns" items={[{ term: t('role'), details: t('platformEngineer') }]} />
+<Timeline items={[{ id: 'now', time: '2024 – now', dateTime: '2024', title: t('platformEngineer'), description: t('summary') }]} />
+<Table caption={t('results')}>
+  <thead><tr><th scope="col">{t('player')}</th><th scope="col" data-numeric="">{t('points')}</th></tr></thead>
+  <tbody><tr><td>Ada</td><td data-numeric="">12</td></tr></tbody>
+</Table>
+<StatTile label={t('points')} value="1,284" delta="+12%" trend="up" />
+```
+
+- DescriptionList's `layout` is `stacked` (default) or `columns`. Timeline items take `id`, `title`, `time` with `dateTime`, and `description`.
+- Table takes native table children and a `caption`; it scrolls sideways in a region named by the caption. Mark number cells with `data-numeric` to align them, and a selected row with `aria-selected="true"`. The header stays in view while the table scrolls.
+- StatTile's value uses the product's display style; `trend` (`up`, `down`, `flat`) adds an arrow and a colour to the delta, which states the change in words too.
+
+### Accordion
+
+Sections that open in place, such as questions and answers. Each title is a heading with a button.
+
+```tsx
+import { Accordion } from '@zigordev/react';
+
+<Accordion items={[{ value: 'why', title: t('why'), content: t('because') }]} headingLevel={3} />;
+```
+
+It takes `items` (`value`, `title`, `content`, `disabled`), `headingLevel` (2, 3 or 4; default 3), and Base UI's `multiple`, `value`, `defaultValue` and `onValueChange`. Tab moves between titles and Enter or Space opens one.
+
+### Avatar and AvatarGroup
+
+A person's picture, or their initials when there is none.
+
+```tsx
+import { Avatar, AvatarGroup } from '@zigordev/react';
+
+<Avatar name="Ada Lovelace" src={photo} />
+<Avatar name="Ada Lovelace" decorative />
+<AvatarGroup label={t('members')} more={{ count: 3, label: t('andMore', { count: 3 }) }}>{avatars}</AvatarGroup>
+```
+
+An Avatar is an image named after the person, unless `decorative`, which hides it when the name is already written next to it. `size` is `sm`, `md` (default) or `lg`.
+
+### CodeBlock, Figure, Kbd and ScrollArea
+
+```tsx
+import { CodeBlock, Figure, Kbd, ScrollArea } from '@zigordev/react';
+
+<CodeBlock label={t('install')} language="bash" code="pnpm add @zigordev/react" copyLabel={t('copy')} copiedLabel={t('copied')} />
+<Figure caption={t('standingsCaption')}><img src={standings} alt={t('standings')} /></Figure>
+<p>{t('press')} <Kbd>⌘</Kbd> <Kbd>K</Kbd></p>
+<ScrollArea label={t('changelog')} className={styles.changelog}>{entries}</ScrollArea>
+```
+
+CodeBlock shows code in the mono face with an optional copy button; it does not colour syntax. Figure adds a caption to an image. Kbd shows a key. ScrollArea scrolls its content with thin scrollbars that appear on hover; size it with a `className`.
+
+### AppShell, TopBar, BottomTabBar and PageHeader
+
+The frame of an app. AppShell places a header, an optional sidebar, the main content, a footer and an optional bottom tab bar. TopBar is the header's row, BottomTabBar the phone navigation of gpool, and PageHeader a page's title with its breadcrumbs, description and actions.
+
+```tsx
+import { AppShell, BottomTabBar, PageHeader, SkipLink, TopBar } from '@zigordev/react';
+
+<SkipLink>{t('skipToContent')}</SkipLink>
+<AppShell
+  header={<TopBar start={<ProductName />} end={<ThemeSwitcher {...theme} />}>{siteNavigation}</TopBar>}
+  sidebar={poolLinks}
+  sidebarLabel={t('pool')}
+  tabBar={<BottomTabBar label={t('sections')} items={tabs} />}
+>
+  <PageHeader title={pool.name} description={t('players', { count })} actions={<Button>{t('invite')}</Button>} />
+  {content}
+</AppShell>
+```
+
+- AppShell's main element has the id `main` (or `mainId`) and `tabIndex={-1}`, so SkipLink lands in it. The header stays at the top and the tab bar at the bottom while the page scrolls.
+- The sidebar is a navigation landmark named by `sidebarLabel`. It shows from 64rem; below that, put the same links in a Drawer.
+- BottomTabBar items take `label`, `href`, `icon`, `current` and `render` for Next.js `Link`. It hides from 48rem unless `mobileOnly={false}`.
+- PageHeader's title is an `h1` (or `headingLevel={2}`) in the product's display style.
+
+### Chart colours and the data grid recipe
+
+Charts take their colours from the tokens, so they follow the theme and keep 3:1 against the page in every product, mode and contrast.
+
+| Token                            | Use                                                  |
+| -------------------------------- | ---------------------------------------------------- |
+| `--ds-color-chart-1` to `-5`     | Series, in this order: blue, amber, green, red, grey |
+| `--ds-color-chart-highlight`     | The series to emphasise, in the product accent       |
+| `--ds-color-chart-grid`, `-axis` | Grid lines and axis labels                           |
+
+The series colours do not depend on the product, so two products' charts read the same, and the product accent stays free for emphasis. Never use colour alone to tell series apart: label lines directly or add markers.
+
+Data grids for trading-bot follow the recipe in Storybook (Recipes, Data grid): TanStack Table, the same library and `legacy` entry point as trading-bot's operator console, rendered into Table, with sortable headers that set `aria-sort` on the `th` and wrap the label in a `button` with the `ds-table__sort` class, which shows the direction, and Checkbox for row selection.
+
 ### Icons
 
 `@zigordev/icons` holds the icons of every app: a curated Lucide set, as React components and an SVG sprite.
@@ -471,6 +854,32 @@ import { SkipLink } from '@zigordev/react';
 ```
 
 `target` is the id of the main content, `main` by default. Give that element `tabIndex={-1}`, so the focus moves into it.
+
+### Email
+
+`@zigordev/email` builds the messages products send, with React Email on the design tokens. Products render them with `@zigordev/email` and send them through `@zigordev/notifications-client`.
+
+```tsx
+import { render } from '@react-email/render';
+import { EmailButton, EmailFooter, EmailHeading, EmailLayout, EmailText } from '@zigordev/email';
+
+const html = await render(
+  <EmailLayout
+    product="cv"
+    lang={locale}
+    preview={t('preview')}
+    footer={<EmailFooter>{t('why')}</EmailFooter>}
+  >
+    <EmailHeading>{t('newMessage')}</EmailHeading>
+    <EmailText>{t('from', { name })}</EmailText>
+    <EmailButton href={link}>{t('read')}</EmailButton>
+  </EmailLayout>
+);
+```
+
+- EmailLayout takes `product` (default `cv`), `lang`, `preview` (the inbox preview text) and `footer`. EmailText takes `tone` (`default` or `muted`).
+- Email clients ignore CSS variables and most of CSS, so every style is inlined from the product's light theme, generated from the tokens. Dark mode is left to the mail client.
+- The Storybook Email section previews a message in each product.
 
 ## Without React
 

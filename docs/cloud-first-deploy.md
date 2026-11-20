@@ -5,9 +5,9 @@ The design system has no server. Its production is the packages on GitHub Packag
 ## How a release happens
 
 1. A `feat`, `fix`, `perf` or `revert` pull request that touches a package merges to `main`. Squash merging makes its title the commit release-please reads.
-2. The Release workflow, which calls toolkit's shared `release-please.yml`, opens or updates one release pull request, titled `chore: release main`. The four packages are linked, so they always move to the same version, and each gets its `CHANGELOG.md`.
+2. The Release workflow, which calls toolkit's shared `release-please.yml`, opens or updates one release pull request, titled `chore: release main`. The five packages are linked, so they always move to the same version, and each gets its `CHANGELOG.md`.
 3. release-please opens that pull request with the workflow's token, so GitHub holds its checks. Open it, choose **Approve and run workflows**, wait for the checks to pass, and merge.
-4. Merging tags each package as `tokens-v<version>`, `css-v<version>`, `react-v<version>` and `icons-v<version>`, creates the GitHub releases, and the Publish job, toolkit's shared `publish-npm.yml`, builds and publishes them to GitHub Packages with the workflow's token.
+4. Merging tags each package as `tokens-v<version>`, `css-v<version>`, `react-v<version>`, `icons-v<version>` and `email-v<version>`, creates the GitHub releases, and the Publish job, toolkit's shared `publish-npm.yml`, builds and publishes them to GitHub Packages with the workflow's token.
 
 Nothing is released without that merge. The first release is 0.1.0. Before 1.0.0 a breaking change bumps the minor version; 1.0.0 follows once the first inventory is complete.
 

@@ -15,6 +15,15 @@
       "md": { "$value": { "value": 16, "unit": "rem" } },
       "lg": { "$value": { "value": 20, "unit": "rem" } }
     },
+    "overlay": {
+      "$type": "dimension",
+      "$description": "The widest dialogs, drawers and popovers get.",
+      "dialog-sm": { "$value": { "value": 24, "unit": "rem" } },
+      "dialog-md": { "$value": { "value": 32, "unit": "rem" } },
+      "dialog-lg": { "$value": { "value": 48, "unit": "rem" } },
+      "drawer": { "$value": { "value": 24, "unit": "rem" } },
+      "popover": { "$value": { "value": 20, "unit": "rem" } }
+    },
     "measure": {
       "$type": "dimension",
       "$description": "The longest comfortable line of running text.",
