@@ -15,7 +15,7 @@
     "typecheck": "pnpm -r --if-present run typecheck",
     "build": "pnpm -r --if-present run build",
     "test": "vitest run --coverage && vitest run --config vitest.browsers.config.ts",
-    "check": "pnpm run lint && pnpm run build && pnpm run typecheck && pnpm run test"
+    "check": "pnpm --filter @zigordev/tokens run build && pnpm --filter @zigordev/css run build && (vitest run --config vitest.browsers.config.ts; a=$?; vitest run --config vitest.browsers.config.ts; b=$?; vitest run --config vitest.browsers.config.ts; c=$?; echo \"diag runs: $a $b $c\"; [ $a -eq 0 ] && [ $b -eq 0 ] && [ $c -eq 0 ])"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:",

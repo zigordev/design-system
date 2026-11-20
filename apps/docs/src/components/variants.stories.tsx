@@ -30,6 +30,7 @@ import {
 import { type ComponentProps, useState } from 'react';
 import { expect, fn, waitFor, within } from 'storybook/test';
 import styles from '../docs.module.css';
+import { watchClose } from '../drawer-diagnostics.ts';
 import { wholePage } from '../overlay-a11y.ts';
 
 function RouterLink(props: ComponentProps<'a'>) {
@@ -119,7 +120,8 @@ export const DrawerWithFooter: Story = {
     const drawer = await page.findByRole('dialog', { name: 'Filters' });
     await expect(drawer).toHaveAccessibleDescription('Narrow the list.');
     await userEvent.click(page.getByRole('button', { name: 'Done' }));
-    await waitFor(() => expect(page.queryByRole('dialog')).toBeNull());
+    const report = await watchClose(canvasElement.ownerDocument, 'variants-left');
+    if (!report.ok) throw new Error(`Drawer stayed mounted: ${JSON.stringify(report)}`);
   },
 };
 
