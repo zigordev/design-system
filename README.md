@@ -35,6 +35,7 @@ mise install
 export NODE_AUTH_TOKEN="$(gh auth token -u zigordev)"
 pnpm install
 pnpm run check
+pnpm run test:browsers
 pnpm dev
 ```
 

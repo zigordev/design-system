@@ -1,2 +1,8 @@
 extends:
   - node_modules/@zigordev/lefthook-config/lefthook.yml
+
+pre-push:
+  commands:
+    browsers:
+      priority: 3
+      run: pnpm run test:browsers

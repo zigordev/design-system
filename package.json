@@ -14,7 +14,8 @@
     "format:check": "biome format .",
     "typecheck": "pnpm -r --if-present run typecheck",
     "build": "pnpm -r --if-present run build",
-    "test": "vitest run --coverage && vitest run --config vitest.browsers.config.ts",
+    "test": "vitest run --project tokens --project css --project icons --project email",
+    "test:browsers": "vitest run --coverage && vitest run --config vitest.browsers.config.ts",
     "check": "pnpm run lint && pnpm run build && pnpm run typecheck && pnpm run test"
   },
   "devDependencies": {
