@@ -122,6 +122,10 @@ export const DrawerWithFooter: Story = {
     await userEvent.click(page.getByRole('button', { name: 'Done' }));
     const report = await watchClose(canvasElement.ownerDocument, 'variants-left');
     if (!report.ok) throw new Error(`Drawer stayed mounted: ${JSON.stringify(report)}`);
+    const waits = (globalThis as { frameWaits?: number[] }).frameWaits ?? [];
+    if (waits.some((wait) => wait > 300)) {
+      throw new Error(`Closed fine after a slow first frame: ${JSON.stringify({ waits, report })}`);
+    }
   },
 };
 

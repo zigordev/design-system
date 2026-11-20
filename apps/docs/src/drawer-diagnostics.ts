@@ -90,6 +90,7 @@ export async function watchClose(doc: Document, label: string, limit = 3000): Pr
             doc.querySelector('.ds-drawer-viewport')?.getAttributeNames().join(',') ?? 'gone',
           backdrop: doc.querySelector('.ds-backdrop')?.getAttributeNames().join(',') ?? 'gone',
           active: doc.activeElement?.textContent?.trim() ?? 'none',
+          frameWaits: (globalThis as { frameWaits?: number[] }).frameWaits ?? [],
         },
   };
   return report;

@@ -64,6 +64,7 @@ function storybook(theme: Theme, browserName: BrowserName): TestProjectInlineCon
     optimizeDeps: { include: optimizedDependencies },
     test: {
       name: `stories ${browserName} ${theme.product} ${theme.mode} ${theme.contrast} ${theme.density}`,
+      setupFiles: [fileURLToPath(new URL('./.storybook/vitest.setup.ts', import.meta.url))],
       browser: browser(browserName),
     },
   };
