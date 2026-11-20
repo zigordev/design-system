@@ -4,10 +4,9 @@ import { EmailButton, EmailFooter, EmailHeading, EmailLayout, EmailText } from '
 import { expect, waitFor } from 'storybook/test';
 import styles from '../docs.module.css';
 
-function Message({ product }: { product: 'cv' | 'gpool' | 'trading-bot' }) {
+function MessageEmail() {
   return (
     <EmailLayout
-      product={product}
       preview="You have a new message"
       footer={<EmailFooter>You get this email because you have an account.</EmailFooter>}
     >
@@ -27,7 +26,7 @@ const meta = {
   title: 'Email/Message',
   component: Preview,
   args: { html: '' },
-  loaders: [async () => ({ html: await render(<Message product="cv" />) })],
+  loaders: [async () => ({ html: await render(<MessageEmail />) })],
   render: (_, { loaded }) => <Preview html={String(loaded.html)} />,
 } satisfies Meta<typeof Preview>;
 
@@ -35,15 +34,14 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Cv: Story = {
+export const Message: Story = {
   play: async ({ canvas }) => {
     const frame = canvas.getByTitle('Email preview') as HTMLIFrameElement;
     await waitFor(() => expect(frame.contentDocument?.body.textContent).toContain('A new message'));
   },
 };
 
-export const Gpool: Story = {
-  loaders: [async () => ({ html: await render(<Message product="gpool" />) })],
+export const ReadLink: Story = {
   play: async ({ canvas }) => {
     const frame = canvas.getByTitle('Email preview') as HTMLIFrameElement;
     await waitFor(() =>

@@ -39,14 +39,6 @@
     --_line: var(--ds-color-accent-border-strong);
   }
 
-  .ds-badge[data-tone="second"] {
-    --_soft: var(--ds-color-second-soft);
-    --_text: var(--ds-color-second-text);
-    --_solid: var(--ds-color-second-solid);
-    --_on: var(--ds-color-second-on);
-    --_line: var(--ds-color-second-border-strong);
-  }
-
   .ds-badge[data-tone="success"] {
     --_soft: var(--ds-color-success-soft);
     --_text: var(--ds-color-success-text);

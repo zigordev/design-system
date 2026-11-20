@@ -14,13 +14,9 @@ type Story = StoryObj<typeof meta>;
 
 export const Scales: Story = {
   args: { theme: '' },
-  render: (_, { globals }) => (
-    <ColourScales
-      theme={`${globals.product} ${globals.mode} ${globals.contrast} ${globals.density}`}
-    />
-  ),
+  render: (_, { globals }) => <ColourScales theme={String(globals.mode)} />,
   play: async ({ canvas }) => {
-    await expect(canvas.getAllByRole('heading', { level: 2 })).toHaveLength(7);
+    await expect(canvas.getAllByRole('heading', { level: 2 })).toHaveLength(6);
     await expect(await canvas.findAllByText(/^\d+\.\d$/)).not.toHaveLength(0);
   },
 };

@@ -2,31 +2,16 @@ import '@fontsource-variable/mona-sans/wdth.css';
 import '@fontsource-variable/jetbrains-mono';
 import '@zigordev/css/index.css';
 import type { Decorator, Preview } from '@storybook/react-vite';
-import {
-  contrasts,
-  defaultTheme,
-  densities,
-  modes,
-  products,
-  type Theme,
-  themeAttributes,
-} from '@zigordev/tokens';
+import { defaultTheme, modes, themeAttributes } from '@zigordev/tokens';
 import { configure } from 'storybook/test';
 
 configure({ asyncUtilTimeout: 10000 });
 
-const dimensions = Object.keys(themeAttributes) as (keyof Theme)[];
-
 const applyTheme: Decorator = (Story, { globals }) => {
-  const root = document.documentElement;
-  for (const dimension of dimensions) {
-    const value = String(globals[dimension] ?? defaultTheme[dimension]);
-    if (dimension === 'mode' && value === 'system') {
-      root.removeAttribute(themeAttributes.mode);
-    } else {
-      root.setAttribute(themeAttributes[dimension], value);
-    }
-  }
+  document.documentElement.setAttribute(
+    themeAttributes.mode,
+    String(globals.mode ?? defaultTheme.mode)
+  );
   return <Story />;
 };
 
@@ -45,10 +30,7 @@ function toolbar(title: string, icon: string, values: readonly string[]) {
 const preview: Preview = {
   decorators: [applyTheme],
   globalTypes: {
-    product: toolbar('Product', 'paintbrush', products),
     mode: toolbar('Mode', 'mirror', [...modes, 'system']),
-    density: toolbar('Density', 'component', densities),
-    contrast: toolbar('Contrast', 'contrast', contrasts),
   },
   initialGlobals: { ...defaultTheme },
   parameters: {

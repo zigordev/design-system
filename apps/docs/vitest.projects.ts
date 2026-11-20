@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
 import { playwright } from '@vitest/browser-playwright';
-import { contrasts, defaultTheme, modes, products, type Theme } from '@zigordev/tokens';
+import { defaultTheme, modes, type Theme } from '@zigordev/tokens';
 import type { TestProjectInlineConfiguration } from 'vitest/config';
 
 type BrowserName = 'chromium' | 'firefox' | 'webkit';
@@ -46,14 +46,7 @@ function browser(name: BrowserName) {
   };
 }
 
-const themes: Theme[] = [
-  ...products.flatMap((product) =>
-    modes.flatMap((mode) =>
-      contrasts.map((contrast): Theme => ({ product, mode, contrast, density: 'comfortable' }))
-    )
-  ),
-  ...products.map((product): Theme => ({ ...defaultTheme, product, density: 'compact' })),
-];
+const themes: Theme[] = modes.map((mode): Theme => ({ mode }));
 
 function storybook(theme: Theme, browserName: BrowserName): TestProjectInlineConfiguration {
   return {
@@ -63,7 +56,7 @@ function storybook(theme: Theme, browserName: BrowserName): TestProjectInlineCon
     resolve: { alias: sourceAliases },
     optimizeDeps: { include: optimizedDependencies },
     test: {
-      name: `stories ${browserName} ${theme.product} ${theme.mode} ${theme.contrast} ${theme.density}`,
+      name: `stories ${browserName} ${theme.mode}`,
       browser: browser(browserName),
     },
   };

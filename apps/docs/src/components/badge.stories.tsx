@@ -3,7 +3,7 @@ import { Badge, type BadgeTone, type BadgeVariant } from '@zigordev/react';
 import { expect } from 'storybook/test';
 import styles from '../docs.module.css';
 
-const tones: BadgeTone[] = ['neutral', 'accent', 'second', 'success', 'warning', 'danger', 'info'];
+const tones: BadgeTone[] = ['neutral', 'accent', 'success', 'warning', 'danger', 'info'];
 const variants: BadgeVariant[] = ['soft', 'solid', 'outline'];
 
 const meta = {

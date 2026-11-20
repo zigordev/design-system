@@ -4,18 +4,17 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # zigordev design system
 
-One design system for every zigordev app, with a skin per product. cv, gpool and trading-bot share the same components, behaviour, accessibility, typeface, spacing and motion. Each product sets its own accent colour, a matching neutral tint, its corner radius and its default density.
+One brand for every zigordev app: a lavender accent on an anthracite base, the precise corners, one typeface, and the same components, behaviour, accessibility, spacing and motion everywhere. The apps differ only in how they compose the components.
 
-## Themes
+## Modes
 
-Use the toolbar to switch the four theme dimensions. In an app, the same values are attributes on the root element.
+Dark is the default. Use the toolbar to switch the mode; in an app, the same value is the `data-mode` attribute on the root element.
 
-| Dimension | Values | Attribute |
-| --- | --- | --- |
-| Product | cv, gpool, trading-bot | `data-product` |
-| Mode | light, dark, or none to follow the system | `data-mode` |
-| Density | comfortable, compact | `data-density` |
-| Contrast | standard, high, or none to follow the system | `data-contrast` |
+| `data-mode` | Result |
+| --- | --- |
+| none, or `dark` | Dark |
+| `light` | Light |
+| `system` | Follows the system's light or dark setting |
 
 ## Packages
 
@@ -28,8 +27,8 @@ Use the toolbar to switch the four theme dimensions. In an app, the same values 
 ## Rules every component follows
 
 - Component CSS uses role tokens only. A test rejects raw colours, lengths and durations.
-- Every text, border and focus pairing meets WCAG 2.2 AA in every product and mode, and 7:1 for text in high contrast.
-- Interactive components follow their WAI-ARIA pattern through Base UI and are tested with the keyboard and axe in every product and mode.
+- Every text, border and focus pairing meets WCAG 2.2 AA in both modes.
+- Interactive components follow their WAI-ARIA pattern through Base UI and are tested with the keyboard and axe in both modes.
 - Components hold no copy. Labels come in as props, translated by the app.
 
 The plain HTML pages show components rendered by `@zigordev/css` alone, without JavaScript: [buttons](/html/button.html), [links](/html/link.html), [fields](/html/field.html), [choices](/html/choice.html), [a form](/html/form.html), [cards, badges and loading states](/html/display.html), [icons from the sprite](/html/icon.html), [layout and prose](/html/layout.html) and [toggle groups and language links](/html/switchers.html).

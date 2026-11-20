@@ -1,6 +1,6 @@
 @layer ds.base {
   :root {
-    color-scheme: light;
+    color-scheme: dark;
     background-color: var(--ds-color-bg-page);
     color: var(--ds-color-fg-default);
     font-family: var(--ds-font-family-sans);
@@ -12,14 +12,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-mode="light"]) {
-      color-scheme: dark;
-    }
+  :root[data-mode="light"] {
+    color-scheme: light;
   }
 
-  :root[data-mode="dark"] {
-    color-scheme: dark;
+  @media (prefers-color-scheme: light) {
+    :root[data-mode="system"] {
+      color-scheme: light;
+    }
   }
 
   body {

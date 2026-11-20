@@ -18,7 +18,7 @@ Add `@fontsource-variable/jetbrains-mono` when the app shows code.
 
 ## Set it up in a Next.js app
 
-Import the CSS and the fonts once, in the root layout, and put the theme on the root element:
+Import the CSS and the fonts once, in the root layout. Dark is the default, so the root element needs no attribute until the person picks another mode:
 
 ```tsx
 import '@fontsource-variable/mona-sans/wdth.css';
@@ -27,29 +27,28 @@ import type { ReactNode } from 'react';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="es" data-product="gpool" data-density="comfortable">
+    <html lang="es">
       <body>{children}</body>
     </html>
   );
 }
 ```
 
-`wdth.css` loads Mona Sans with its width axis, which the condensed display width needs.
+`wdth.css` loads Mona Sans with its width axis, which `--ds-font-display-stretch` sets for headings.
 
-## Themes
+## Mode
 
-Four dimensions choose the theme. Each is an attribute on the root element.
+Every app uses the same brand, a lavender accent on an anthracite base. The only theme setting is the mode, as the `data-mode` attribute on the root element. Dark is the default.
 
-| Dimension | Attribute       | Values                       | When absent                                |
-| --------- | --------------- | ---------------------------- | ------------------------------------------ |
-| Product   | `data-product`  | `cv`, `gpool`, `trading-bot` | cv                                         |
-| Mode      | `data-mode`     | `light`, `dark`              | follows the system's light or dark setting |
-| Density   | `data-density`  | `comfortable`, `compact`     | comfortable                                |
-| Contrast  | `data-contrast` | `standard`, `high`           | follows the system's contrast setting      |
+| `data-mode`      | Mode                                       |
+| ---------------- | ------------------------------------------ |
+| absent or `dark` | dark                                       |
+| `light`          | light                                      |
+| `system`         | follows the system's light or dark setting |
 
-- Each app sets its product. trading-bot also sets `data-density="compact"` and, until the person chooses otherwise, `data-mode="dark"`.
-- A theme switcher writes these attributes. `@zigordev/tokens` exports the values and their attribute names for TypeScript: `products`, `modes`, `densities`, `contrasts`, `defaultTheme` and `themeAttributes`.
-- The attributes work on the root element only. A dark panel inside a light page is not supported yet.
+- The theme switcher's choice is the attribute's value; see ThemeSwitcher.
+- `@zigordev/tokens` exports `modes`, `defaultTheme` and `themeAttributes` for TypeScript.
+- The attribute works on the root element only. A light panel inside a dark page is not supported yet.
 
 ## Style with the tokens
 
@@ -66,25 +65,25 @@ App styles go in CSS Modules and use the role tokens, never raw colours, sizes o
 }
 ```
 
-| Group                    | Tokens                                                                                                                         |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| Surfaces                 | `--ds-color-bg-page`, `-raised`, `-sunken`, `-field`, `-hover`, `-pressed`, `-inverse`, `-disabled`                            |
-| Text                     | `--ds-color-fg-default`, `-muted`, `-inverse`, `-disabled`                                                                     |
-| Borders and focus        | `--ds-color-border-subtle`, `-default`, `-field`, `--ds-color-focus-ring`, `--ds-focus-width`, `--ds-focus-offset`             |
-| Accent and second accent | `--ds-color-accent-solid`, `-solid-hover`, `-soft`, `-soft-hover`, `-text`, `-on`, `-border-strong`, and the same for `second` |
-| Status                   | the same set for `danger`, `success`, `warning` and `info`, plus a subtle `-border`                                            |
-| Space                    | `--ds-space-1` to `--ds-space-24`, in steps of 0.25 rem                                                                        |
-| Shape                    | `--ds-radius-xs` to `--ds-radius-full`, and the product's `--ds-radius-button`, `-field` and `-card`                           |
-| Type                     | `--ds-font-family-sans`, `-mono`, `--ds-font-size-xs` to `-3xl`, `--ds-font-weight-*`, `--ds-font-line-height-*`               |
-| Display                  | `--ds-font-display-stretch` and `--ds-font-display-weight`, the product's width and weight for headings and big numbers        |
-| Underline                | `--ds-font-underline-offset`, `-thickness` and `-thickness-strong`, the underline of links                                     |
-| Layout                   | `--ds-size-container-sm` to `-xl`, `--ds-size-column-sm` to `-lg` and `--ds-size-measure`                                      |
-| Controls                 | `--ds-size-control-*`, `--ds-space-control-*`, `--ds-font-size-control` and `-field`, which follow the density                 |
-| Motion and depth         | `--ds-duration-fast`, `-base`, `-slow`, `--ds-easing-standard`, `-emphasized`, `-exit`, `--ds-shadow-raised`, `-overlay`       |
+| Group             | Tokens                                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Surfaces          | `--ds-color-bg-page`, `-raised`, `-sunken`, `-field`, `-hover`, `-pressed`, `-inverse`, `-disabled`                      |
+| Text              | `--ds-color-fg-default`, `-muted`, `-inverse`, `-disabled`                                                               |
+| Borders and focus | `--ds-color-border-subtle`, `-default`, `-field`, `--ds-color-focus-ring`, `--ds-focus-width`, `--ds-focus-offset`       |
+| Accent            | `--ds-color-accent-solid`, `-solid-hover`, `-soft`, `-soft-hover`, `-text`, `-on`, `-border-strong`                      |
+| Status            | the same set for `danger`, `success`, `warning` and `info`, plus a subtle `-border`                                      |
+| Space             | `--ds-space-1` to `--ds-space-24`, in steps of 0.25 rem                                                                  |
+| Shape             | `--ds-radius-xs` to `--ds-radius-full`, and the brand's `--ds-radius-button`, `-field` and `-card`                       |
+| Type              | `--ds-font-family-sans`, `-mono`, `--ds-font-size-xs` to `-3xl`, `--ds-font-weight-*`, `--ds-font-line-height-*`         |
+| Display           | `--ds-font-display-stretch` and `--ds-font-display-weight`, the width and weight for headings and big numbers            |
+| Underline         | `--ds-font-underline-offset`, `-thickness` and `-thickness-strong`, the underline of links                               |
+| Layout            | `--ds-size-container-sm` to `-xl`, `--ds-size-column-sm` to `-lg` and `--ds-size-measure`                                |
+| Controls          | `--ds-size-control-*`, `--ds-space-control-*`, `--ds-font-size-control` and `-field`, the sizes of buttons and fields    |
+| Motion and depth  | `--ds-duration-fast`, `-base`, `-slow`, `--ds-easing-standard`, `-emphasized`, `-exit`, `--ds-shadow-raised`, `-overlay` |
 
 Under `prefers-reduced-motion`, the durations become zero, so transitions built on them stop on their own. Tokens under `--ds-color-palette-*` and `--ds-color-scale-*` are primitives behind the roles; apps do not use them.
 
-A heading in the product's display style:
+A heading in the display style:
 
 ```css
 .score {
@@ -190,7 +189,7 @@ import { Field, Textarea, TextInput } from '@zigordev/react';
 - With React Hook Form and Zod, pass the field's message as `error`. Without `error`, Base UI validates the control with the browser's constraints, such as `required` or `type="email"`, and shows the browser's message.
 - If a form marks required fields with the asterisk, the app says once, above the form, what it means. A form where almost every field is required can mark the optional ones in their labels instead and leave `required` on the controls.
 - TextInput takes `type` (`text`, `email`, `password`, `search`, `tel`, `url`; default `text`) and `size` (`sm`, `md`, `lg`; default `md`). Textarea takes `size` and `rows` (default 3) and grows with its content in browsers that support `field-sizing`. Both pass every other attribute through.
-- Text is 16px in comfortable density, so iOS Safari does not zoom in when a field gets focus. A TextInput outside a Field needs `aria-label`.
+- Field text is 16px, so iOS Safari does not zoom in when a field gets focus. A TextInput outside a Field needs `aria-label`.
 
 ### SearchField
 
@@ -327,7 +326,7 @@ import { Badge, Card, CardLink } from '@zigordev/react';
 | `variant` | `raised`, `outline`, `sunken`     | `raised` |
 | `padding` | `none`, `sm`, `md`, `lg`          | `md`     |
 
-- The corners follow the product's `--ds-radius-card`. A card lays its children out in a column with a gap; app styles go in a CSS Module passed as `className`.
+- The corners follow `--ds-radius-card`. A card lays its children out in a column with a gap; app styles go in a CSS Module passed as `className`.
 - Put at most one CardLink in a card. Buttons and other links inside it stay clickable above the stretched area. Text in a linked card cannot be selected with the pointer, so keep long text out of linked cards.
 - CardLink takes the props of Link except `tone` and `underline`: its text keeps the card's colour and underlines on hover.
 
@@ -343,13 +342,13 @@ import { Badge } from '@zigordev/react';
 <Badge size="sm">PostgreSQL</Badge>
 ```
 
-| Prop      | Values                                                                | Default   |
-| --------- | --------------------------------------------------------------------- | --------- |
-| `tone`    | `neutral`, `accent`, `second`, `success`, `warning`, `danger`, `info` | `neutral` |
-| `variant` | `soft`, `solid`, `outline`                                            | `soft`    |
-| `size`    | `sm`, `md`                                                            | `md`      |
+| Prop      | Values                                                      | Default   |
+| --------- | ----------------------------------------------------------- | --------- |
+| `tone`    | `neutral`, `accent`, `success`, `warning`, `danger`, `info` | `neutral` |
+| `variant` | `soft`, `solid`, `outline`                                  | `soft`    |
+| `size`    | `sm`, `md`                                                  | `md`      |
 
-A badge is not interactive. Its corners follow the product's `--ds-radius-button`, so cv and trading-bot get tags and gpool gets pills. Every tone and variant meets the text contrast of the theme.
+A badge is not interactive. Its corners follow `--ds-radius-button`. Every tone and variant meets the text contrast of both modes.
 
 ### Spinner and Skeleton
 
@@ -405,7 +404,7 @@ import { Toggle, ToggleGroup } from '@zigordev/react';
 
 - ToggleGroup takes `value` or `defaultValue` (an array), `onValueChange`, `multiple` (default `false`), `disabled`, `orientation` and `size` (`sm`, `md`; default `md`). Name it with `aria-label` or `aria-labelledby`.
 - Toggle takes `value`, an optional `icon`, and its label as children. An icon-only toggle requires `aria-label`.
-- The pressed toggle is raised, with a field border, so its state does not rely on colour alone. Corners follow the product's button radius.
+- The pressed toggle is raised, with a field border, so its state does not rely on colour alone. Corners follow the button radius.
 
 ### ThemeSwitcher
 
@@ -417,9 +416,7 @@ import { type ThemeChoice, ThemeSwitcher } from '@zigordev/react';
 import { themeAttributes } from '@zigordev/tokens';
 
 function applyMode(choice: ThemeChoice) {
-  const root = document.documentElement;
-  if (choice === 'system') root.removeAttribute(themeAttributes.mode);
-  else root.setAttribute(themeAttributes.mode, choice);
+  document.documentElement.setAttribute(themeAttributes.mode, choice);
 }
 
 <ThemeSwitcher
@@ -435,7 +432,7 @@ function applyMode(choice: ThemeChoice) {
 
 - `labels` name each choice; they are the accessible names of the icon-only toggles, or visible text with `showLabels`. `label` names the group.
 - Pressing the current choice again keeps it, so a choice is always selected. `size` is `sm` or `md`.
-- Store the choice in a cookie and render the root element's `data-mode` on the server, so the first paint already has the right mode.
+- Start from `dark` when nothing is stored. Store the choice in a cookie and render the root element's `data-mode` on the server, so the first paint already has the right mode.
 
 ### LanguageSwitcher
 
@@ -697,7 +694,7 @@ import { DescriptionList, StatTile, Table, Timeline } from '@zigordev/react';
 
 - DescriptionList's `layout` is `stacked` (default) or `columns`. Timeline items take `id`, `title`, `time` with `dateTime`, and `description`.
 - Table takes native table children and a `caption`; it scrolls sideways in a region named by the caption. Mark number cells with `data-numeric` to align them, and a selected row with `aria-selected="true"`. The header stays in view while the table scrolls.
-- StatTile's value uses the product's display style; `trend` (`up`, `down`, `flat`) adds an arrow and a colour to the delta, which states the change in words too.
+- StatTile's value uses the display style; `trend` (`up`, `down`, `flat`) adds an arrow and a colour to the delta, which states the change in words too.
 
 ### Accordion
 
@@ -747,7 +744,7 @@ import { AppShell, BottomTabBar, PageHeader, SkipLink, TopBar } from '@zigordev/
 
 <SkipLink>{t('skipToContent')}</SkipLink>
 <AppShell
-  header={<TopBar start={<ProductName />} end={<ThemeSwitcher {...theme} />}>{siteNavigation}</TopBar>}
+  header={<TopBar start={<AppName />} end={<ThemeSwitcher {...theme} />}>{siteNavigation}</TopBar>}
   sidebar={poolLinks}
   sidebarLabel={t('pool')}
   tabBar={<BottomTabBar label={t('sections')} items={tabs} />}
@@ -760,19 +757,19 @@ import { AppShell, BottomTabBar, PageHeader, SkipLink, TopBar } from '@zigordev/
 - AppShell's main element has the id `main` (or `mainId`) and `tabIndex={-1}`, so SkipLink lands in it. The header stays at the top and the tab bar at the bottom while the page scrolls.
 - The sidebar is a navigation landmark named by `sidebarLabel`. It shows from 64rem; below that, put the same links in a Drawer.
 - BottomTabBar items take `label`, `href`, `icon`, `current` and `render` for Next.js `Link`. It hides from 48rem unless `mobileOnly={false}`.
-- PageHeader's title is an `h1` (or `headingLevel={2}`) in the product's display style.
+- PageHeader's title is an `h1` (or `headingLevel={2}`) in the display style.
 
 ### Chart colours and the data grid recipe
 
-Charts take their colours from the tokens, so they follow the theme and keep 3:1 against the page in every product, mode and contrast.
+Charts take their colours from the tokens, so they follow the mode and keep 3:1 against the page in both modes.
 
 | Token                            | Use                                                  |
 | -------------------------------- | ---------------------------------------------------- |
 | `--ds-color-chart-1` to `-5`     | Series, in this order: blue, amber, green, red, grey |
-| `--ds-color-chart-highlight`     | The series to emphasise, in the product accent       |
+| `--ds-color-chart-highlight`     | The series to emphasise, in the accent               |
 | `--ds-color-chart-grid`, `-axis` | Grid lines and axis labels                           |
 
-The series colours do not depend on the product, so two products' charts read the same, and the product accent stays free for emphasis. Never use colour alone to tell series apart: label lines directly or add markers.
+The series colours come from the status text colours and the muted text, so the accent stays free for emphasis. Never use colour alone to tell series apart: label lines directly or add markers.
 
 Data grids for trading-bot follow the recipe in Storybook (Recipes, Data grid): TanStack Table, the same library and `legacy` entry point as trading-bot's operator console, rendered into Table, with sortable headers that set `aria-sort` on the `th` and wrap the label in a `button` with the `ds-table__sort` class, which shows the direction, and Checkbox for row selection.
 
@@ -790,7 +787,7 @@ import { Button, Link } from '@zigordev/react';
 ```
 
 - An icon is hidden from screen readers unless it gets a `label`, which makes it an image with that name. In a Button or Link icon slot, leave it unlabelled: the control carries the name.
-- `size` is `sm`, `md` (default) or `lg`, from the icon tokens, so it follows the density. In a Button or Link slot, the slot sets the size.
+- `size` is `sm`, `md` (default) or `lg`, from the icon tokens. In a Button or Link slot, the slot sets the size.
 - Icons draw with `currentColor`, so they take the colour of the text around them.
 - The Icons page in Storybook shows the whole set. A missing icon is added to this repo by its Lucide name, never drawn in an app.
 
@@ -825,7 +822,7 @@ import { Badge, Card, Container, Grid, Inline, Stack } from '@zigordev/react';
 
 ### Prose
 
-Typography for long-form content, such as a case study written in Markdown. Prose styles the elements inside it: headings in the product's display style, paragraphs, links, lists, quotes, code, tables, rules and images, at a comfortable line length.
+Typography for long-form content, such as a case study written in Markdown. Prose styles the elements inside it: headings in the display style, paragraphs, links, lists, quotes, code, tables, rules and images, at a comfortable line length.
 
 ```tsx
 import { Prose } from '@zigordev/react';
@@ -857,19 +854,14 @@ import { SkipLink } from '@zigordev/react';
 
 ### Email
 
-`@zigordev/email` builds the messages products send, with React Email on the design tokens. Products render them with `@zigordev/email` and send them through `@zigordev/notifications-client`.
+`@zigordev/email` builds the messages apps send, with React Email on the design tokens. Apps render them with `@zigordev/email` and send them through `@zigordev/notifications-client`.
 
 ```tsx
 import { render } from '@react-email/render';
 import { EmailButton, EmailFooter, EmailHeading, EmailLayout, EmailText } from '@zigordev/email';
 
 const html = await render(
-  <EmailLayout
-    product="cv"
-    lang={locale}
-    preview={t('preview')}
-    footer={<EmailFooter>{t('why')}</EmailFooter>}
-  >
+  <EmailLayout lang={locale} preview={t('preview')} footer={<EmailFooter>{t('why')}</EmailFooter>}>
     <EmailHeading>{t('newMessage')}</EmailHeading>
     <EmailText>{t('from', { name })}</EmailText>
     <EmailButton href={link}>{t('read')}</EmailButton>
@@ -877,9 +869,9 @@ const html = await render(
 );
 ```
 
-- EmailLayout takes `product` (default `cv`), `lang`, `preview` (the inbox preview text) and `footer`. EmailText takes `tone` (`default` or `muted`).
-- Email clients ignore CSS variables and most of CSS, so every style is inlined from the product's light theme, generated from the tokens. Dark mode is left to the mail client.
-- The Storybook Email section previews a message in each product.
+- EmailLayout takes `lang`, `preview` (the inbox preview text) and `footer`. EmailText takes `tone` (`default` or `muted`).
+- Email clients ignore CSS variables and most of CSS, so every style is inlined from the brand's light theme, generated from the tokens. Dark mode is left to the mail client.
+- The Storybook Email section previews a message.
 
 ## Without React
 

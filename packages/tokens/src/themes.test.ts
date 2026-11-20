@@ -2,30 +2,20 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, parse, type Resolver, type TokenNormalizedSet } from '@terrazzo/parser';
 import { beforeAll, describe, expect, it } from 'vitest';
-import {
-  type Contrast,
-  contrasts,
-  defaultTheme,
-  modes,
-  products,
-  themeAttributes,
-} from './index.ts';
+import { defaultTheme, modes, themeAttributes } from './index.ts';
 import { contrast, type Oklch } from './palette/color.ts';
 
 const resolverFile = new URL('./tokens/resolver.json', import.meta.url);
 const statuses = ['danger', 'success', 'warning', 'info'] as const;
-const coloured = ['accent', 'second', ...statuses] as const;
+const coloured = ['accent', ...statuses] as const;
 const surfaces = ['color.bg.page', 'color.bg.raised', 'color.bg.sunken', 'color.bg.field'];
 
-const minimums: Record<Contrast, { text: number; border: number }> = {
-  standard: { text: 4.5, border: 3 },
-  high: { text: 7, border: 4.5 },
-};
+const text = 4.5;
+const border = 3;
 
 type Pair = [foreground: string, background: string, minimum: number];
 
-function pairs(level: Contrast): Pair[] {
-  const { text, border } = minimums[level];
+function pairs(): Pair[] {
   const result: Pair[] = [];
   for (const surface of surfaces) {
     result.push(['color.fg.default', surface, text], ['color.fg.muted', surface, text]);
@@ -90,14 +80,12 @@ describe('resolver', () => {
   });
 });
 
-const themes = products.flatMap((product) =>
-  modes.flatMap((mode) => contrasts.map((level) => ({ product, mode, contrast: level })))
-);
+const themes = modes.map((mode) => ({ mode }));
 
-describe.each(themes)('$product, $mode, $contrast contrast', (theme) => {
+describe.each(themes)('$mode mode', (theme) => {
   it('meets WCAG 2.2 for every text, border and focus pairing', () => {
     const tokens = resolver.apply(theme);
-    const failures = pairs(theme.contrast)
+    const failures = pairs()
       .map(([foreground, background, minimum]) => {
         const ratio = contrast(colourOf(tokens, foreground), colourOf(tokens, background));
         return { foreground, background, minimum, ratio: Number(ratio.toFixed(2)) };

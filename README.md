@@ -1,20 +1,20 @@
 # design-system
 
-One design system for every zigordev app, with a skin per product. cv, gpool and trading-bot share the same components, behaviour, accessibility, typeface, spacing and motion. Each product sets its own accent colour, a matching neutral tint, its corner radius and its default density.
+One brand for every zigordev app: a lavender accent on an anthracite base, dark by default, with precise corners and one typeface. Every app shares the same components, behaviour, accessibility, spacing and motion, and differs only in how it composes them.
 
 ## Why it exists
 
-The legacy design system copied CSS into apps, injected styles from JavaScript, patched dark mode theme by theme and had no density or high-contrast mode. This repo rebuilds it from scratch: tokens in an open standard, real CSS files that style the first paint, thin React components on accessible primitives, and tests that check every colour pairing and every component in every product and mode. The decisions behind it are in [docs/adr](docs/adr/README.md).
+The legacy design system copied CSS into apps, injected styles from JavaScript and patched dark mode theme by theme. This repo rebuilds it from scratch: tokens in an open standard, real CSS files that style the first paint, thin React components on accessible primitives, and tests that check every colour pairing and every component in both modes. The decisions behind it are in [docs/adr](docs/adr/README.md).
 
 ## What it ships
 
-| Package                                         | Holds                                                                                                                                                                  |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`@zigordev/tokens`](packages/tokens/README.md) | The design tokens: DTCG 2025.10 sources with a resolver for product, mode, density and contrast, built into CSS custom properties, plus the theme names for TypeScript |
-| [`@zigordev/css`](packages/css/README.md)       | The tokens, a small reset, base styles and every component style, in cascade layers, bundled into one file                                                             |
-| [`@zigordev/react`](packages/react/README.md)   | React components on Base UI, styled by `@zigordev/css`                                                                                                                 |
-| [`@zigordev/icons`](packages/icons/README.md)   | The curated Lucide icon set, as React components and an SVG sprite                                                                                                     |
-| [`@zigordev/email`](packages/email/README.md)   | Email components on React Email that inline each product's theme from the tokens                                                                                       |
+| Package                                         | Holds                                                                                                                                                 |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`@zigordev/tokens`](packages/tokens/README.md) | The design tokens: DTCG 2025.10 sources with a resolver for light and dark mode, built into CSS custom properties, plus the mode names for TypeScript |
+| [`@zigordev/css`](packages/css/README.md)       | The tokens, a small reset, base styles and every component style, in cascade layers, bundled into one file                                            |
+| [`@zigordev/react`](packages/react/README.md)   | React components on Base UI, styled by `@zigordev/css`                                                                                                |
+| [`@zigordev/icons`](packages/icons/README.md)   | The curated Lucide icon set, as React components and an SVG sprite                                                                                    |
+| [`@zigordev/email`](packages/email/README.md)   | Email components on React Email that inline the light theme from the tokens                                                                           |
 
 `apps/docs` is the Storybook site: the component catalogue, the foundations pages and the test harness. It is not published; `pnpm dev` runs it locally.
 

@@ -1,10 +1,10 @@
-import { type Mode, modes, type Product, products } from '../index.ts';
+import { type Mode, modes } from '../index.ts';
 import type { Oklch, Swatch } from './color.ts';
 import { createRamp, type Ramp, stepNumbers, surfacesOf } from './ramp.ts';
 import {
-  type ModeOverrides,
-  productSeeds,
+  brandSeeds,
   type RampName,
+  type RampSeed,
   ramps,
   statusInkHue,
   statusRamps,
@@ -45,52 +45,38 @@ function tokensByMode(rampsByMode: ModeRamps): Record<Mode, RampGroup> {
   return { light: rampTokens(rampsByMode.light), dark: rampTokens(rampsByMode.dark) };
 }
 
-function neutralOf(product: Product): ModeRamps {
-  const seeds = productSeeds[product];
-  return byMode((mode) =>
-    createRamp(seeds.neutral, mode, {
-      inkHue: seeds.neutral.h,
-      overrides: seeds.overrides?.neutral?.[mode],
-    })
-  );
-}
-
-function colourOf(
-  seed: Oklch,
+function rampsOf(
+  { seed, overrides = {} }: RampSeed,
   inkHue: number,
-  backgrounds: Record<Mode, Oklch[]>,
-  overrides: ModeOverrides = {}
+  backgrounds?: Record<Mode, Oklch[]>
 ): ModeRamps {
   return byMode((mode) =>
-    createRamp(seed, mode, { inkHue, backgrounds: backgrounds[mode], overrides: overrides[mode] })
+    createRamp(seed, mode, { inkHue, overrides: overrides[mode], backgrounds: backgrounds?.[mode] })
   );
 }
 
-export function productPalette(product: Product): object {
-  const seeds = productSeeds[product];
-  const neutral = neutralOf(product);
-  const surfaces = { light: surfacesOf(neutral.light), dark: surfacesOf(neutral.dark) };
+function neutral(): ModeRamps {
+  return rampsOf(brandSeeds.neutral, brandSeeds.neutral.seed.h);
+}
+
+function surfaces(): Record<Mode, Oklch[]> {
+  const neutralRamps = neutral();
+  return { light: surfacesOf(neutralRamps.light), dark: surfacesOf(neutralRamps.dark) };
+}
+
+export function brandPalette(): object {
   const palette = {
-    accent: tokensByMode(
-      colourOf(seeds.accent, seeds.neutral.h, surfaces, seeds.overrides?.accent)
-    ),
-    second: tokensByMode(
-      colourOf(seeds.second, seeds.neutral.h, surfaces, seeds.overrides?.second)
-    ),
-    neutral: tokensByMode(neutral),
+    accent: tokensByMode(rampsOf(brandSeeds.accent, brandSeeds.neutral.seed.h, surfaces())),
+    neutral: tokensByMode(neutral()),
   };
   return { $description: generatedNote, color: { palette } };
 }
 
 export function statusPalette(): object {
-  const neutrals = products.map(neutralOf);
-  const surfaces = {
-    light: neutrals.flatMap((neutral) => surfacesOf(neutral.light)),
-    dark: neutrals.flatMap((neutral) => surfacesOf(neutral.dark)),
-  };
+  const backgrounds = surfaces();
   const palette: Record<string, Record<Mode, RampGroup>> = {};
   for (const ramp of statusRamps) {
-    palette[ramp] = tokensByMode(colourOf(statusSeeds[ramp], statusInkHue, surfaces));
+    palette[ramp] = tokensByMode(rampsOf(statusSeeds[ramp], statusInkHue, backgrounds));
   }
   return { $description: generatedNote, color: { palette } };
 }
@@ -114,9 +100,7 @@ export function scaleAliases(mode: Mode): object {
 
 export function generatedFiles(): Record<string, object> {
   const files: Record<string, object> = {};
-  for (const product of products) {
-    files[`palette-${product}.tokens.json`] = productPalette(product);
-  }
+  files['palette-brand.tokens.json'] = brandPalette();
   files['palette-status.tokens.json'] = statusPalette();
   for (const mode of modes) {
     files[`scale-${mode}.tokens.json`] = scaleAliases(mode);

@@ -1,7 +1,7 @@
 {
   "name": "@zigordev/email",
   "version": "0.3.0",
-  "description": "Email components for zigordev products, built with React Email on the design tokens",
+  "description": "Email components for zigordev apps, built with React Email on the design tokens",
   "license": "UNLICENSED",
   "type": "module",
   "sideEffects": false,
