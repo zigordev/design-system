@@ -52,7 +52,7 @@ pnpm install
 pnpm --filter design-system-docs exec playwright install chromium firefox webkit
 ```
 
-`pnpm install` also installs the git hooks: Biome and gitleaks before each commit, commitlint on each message, and before each push the full check and then the browser tests; the push hook also refuses a push to `main`. CI does not run the browser tests for now, so the pre-push hook is what holds them. Work in a worktree cut from `origin/main` and run `pnpm install` there too.
+`pnpm install` also installs the git hooks: Biome and gitleaks before each commit, commitlint on each message, and before each push the full check and then the browser tests; the push hook also refuses a push to `main`. CI does not run the browser tests for now, so the pre-push hook is what holds them. Work in this clone, on one branch cut from `origin/main`, and switch back to `main` once the pull request merges or closes.
 
 ## Run it
 
