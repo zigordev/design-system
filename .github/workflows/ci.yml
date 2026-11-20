@@ -27,5 +27,3 @@ jobs:
     permissions:
       contents: read
       packages: read
-    with:
-      playwright-browsers: chromium firefox webkit

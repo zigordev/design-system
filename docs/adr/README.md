@@ -19,5 +19,6 @@ To add one, copy [template.md](template.md) to `NNNN-short-title.md` with the ne
 | [0011](0011-storybook-stays-local.md)                   | Storybook stays local                               |               | accepted |
 | [0012](0012-a-curated-lucide-set-in-its-own-package.md) | A curated Lucide set in its own package             |               | accepted |
 | [0013](0013-email-components-on-react-email.md)         | Email components on React Email with inlined tokens |               | accepted |
+| [0015](0015-browser-tests-run-before-push.md)           | Browser tests run before push, not in CI, for now   |               | accepted |
 
 The plan decision column refers to the design decisions taken with the owner on 2026-11-19, recorded on the design direction page.
