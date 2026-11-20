@@ -123,7 +123,7 @@ export const DrawerWithFooter: Story = {
     const report = await watchClose(canvasElement.ownerDocument, 'variants-left');
     if (!report.ok) throw new Error(`Drawer stayed mounted: ${JSON.stringify(report)}`);
     const waits = (globalThis as { frameWaits?: number[] }).frameWaits ?? [];
-    if (!navigator.userAgent.includes('Linux')) return;
+    if (!import.meta.env.VITE_DIAG_CI) return;
     throw new Error(
       `REPORT ${JSON.stringify({ waits, elapsed: report.elapsed, frames: report.frames })}`
     );

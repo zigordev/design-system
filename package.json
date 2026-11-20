@@ -15,7 +15,7 @@
     "typecheck": "pnpm -r --if-present run typecheck",
     "build": "pnpm -r --if-present run build",
     "test": "vitest run --coverage && vitest run --config vitest.browsers.config.ts",
-    "check": "pnpm --filter @zigordev/tokens run build && pnpm --filter @zigordev/css run build && vitest run --config vitest.browsers.config.ts --project \"stories webkit*\""
+    "check": "pnpm --filter @zigordev/tokens run build && pnpm --filter @zigordev/css run build && VITE_DIAG_CI=$CI vitest run --config vitest.browsers.config.ts --project \"stories webkit*\""
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:",
