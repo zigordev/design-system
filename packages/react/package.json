@@ -1,6 +1,6 @@
 {
   "name": "@zigordev/react",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "React components for zigordev apps, built on Base UI and styled by @zigordev/css",
   "license": "UNLICENSED",
   "type": "module",

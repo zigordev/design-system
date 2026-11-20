@@ -1,6 +1,6 @@
 {
   "name": "@zigordev/icons",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "The curated Lucide icon set for zigordev apps, as React components and an SVG sprite",
   "license": "UNLICENSED",
   "type": "module",
