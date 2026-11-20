@@ -52,19 +52,20 @@ pnpm install
 pnpm --filter design-system-docs exec playwright install chromium firefox webkit
 ```
 
-`pnpm install` also installs the git hooks: Biome and gitleaks before each commit, commitlint on each message, and the full check before each push, which also refuses a push to `main`. Work in a worktree cut from `origin/main` and run `pnpm install` there too.
+`pnpm install` also installs the git hooks: Biome and gitleaks before each commit, commitlint on each message, and before each push the full check and then the browser tests; the push hook also refuses a push to `main`. CI does not run the browser tests for now, so the pre-push hook is what holds them. Work in a worktree cut from `origin/main` and run `pnpm install` there too.
 
 ## Run it
 
-| Command                                       | Does                                                                                                           |
-| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `pnpm dev`                                    | Builds the tokens and the CSS, then starts Storybook at <http://localhost:6006>, with its MCP server at `/mcp` |
-| `pnpm run check`                              | Runs what CI runs: lint, build, typecheck and both test runs                                                   |
-| `pnpm test`                                   | Unit tests, story tests in every theme in Chromium with coverage, then the stories in Firefox and WebKit       |
-| `pnpm run format`                             | Formats code, JSON, CSS and Markdown with Biome                                                                |
-| `pnpm --filter @zigordev/tokens run generate` | Regenerates the colour scales after a seed changes in `packages/tokens/src/palette/seeds.ts`                   |
+| Command                                       | Does                                                                                                                   |
+| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`                                    | Builds the tokens and the CSS, then starts Storybook at <http://localhost:6006>, with its MCP server at `/mcp`         |
+| `pnpm run check`                              | Runs what CI runs: lint, build, typecheck and the unit tests                                                           |
+| `pnpm test`                                   | The unit tests of tokens, css, icons and email                                                                         |
+| `pnpm run test:browsers`                      | The story tests in every theme in Chromium with coverage, the plain HTML pages, then the stories in Firefox and WebKit |
+| `pnpm run format`                             | Formats code, JSON, CSS and Markdown with Biome                                                                        |
+| `pnpm --filter @zigordev/tokens run generate` | Regenerates the colour scales after a seed changes in `packages/tokens/src/palette/seeds.ts`                           |
 
-The tests need the packages built first, which `pnpm run check` does. CI also lints the Markdown and checks its links:
+The browser tests need the packages built first, which `pnpm run check` does. CI also lints the Markdown and checks its links:
 
 ```bash
 npx --yes markdownlint-cli2 "**/*.md"

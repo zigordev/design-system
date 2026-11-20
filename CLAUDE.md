@@ -14,7 +14,8 @@ One brand for every zigordev app: a lavender accent on an anthracite base, dark 
 ## Commands
 
 - `pnpm install` installs the workspace and the git hooks. It needs `NODE_AUTH_TOKEN` from `gh auth token -u zigordev`.
-- `pnpm run check` runs what CI runs: lint, build, typecheck and both test runs.
+- `pnpm run check` runs what CI runs: lint, build, typecheck and the unit tests.
+- `pnpm run test:browsers` runs the browser tests CI skips for now ([ADR 0015](docs/adr/0015-browser-tests-run-before-push.md)): every story in Chromium with the coverage gate, the plain HTML pages, and the stories in Firefox and WebKit. The pre-push hook runs it after `check`.
 - `pnpm dev` starts Storybook at <http://localhost:6006>.
 - `pnpm --filter @zigordev/tokens run generate` regenerates the colour scales after a seed changes.
 - `pnpm --filter @zigordev/icons run generate` regenerates the icons after `src/names.ts` or `lucide-static` changes.
