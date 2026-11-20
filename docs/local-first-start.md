@@ -5,8 +5,18 @@ How to work on the design system on a laptop, from nothing. It runs no services,
 ## Prerequisites
 
 - git, with the zigordev identity set in this repo
-- [mise](https://mise.jdx.dev), which installs the Node, pnpm and gitleaks versions in `mise.toml`
+- [mise](https://mise.jdx.dev), activated in your shell, which installs and selects the Node, pnpm and gitleaks versions in `mise.toml`
 - the GitHub CLI, signed in as zigordev, with the `read:packages` scope
+
+## Activate mise
+
+`mise install` only downloads the versions. Activate mise in your shell once, so that inside this repo they come first on your `PATH`, ahead of any Node from nvm or pnpm from Homebrew:
+
+```bash
+echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+```
+
+Use `mise activate bash` in `~/.bashrc` for bash. Open a new terminal afterwards: in the repo, `node --version` prints v26 and `pnpm --version` prints 12.21.0. To skip activation, prefix each command with `mise exec --`, such as `mise exec -- pnpm install`.
 
 ## Access to GitHub Packages
 
@@ -66,3 +76,7 @@ npx --yes markdownlint-cli2 "**/*.md"
 2. Run `pnpm --filter @zigordev/tokens run generate`. It rewrites the files in `packages/tokens/src/tokens/generated/`, which are never edited by hand.
 3. Open Foundations, Colour in Storybook to see the scales and their contrast against the page in each product and mode.
 4. Run `pnpm test`. The theme tests fail if any text, border or focus pairing drops below WCAG 2.2 AA, or below 7:1 for text in high contrast.
+
+## When something fails
+
+- **`pnpm` prints `Failed to switch pnpm to v12.21.0`, or `node --version` is not v26:** mise is not active in this shell, so another Node or pnpm comes first on `PATH`. Activate it as [Activate mise](#activate-mise) says and open a new terminal, or prefix the command with `mise exec --`.
