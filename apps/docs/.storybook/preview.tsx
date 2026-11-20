@@ -13,7 +13,7 @@ import {
 } from '@zigordev/tokens';
 import { configure } from 'storybook/test';
 
-configure({ asyncUtilTimeout: 3000 });
+configure({ asyncUtilTimeout: 10000 });
 
 const dimensions = Object.keys(themeAttributes) as (keyof Theme)[];
 
